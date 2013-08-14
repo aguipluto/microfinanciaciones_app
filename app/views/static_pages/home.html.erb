@@ -1,6 +1,11 @@
-<% provide(:title, 'Home') %>
+<div class="center hero-unit">
+  <h1>MicroFinanciaciones CEU</h1>
 
-<h1>MicroFinanciaciones CEU</h1>
-<p>
-  Página principal
-</p>
+  <h2>
+    Bienvenido a las MicroFinanciaciones
+  </h2>
+
+  <%= link_to "Regístrese ahora!", signup_path, class: "btn btn-large btn-primary" %>
+</div>
+
+<%= link_to image_tag("logo-fundacion-ceu.gif", alt: "Fundación Universitaria San Pablo CEU"), 'http://www.ceu.es/' %>
