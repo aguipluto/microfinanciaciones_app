@@ -3,9 +3,10 @@
 
   <h2>
     Bienvenido a las MicroFinanciaciones
-  </h2>
-
-  <%= link_to "Regístrese ahora!", signup_path, class: "btn btn-large btn-primary" %>
-</div>
-
+    <% if user_signed_in? %>
+        <%= current_user.email %></h2>
+    <% else %>
+        </h2><%= link_to "Regístrese ahora!", new_user_registration_path, class: "btn btn-large btn-primary" %>
+    <% end %>
+    </div>
 <%= link_to image_tag("logo-fundacion-ceu.gif", alt: "Fundación Universitaria San Pablo CEU"), 'http://www.ceu.es/' %>

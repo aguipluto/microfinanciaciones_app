@@ -6,7 +6,11 @@
         <ul class="nav pull-right">
           <li><%= link_to "Página principal", root_path %></li>
           <li><%= link_to "Ayuda", help_path %></li>
-          <li><%= link_to "Iniciar sesión", '#' %></li>
+          <% if user_signed_in? %>
+              <li><%= link_to 'Cerrar sesión', destroy_user_session_path, :method => :delete %></li>
+          <% else %>
+              <li><%= link_to "Iniciar sesión", new_user_session_path %></li>
+          <% end %>
         </ul>
       </nav>
     </div>
