@@ -1,0 +1,27 @@
+<% provide(:title, 'Registro Usuario') %>
+
+<h2>Nuevo Usuario</h2>
+
+<%= form_for(@user, html: {class: "well col-lg-6"}) do |f| %>
+    <div class="form-group">
+      <%= f.label :name, "Nombre", class: "control-label" %>
+      <%= f.text_field :name, class: "form-control", placeholder: "Nombre" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :family_name, "Apellidos", class: "control-label" %>
+      <%= f.text_field :family_name, class: "form-control", placeholder: "Apellidos" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :email, class: "control-label" %>
+      <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, "Contraseña", class: "control-label" %>
+      <%= f.password_field :password, class: "form-control", placeholder: "Contraseña" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password_confirmation, "Repita contraseña", class: "control-label" %>
+      <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Repita contraseña" %>
+    </div>
+    <%= f.submit "Registrar", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,16 @@
+<% provide(:title, 'Perfil Usuario') %>
+<% content_for :jumbotron do %>
+    <h2>Perfil de Usuario</h2>
+<% end %>
+<div class="row">
+  <div class="col-md-2">Nombre:</div><div class="col-md-2"></b> <b><%= @user.name %></b></div>
+</div>
+<div class="row">
+  <div class="col-md-2">Apellidos:</div><div class="col-md-2"><b><%= @user.family_name %></b></div>
+</div>
+<div class="row">
+  <div class="col-md-2">Email:</div><div class="col-md-2"><b><%= @user.email %></b></div>
+</div>
+<div class="row">
+  <div class="col-md-2">Fecha de registro:</div><div class="col-md-2"><b><%= @user.created_at %></b></div>
+</div>
