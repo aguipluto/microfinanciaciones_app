@@ -5,3 +5,16 @@ body { padding-top: 50px; }
 @media screen and (max-width: 768px) {
   body { padding-top: 220px; }
 }
+
+select.date-select {
+  width:auto;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+  display: inline-block;
+}
+
+div.date.row
+{
+  margin-left: 0px;
+  margin-right: 0px;
+}

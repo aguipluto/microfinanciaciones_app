@@ -8,5 +8,4 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :password, length: {minimum: 6}
 
-  attr_accessible :name, :family_name, :email, :password, :password_confirmation
 end
