@@ -1,0 +1,16 @@
+<% provide(:title, 'Iniciar sesión') %>
+
+<h2>Iniciar sesión</h2>
+
+<%= form_for(:session, url: sessions_path, html: {class: "well col-lg-6"}) do |f| %>
+    <div class="form-group">
+      <%= f.label :email, class: "control-label" %>
+      <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :password, "Contraseña", class: "control-label" %>
+      <%= f.password_field :password, class: "form-control", placeholder: "Contraseña" %>
+    </div>
+
+    <%= f.submit "Iniciar", class: "btn btn-primary" %>
+<% end %>
