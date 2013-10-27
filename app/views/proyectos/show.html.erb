@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @proyecto.nombre %>
+</p>
+
+<p>
+  <strong>Lugar:</strong>
+  <%= @proyecto.lugar %>
+</p>
+
+<p>
+  <strong>Descripcion corta:</strong>
+  <%= @proyecto.descripcion_corta %>
+</p>
+
+<p>
+  <strong>Descripcion larga:</strong>
+  <%= @proyecto.descripcion_larga %>
+</p>
+
+<p>
+  <strong>Fecha inicio proyecto:</strong>
+  <%= @proyecto.fecha_inicio_proyecto %>
+</p>
+
+<p>
+  <strong>Fecha fin proyecto:</strong>
+  <%= @proyecto.fecha_fin_proyecto %>
+</p>
+
+<p>
+  <strong>Fecha inicio recaudacion:</strong>
+  <%= @proyecto.fecha_inicio_recaudacion %>
+</p>
+
+<p>
+  <strong>Fecha fin recaudation:</strong>
+  <%= @proyecto.fecha_fin_recaudation %>
+</p>
+
+<%= link_to 'Edit', edit_proyecto_path(@proyecto) %> |
+<%= link_to 'Back', proyectos_path %>

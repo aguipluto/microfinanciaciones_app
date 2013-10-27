@@ -1,0 +1,41 @@
+<h1>Listing proyectos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Lugar</th>
+      <th>Descripcion corta</th>
+      <th>Descripcion larga</th>
+      <th>Fecha inicio proyecto</th>
+      <th>Fecha fin proyecto</th>
+      <th>Fecha inicio recaudacion</th>
+      <th>Fecha fin recaudation</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @proyectos.each do |proyecto| %>
+      <tr>
+        <td><%= proyecto.nombre %></td>
+        <td><%= proyecto.lugar %></td>
+        <td><%= proyecto.descripcion_corta %></td>
+        <td><%= proyecto.descripcion_larga %></td>
+        <td><%= proyecto.fecha_inicio_proyecto %></td>
+        <td><%= proyecto.fecha_fin_proyecto %></td>
+        <td><%= proyecto.fecha_inicio_recaudacion %></td>
+        <td><%= proyecto.fecha_fin_recaudation %></td>
+        <td><%= link_to 'Show', proyecto %></td>
+        <td><%= link_to 'Edit', edit_proyecto_path(proyecto) %></td>
+        <td><%= link_to 'Destroy', proyecto, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Proyecto', new_proyecto_path %>
