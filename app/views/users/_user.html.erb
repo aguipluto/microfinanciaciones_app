@@ -1,0 +1,8 @@
+# encoding: utf-8
+<div class="row">
+  <%= link_to user.name + user.family_name, user %>
+  <% if current_user.admin? && !current_user?(user) %>
+      | <%= link_to "Borrar", user, method: :delete,
+                    data: { confirm: "¿Está seguro?" } %>
+  <% end %>
+</div>

@@ -1,7 +1,6 @@
-<% provide(:title, 'Registro Usuario') %>
+<% provide(:title, 'Editar Perfil') %>
 
-<h2>Nuevo Usuario</h2>
-
+<h2>Editar Perfil</h2>
 
 <%= form_for(@user, html: {class: "well col-lg-6"}) do |f| %>
     <%= render 'shared/error_messages' %>
@@ -31,5 +30,7 @@
       <%= f.label :password_confirmation, "Repita contraseña", class: "control-label" %>
       <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Repita contraseña" %>
     </div>
-    <%= f.submit "Registrar", class: "btn btn-primary" %>
+    <div class="form-group">
+      <%= f.submit "Guardar cambios", class: "btn btn-primary" %>
+    </div>
 <% end %>

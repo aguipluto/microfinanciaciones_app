@@ -6,6 +6,9 @@ gem 'rails', '4.0.0'
 #styles
 #gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
 gem 'bootstrap-sass', '~> 3.0.0.0.rc'
+gem 'faker', '1.1.2'
+gem 'will_paginate', '~> 3.0'
+gem 'bootstrap-will_paginate'
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'
