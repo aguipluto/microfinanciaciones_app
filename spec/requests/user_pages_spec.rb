@@ -101,7 +101,7 @@ describe "User pages" do
 
     it "should list each user" do
       User.all.each do |user|
-        expect(page).to have_selector('li', text: user.name)
+        expect(page).to have_content(user.name + ' ' + user.family_name)
       end
     end
   end
@@ -126,7 +126,6 @@ describe "User pages" do
       it { should_not have_link('Borrar', href: user_path(admin)) }
     end
   end
-end
 
 
 end

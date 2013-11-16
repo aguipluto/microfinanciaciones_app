@@ -11,17 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131109182407) do
+ActiveRecord::Schema.define(version: 20131116144422) do
 
   create_table "proyectos", force: true do |t|
-    t.string   "nombre"
+    t.string   "titulo"
     t.string   "lugar"
+    t.date     "fecha_inicio"
+    t.date     "fecha_fin"
     t.string   "descripcion_corta"
     t.text     "descripcion_larga"
-    t.date     "fecha_inicio_proyecto"
-    t.date     "fecha_fin_proyecto"
-    t.datetime "fecha_inicio_recaudacion"
-    t.datetime "fecha_fin_recaudation"
+    t.decimal  "cantidad_total",      precision: 6, scale: 2, default: 0.0, null: false
+    t.datetime "inicio_aportaciones"
+    t.datetime "fin_aportaciones"
+    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,6 +38,10 @@ ActiveRecord::Schema.define(version: 20131109182407) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

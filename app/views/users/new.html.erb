@@ -4,7 +4,11 @@
 
 
 <%= form_for(@user, html: {class: "well col-lg-6"}) do |f| %>
-    <%= render 'shared/error_messages' %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <div class="form-group">
+      <%= f.label :avatar, class: "control-label" %><br />
+      <%= f.file_field :avatar, class: "form-control" %>
+    </div>
     <div class="form-group">
       <%= f.label :name, "Nombre", class: "control-label" %>
       <%= f.text_field :name, class: "form-control", placeholder: "Nombre" %>

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  has_many :proyectos, dependent: :nullify
 
   before_create :create_remember_token
   before_save { self.email = email.downcase }
@@ -10,6 +11,13 @@ class User < ActiveRecord::Base
             uniqueness: {case_sensitive: false}
   has_secure_password
   validates :password, length: {minimum: 6}
+
+  # This method associates the attribute ":avatar" with a file attachment
+  has_attached_file :avatar, styles: {
+      thumb: '100x100>',
+      square: '200x200#',
+      medium: '300x300>'
+  }
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64

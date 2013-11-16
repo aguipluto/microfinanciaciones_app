@@ -19,13 +19,24 @@ namespace :db do
     end
 
 
-    User.create!(name: "Antonio",
-                 family_name: "Aguilar Ayanz",
-                 birthdate: "27/10/1988",
-                 email: "aguipluto@gmail.com",
-                 password: "27101988",
-                 password_confirmation: "27101988",
-                 admin: true)
+    user = User.create!(name: "Antonio",
+                        family_name: "Aguilar Ayanz",
+                        birthdate: "27/10/1988",
+                        email: "aguipluto@gmail.com",
+                        password: "27101988",
+                        password_confirmation: "27101988",
+                        admin: true)
+    5.times do
+      titulo = Faker::Lorem.sentence(5)
+      descripcion_corta = Faker::Lorem.sentence(15)
+      inicio_aportaciones = rand(2.years).ago
+      fin_aportaciones = rand(2.years).from_now
+      cantidad_total =  rand * (100000-1000) + 1000
+      user.proyectos.create!(titulo: titulo, descripcion_corta: descripcion_corta,
+                             inicio_aportaciones: inicio_aportaciones, fin_aportaciones: fin_aportaciones,
+                             cantidad_total: cantidad_total)
+    end
+
     99.times do |n|
       name = Faker::Name.name
       family_name = Faker::Name.last_name

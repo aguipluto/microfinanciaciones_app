@@ -1,44 +1,28 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @proyecto.titulo) %>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @proyecto.nombre %>
-</p>
+<h2><%= @proyecto.titulo %></h2>
 
-<p>
-  <strong>Lugar:</strong>
-  <%= @proyecto.lugar %>
-</p>
-
-<p>
-  <strong>Descripcion corta:</strong>
-  <%= @proyecto.descripcion_corta %>
-</p>
-
-<p>
-  <strong>Descripcion larga:</strong>
-  <%= @proyecto.descripcion_larga %>
-</p>
-
-<p>
-  <strong>Fecha inicio proyecto:</strong>
-  <%= @proyecto.fecha_inicio_proyecto %>
-</p>
-
-<p>
-  <strong>Fecha fin proyecto:</strong>
-  <%= @proyecto.fecha_fin_proyecto %>
-</p>
-
-<p>
-  <strong>Fecha inicio recaudacion:</strong>
-  <%= @proyecto.fecha_inicio_recaudacion %>
-</p>
-
-<p>
-  <strong>Fecha fin recaudation:</strong>
-  <%= @proyecto.fecha_fin_recaudation %>
-</p>
-
-<%= link_to 'Edit', edit_proyecto_path(@proyecto) %> |
-<%= link_to 'Back', proyectos_path %>
+<div class="well col-lg-6">
+  <div class="row">
+    <div class="col-md-2">Titulo:</div>
+    <div class="col-md-3"><b><%= @proyecto.titulo %></b></div>
+  </div>
+  <div class="row">
+    <div class="col-md-2">Cantidad total:</div>
+    <div class="col-md-3"><b><%= @proyecto.cantidad_total %></b></div>
+  </div>
+  <div class="row">
+    <div class="col-md-5">
+      <div class="progress progress-striped">
+        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0"
+             aria-valuemax="100" style="width: 40%">
+          <span class="sr-only">40% Complete (success)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-3"><%= link_to "Editar", edit_proyecto_path(@proyecto) %></div>
+  </div>
+</div>

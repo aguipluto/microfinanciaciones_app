@@ -9,6 +9,8 @@ gem 'bootstrap-sass', '~> 3.0.0.0.rc'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
+gem 'paperclip'
+gem 'aws-sdk'
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'
