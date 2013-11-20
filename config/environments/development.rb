@@ -35,9 +35,9 @@ MicrofinanciacionesApp::Application.configure do
       :storage => :s3,
       :s3_protocol => 'http',
       :s3_credentials => {
-          :bucket => ENV['AWS_BUCKET'],
-          :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
-          :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
+          :bucket => 'microfinanciacionesapp-images',
+          :access_key_id => 'AKIAJ4KGSWA2R45FBAWA',
+          :secret_access_key => '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'
       }
   }
 end

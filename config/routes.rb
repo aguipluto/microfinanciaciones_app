@@ -1,5 +1,6 @@
 MicrofinanciacionesApp::Application.routes.draw do
 
+  resources :uploads
   resources :proyectos
   resources :users
   resources :sessions, only: [:new, :create, :destroy]

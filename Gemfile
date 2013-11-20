@@ -11,6 +11,8 @@ gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
 gem 'paperclip'
 gem 'aws-sdk'
+gem 'therubyracer', platforms: :ruby
+
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'
