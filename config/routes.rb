@@ -2,8 +2,12 @@ MicrofinanciacionesApp::Application.routes.draw do
 
   resources :uploads
   resources :proyectos
+  post 'proyectos/add_to_cart'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+
+  get "paypal_express/checkout"
+
 
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'

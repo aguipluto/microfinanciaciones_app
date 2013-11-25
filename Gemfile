@@ -12,6 +12,7 @@ gem 'bootstrap-will_paginate'
 gem 'paperclip'
 gem 'aws-sdk'
 gem 'therubyracer', platforms: :ruby
+gem 'activemerchant'
 
 
 group :development, :test do

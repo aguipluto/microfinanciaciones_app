@@ -12,7 +12,7 @@
     <div class="col-md-3"><b><%= @proyecto.cantidad_total %></b></div>
   </div>
   <% @proyecto.attachments.each do |img| %>
-      <%= image_tag img.attachment.url(:thumb), class:"img-thumbnail" %>
+      <%= image_tag img.attachment.url(:thumb), class: "img-thumbnail" %>
   <% end %>
   <div class="row">
     <div class="col-md-5">
@@ -26,6 +26,9 @@
   </div>
   <div class="row">
     <div class="col-md-2"></div>
-    <div class="col-md-3"><%= link_to "Editar", edit_proyecto_path(@proyecto) %></div>
+    <div class="col-md-3">
+      <%= link_to "Editar", edit_proyecto_path(@proyecto) %>
+    </div>
+
   </div>
 </div>
