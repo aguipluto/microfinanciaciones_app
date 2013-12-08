@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
   has_many :proyectos, dependent: :nullify
+  has_many    :carts,  dependent: :nullify
+  has_many    :cart_items
+  has_many    :deleted_cart_items,  -> { where( active: false) }, class_name: 'CartItem'
 
   before_create :create_remember_token
   before_save { self.email = email.downcase }

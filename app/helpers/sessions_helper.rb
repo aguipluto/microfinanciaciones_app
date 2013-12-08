@@ -6,6 +6,7 @@ module SessionsHelper
     cookies.permanent[:remember_token] = remember_token
     user.update_attribute(:remember_token, User.encrypt(remember_token))
     self.current_user = user
+    session_cart
   end
 
   def current_user=(user)
@@ -15,6 +16,33 @@ module SessionsHelper
   def current_user
     remember_token = User.encrypt(cookies[:remember_token])
     @current_user ||= User.find_by(remember_token: remember_token)
+  end
+
+  def session_cart=(session_cart)
+    @session_cart = session_cart
+  end
+
+  def session_cart
+    return @session_cart if defined?(@session_cart)
+    session_cart!
+  end
+
+  # use this method if you want to force a SQL query to get the cart.
+  def session_cart!
+    if cookies[:cart_id]
+      @session_cart = Cart.includes(:valid_cart_items).find_by_id(cookies[:cart_id])
+      unless @session_cart
+        @session_cart = Cart.create(:user_id => current_user.id)
+        cookies[:cart_id] = @session_cart.id
+      end
+    elsif current_user
+      @session_cart = Cart.create(:user_id => current_user.id)
+      cookies[:cart_id] = @session_cart.id
+    else
+      @session_cart = Cart.create
+      cookies[:cart_id] = @session_cart.id
+    end
+    @session_cart
   end
 
   def signed_in?
@@ -29,9 +57,11 @@ module SessionsHelper
     end
   end
 
-    def sign_out
+  def sign_out
     self.current_user = nil
+    self.session_cart = nil
     cookies.delete(:remember_token)
+    cookies.delete(:cart_id)
   end
 
   def current_user

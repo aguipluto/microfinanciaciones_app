@@ -38,6 +38,7 @@ class ProyectosController < ApplicationController
 
   def show
     @proyecto = Proyecto.find(params[:id])
+    @cartitem = CartItem.new(proyecto_id: @proyecto.id)
   end
 
   def add_to_cart

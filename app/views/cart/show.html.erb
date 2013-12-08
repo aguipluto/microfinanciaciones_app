@@ -1,0 +1,19 @@
+<% provide(:title, 'Proyectos') %>
+
+
+<div class="col-sm-12 well-sm">
+  <% @current_cart.valid_cart_items.each do |ci| %>
+        <div class="row">
+          <div class="col-sm-2"><%= link_to ci.proyecto.titulo, ci.proyecto %></div>
+          <div class="col-sm-2"><%= ci.aportacion %> &euro;</div>
+        </div>
+  <% end %>
+  <br>
+  <div class="row">
+    <div class="col-sm-2"><b>Total carrito</b></div>
+    <div class="col-sm-2"><%= @current_cart.sub_total %> &euro;</div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2"><%= link_to 'Pagar' %>  </div>
+  </div>
+</div>

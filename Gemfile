@@ -5,7 +5,7 @@ ruby '1.9.3'
 gem 'rails', '4.0.0'
 #styles
 #gem 'bootstrap-sass', :git => 'git://github.com/thomas-mcdonald/bootstrap-sass.git', :branch => '3'
-gem 'bootstrap-sass', '~> 3.0.0.0.rc'
+gem 'bootstrap-sass', '~> 3.0.2.0'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
@@ -13,7 +13,6 @@ gem 'paperclip'
 gem 'aws-sdk'
 gem 'therubyracer', platforms: :ruby
 gem 'activemerchant'
-
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'

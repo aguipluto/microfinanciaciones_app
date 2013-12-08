@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119174023) do
+ActiveRecord::Schema.define(version: 20131206120548) do
 
   create_table "attachments", force: true do |t|
     t.datetime "created_at"
@@ -21,6 +21,22 @@ ActiveRecord::Schema.define(version: 20131119174023) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.integer  "proyecto_id"
+  end
+
+  create_table "cart_items", force: true do |t|
+    t.integer  "proyecto_id"
+    t.integer  "user_id"
+    t.integer  "cart_id"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.decimal  "aportacion",  precision: 6, scale: 2, default: 0.0, null: false
+  end
+
+  create_table "carts", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "proyectos", force: true do |t|
