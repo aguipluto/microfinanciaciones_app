@@ -23,6 +23,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Perfil de usuario", current_user %></li>
+                  <li><%= link_to "Carrito", session_cart %></li>
                   <li><%= link_to 'Opciones', '#' %></li>
                   <li class="divider"></li>
                   <li><%= link_to 'Cerrar sesión', signout_path, method: 'delete' %></li>

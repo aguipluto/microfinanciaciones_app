@@ -14,6 +14,13 @@
     <div class="col-sm-2"><%= @current_cart.sub_total %> &euro;</div>
   </div>
   <div class="row">
-    <div class="col-sm-2"><%= link_to 'Pagar' %>  </div>
+    <div class="col-sm-2">
+      <%= form_tag "https://www.sandbox.paypal.com/cgi-bin/webscr" do %>
+          <%= hidden_field_tag :cmd, "_s-xclick" %>
+          <%= hidden_field_tag :encrypted, @current_cart.paypal_encrypted(proyectos_url, payment_notifications_url) %>
+          <p><%= submit_tag "Pagar" %></p>
+          <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_order_path %>
+      <% end %>
+    </div>
   </div>
 </div>

@@ -28,9 +28,27 @@ module SessionsHelper
   end
 
   # use this method if you want to force a SQL query to get the cart.
+  #def session_cart!
+  #  if cookies[:cart_id]
+  #    @session_cart ||= Cart.includes(:valid_cart_items).find_by_id(cookies[:cart_id])
+  #    unless @session_cart
+  #      @session_cart = Cart.create(:user_id => current_user.id)
+  #      cookies[:cart_id] = @session_cart.id
+  #    end
+  #  elsif current_user
+  #    @session_cart = Cart.create(:user_id => current_user.id)
+  #    cookies[:cart_id] = @session_cart.id
+  #  else
+  #    @session_cart = Cart.create
+  #    cookies[:cart_id] = @session_cart.id
+  #  end
+  #  @session_cart
+  #end
+
   def session_cart!
     if cookies[:cart_id]
-      @session_cart = Cart.includes(:valid_cart_items).find_by_id(cookies[:cart_id])
+      @session_cart ||= Cart.includes(:valid_cart_items).find_by_id(cookies[:cart_id])
+      @session_cart = nil if @session_cart.purchased_at
       unless @session_cart
         @session_cart = Cart.create(:user_id => current_user.id)
         cookies[:cart_id] = @session_cart.id

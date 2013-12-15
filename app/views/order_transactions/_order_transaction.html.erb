@@ -1,0 +1,7 @@
+<div class="row">
+  <%= link_to order_transaction.id.to_s + '.....', order_transaction %>
+  <%= order_transaction.amount/100  %> &euro;
+  <%= order_transaction.success %>
+  <%= link_to order_transaction.order.cart.user.name + ' ' + order_transaction.order.cart.user.family_name, order_transaction.order.cart.user %>
+  <%= order_transaction.created_at %>
+</div>

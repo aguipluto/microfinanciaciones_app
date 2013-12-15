@@ -5,6 +5,16 @@ MicrofinanciacionesApp::Application.routes.draw do
   resources :proyectos
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :payment_notifications, only: [:create]
+  resources :orders
+  resources :order_transactions
+  resources :orders do
+    new do
+      get 'express'
+    end
+  end
+
+
 
 
 

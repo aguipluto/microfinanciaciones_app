@@ -88,4 +88,15 @@ MicrofinanciacionesApp::Application.configure do
           :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY']
       }
   }
+
+  #Paypal
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :production
+    paypal_options = {
+        login: "aguipluto_api1.gmail.com",
+        password: "C7MXZRPHKCK9CYZV",
+        signature: "Signature"
+    }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end
