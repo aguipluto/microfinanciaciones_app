@@ -95,7 +95,7 @@ MicrofinanciacionesApp::Application.configure do
     paypal_options = {
         login: "aguipluto_api1.gmail.com",
         password: "C7MXZRPHKCK9CYZV",
-        signature: "Signature"
+        signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31A4kX9G87iST0zwUFlENsU-o6h-oT"
     }
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
