@@ -1,0 +1,12 @@
+<div>
+  <%= form_for @order do |f| %>
+      <% unless @order.express_token.blank? %>
+          <%= f.hidden_field :express_token %>
+          <p>Name: <%= @order.first_name %> <%= @order.second_name %></p>
+
+          <p>Pulse aquí para confirmar la compra</p>
+
+          <p><%= f.submit "Complete Order" %></p>
+      <% end %>
+  <% end %>
+</div>
