@@ -16,9 +16,11 @@ class ProyectosController < ApplicationController
   def create
     @proyecto = current_user.proyectos.build(proyecto_params)
     if @proyecto.save
-      params[:proyecto][:attachment_array].each do |file|
-        @attachment = @proyecto.attachments.build(:attachment => file)
-        @attachment.save
+      if params[:proyecto][:attachment_array]
+        params[:proyecto][:attachment_array].each do |file|
+          @attachment = @proyecto.attachments.build(:attachment => file)
+          @attachment.save
+        end
       end
       flash[:success] = "Proyecto creado!"
       redirect_to @proyecto
@@ -51,7 +53,7 @@ class ProyectosController < ApplicationController
 
   def proyecto_params
     params.require(:proyecto).permit(:titulo, :descripcion_corta, :descripcion_larga, :lugar, :fecha_inicio,
-                                      :fecha_fin, :cantidad_total, :inicio_aportaciones, :fin_aportaciones, :attachments_array)
+                                     :fecha_fin, :cantidad_total, :inicio_aportaciones, :fin_aportaciones, :attachments_array)
   end
 
 end

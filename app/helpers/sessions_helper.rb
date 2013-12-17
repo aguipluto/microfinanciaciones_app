@@ -47,8 +47,10 @@ module SessionsHelper
 
   def session_cart!
     if cookies[:cart_id]
-      @session_cart ||= Cart.includes(:valid_cart_items).find_by_id(cookies[:cart_id])
-      @session_cart = nil if @session_cart.purchased_at
+      @session_cart = Cart.includes(:valid_cart_items).find_by_id(cookies[:cart_id])
+      if @session_cart
+        @session_cart = nil if @session_cart.purchased_at
+      end
       unless @session_cart
         @session_cart = Cart.create(:user_id => current_user.id)
         cookies[:cart_id] = @session_cart.id

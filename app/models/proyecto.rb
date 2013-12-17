@@ -1,5 +1,6 @@
 class Proyecto < ActiveRecord::Base
   belongs_to :user
+  has_many :cart_items
   default_scope -> { order('fin_aportaciones DESC') }
 
   has_many :attachments, :dependent => :destroy
@@ -13,5 +14,9 @@ class Proyecto < ActiveRecord::Base
   validates :inicio_aportaciones, presence:true
   validates :fin_aportaciones, presence:true
   validates :cantidad_total, presence: true
+
+  def total_collected
+    self.cart_items.map(&:purchased_cart_item_in_euro).sum
+  end
 
 end

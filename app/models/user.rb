@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :proyectos, dependent: :nullify
   has_many    :carts,  dependent: :nullify
+  has_many    :purchased_carts,  -> { where("purchased_at IS NOT NULL") }, class_name: 'Cart'
   has_many    :cart_items
   has_many    :deleted_cart_items,  -> { where( active: false) }, class_name: 'CartItem'
 
@@ -25,6 +26,16 @@ class User < ActiveRecord::Base
 
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
+  end
+
+  def purchased_cart_items
+    purchaseds = []
+    purchased_carts.each do |c|
+      c.valid_cart_items.each do |ci|
+        purchaseds.push(ci)
+      end
+    end
+    purchaseds
   end
 
   private

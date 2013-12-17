@@ -2,30 +2,47 @@
 
 <h2>Perfil de Usuario</h2>
 
-<div class="well col-sm-7">
-  <div class="col-sm-9">
-    <div class="row">
-      <div class="col-sm-2">Nombre:</div>
-      <div class="col-sm-10"></b> <b><%= @user.name %></b></div>
+<div class="tabbable">
+  <ul class="nav nav-tabs">
+    <li><a href="#profile-tab" data-toggle="tab">Perfil</a></li>
+    <li id="liTab"><a href="#proyects-tab" data-toggle="tab">Proyectos en los que he colaborado</a></li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="col-sm-7 tab-pane" id="profile-tab">
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col-sm-2">Nombre:</div>
+          <div class="col-sm-10"></b> <b><%= @user.name %></b></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">Apellidos:</div>
+          <div class="col-sm-10"><b><%= @user.family_name %></b></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">Email:</div>
+          <div class="col-sm-10"><b><%= @user.email %></b></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2">Registro:</div>
+          <div class="col-sm-10"><b><%= @user.created_at %></b></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8"><%= link_to "Editar", edit_user_path(current_user) %></div>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <%= image_tag @user.avatar.url(:thumb), class: "img-thumbnail" %>
+      </div>
     </div>
-    <div class="row">
-      <div class="col-sm-2">Apellidos:</div>
-      <div class="col-sm-10"><b><%= @user.family_name %></b></div>
+    <div class="tab-pane" id="proyects-tab">
+      <% @user.purchased_cart_items.each do |ci| %>
+          <%= link_to ci.proyecto.titulo, ci.proyecto %>
+          <%= ci.aportacion %> &euro;
+          <%= ci.cart.purchased_at %><br>
+
+      <% end %>
     </div>
-    <div class="row">
-      <div class="col-sm-2">Email:</div>
-      <div class="col-sm-10"><b><%= @user.email %></b></div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2">Registro:</div>
-      <div class="col-sm-10"><b><%= @user.created_at %></b></div>
-    </div>
-    <div class="row">
-      <div class="col-sm-2"></div>
-      <div class="col-sm-8"><%= link_to "Editar", edit_user_path(current_user) %></div>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <%= image_tag @user.avatar.url(:thumb), class:"img-thumbnail" %>
   </div>
 </div>
