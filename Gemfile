@@ -32,6 +32,7 @@ gem 'jquery-rails', '2.2.1'
 gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'bcrypt-ruby', '3.0.1'
+gem 'exception_notification'
 
 
 
