@@ -100,8 +100,4 @@ MicrofinanciacionesApp::Application.configure do
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
 
-  config.middleware.use ExceptionNotifier,
-                        :email_prefix => "ERROR Microfinanciacionesapp",
-                        :sender_address => %{"My App" <errors@microfinanciacionesapp.com>},
-                        :exception_recipients => %w{aguipluto@gmail.com}
 end
