@@ -1,7 +1,7 @@
 class Proyecto < ActiveRecord::Base
   belongs_to :user
   has_many :cart_items
-  default_scope -> { order('fin_aportaciones DESC') }
+  default_scope { order('fin_aportaciones ASC') }
 
   has_many :attachments, :dependent => :destroy
   accepts_nested_attributes_for :attachments, :allow_destroy => true

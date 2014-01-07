@@ -1,5 +1,5 @@
 class ProyectosController < ApplicationController
-  before_action :admin_user
+  before_action :admin_user, only: [:new, :create, :update, :edit]
 
   def index
     @proyectos = Proyecto.paginate(page: params[:page], per_page: 50)

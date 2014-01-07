@@ -1,41 +1,75 @@
 <% provide(:title, @proyecto.titulo) %>
 
-<h2><%= @proyecto.titulo %></h2>
+<script>
+    $(function () {
+        $('.banner').unslider({
+            speed: 500,               //  The speed to animate each slide (in milliseconds)
+            delay: 3000,              //  The delay between slide animations (in milliseconds)
+            complete: function () {
+            },  //  A function that gets called after every slide animation
+            keys: true,               //  Enable keyboard (left, right) arrow shortcuts
+            dots: true,               //  Display dot navigation
+            fluid: false              //  Support responsive design. May break non-responsive designs
+        });
+    });
+</script>
+<script>
+    var unslider = $('.banner').unslider();
 
-<div class="well col-lg-7">
+    $('.unslider-arrow').click(function () {
+        var fn = this.className.split(' ')[1];
+
+        //  Either do unslider.data('unslider').next() or .prev() depending on the className
+        unslider.data('unslider')[fn]();
+    });
+</script>
+
+<div class="well col-lg-4">
+  <h2><%= @proyecto.titulo %></h2>
+
   <div class="row">
-    <div class="col-md-2">Titulo:</div>
-    <div class="col-md-3"><b><%= @proyecto.titulo %></b></div>
+    <div class="banner" style="width: 100%">
+      <ul>
+        <% @proyecto.attachments.each do |img| %>
+            <li><%= image_tag img.attachment.url(:small) %></li>
+        <% end %>
+      </ul>
+      <a href="#" class="unslider-arrow prev">Previous slide</a>
+      <a href="#" class="unslider-arrow next">Next slide</a>
+    </div>
   </div>
   <div class="row">
-    <div class="col-md-2">Cantidad total:</div>
-    <div class="col-md-3"><b><%= @proyecto.cantidad_total %></b></div>
+    <%= @proyecto.descripcion_corta %>
   </div>
-  <% @proyecto.attachments.each do |img| %>
-      <%= image_tag img.attachment.url(:thumb), class: "img-thumbnail" %>
-  <% end %>
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-10">
       <div class="progress progress-striped">
         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= @proyecto.total_collected %>" aria-valuemin="0"
              aria-valuemax="<%= @proyecto.cantidad_total %>" style="width: <%= (@proyecto.total_collected * 100) / @proyecto.cantidad_total  %>%">
-          <span class="sr-only">40% Complete (success)</span>
+          <span class="sr-only">40% de <%= @proyecto.cantidad_total %> conseguido </span>
         </div>
       </div>
     </div>
+    <div class="col-md-2">
+      <%= @proyecto.cantidad_total %>&euro;
+    </div>
+  </div>
+  <div class="row">
+     Quedan <%= time_ago_in_words(@proyecto.fin_aportaciones) %>
   </div>
   <div class="row">
     <div class="col-md-2">Aportación</div>
-    <div class="col-md-3">
+    <div class="col-md-10">
       <%= form_for @cartitem, :html => {:class => "form-inline"} do |f| %>
           <%= f.hidden_field :proyecto_id %>
           <div class="row">
-            <div class="col-md-6"><%= f.text_field :aportacion, class: 'form-control' %></div>
+            <div class="col-md-4"><%= f.text_field :aportacion, class: 'form-control' %></div>
             <div class="col-md-6"><%= f.submit "Colaborar", class: "btn btn-primary" %></div>
           </div>
       <% end %>
-      <%= link_to "Editar", edit_proyecto_path(@proyecto) %>
+      <% if signed_in? && current_user.admin? %>
+          <%= link_to "Editar", edit_proyecto_path(@proyecto) %>
+      <% end %>
     </div>
-
   </div>
 </div>

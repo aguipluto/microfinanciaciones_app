@@ -2,6 +2,10 @@
 
 <h2>Proyectos</h2>
 
+<% if signed_in? && current_user.admin? %>
+    <%= button_to "Nuevo proyecto", new_proyecto_path, :method => "get" %>
+<% end %>
+
 <div>
   <%= render @proyectos %>
 </div>

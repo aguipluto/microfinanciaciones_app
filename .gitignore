@@ -20,3 +20,4 @@ doc/
 .secret
 
 /config/initializers/dev_enviroment.rb
+/config/environments/development.rb

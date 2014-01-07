@@ -1,7 +1,7 @@
 # encoding: utf-8
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:index, :edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :correct_user,   only: [:edit, :update, :show]
   before_action :admin_user,     only: :destroy
 
 
@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :family_name, :email, :password, :password_confirmation, :avatar)
+    params.require(:user).permit(:name, :family_name, :email, :birthdate, :password, :password_confirmation, :avatar)
   end
 
   # Before filters

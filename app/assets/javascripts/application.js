@@ -14,4 +14,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require unslider.min.js
 //= require_tree .
