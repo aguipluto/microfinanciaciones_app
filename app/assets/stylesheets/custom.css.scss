@@ -1,21 +1,52 @@
-
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Ubuntu);
 
-body { padding-top: 50px; }
-@media screen and (max-width: 768px) {
-  body { }
+body {
+  padding-top: 50px;
+}
+
+//.navbar-inverse{
+//  background-color: white;
+//  border-bottom: 1px solid #aed7f7;
+//}
+//
+//navbar-inverse .navbar-nav > li > a {
+//  font-weight: bold;
+//}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+//Estilos para reducir el tamaño del jumbotron
+.jumbotron {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  margin-bottom: 5px;
+}
+
+p {
+  text-align: justify
 }
 
 select.date-select {
-  width:auto;
+  width: auto;
   border: 1px solid #cccccc;
   background-color: #ffffff;
   display: inline-block;
 }
 
-div.date.row
-{
+div.date.row {
   margin-left: 0px;
   margin-right: 0px;
 }
 
+
+
+.divMensajeValidacion{
+   display: none;
+}
+
+#error_explanation_js{
+  display: none;
+}

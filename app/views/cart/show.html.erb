@@ -2,20 +2,26 @@
 
 
 <div class="col-sm-12 well-sm">
-  <% @current_cart.valid_cart_items.each do |ci| %>
-        <div class="row">
-          <div class="col-sm-2"><%= link_to ci.proyecto.titulo, ci.proyecto %></div>
-          <div class="col-sm-2"><%= ci.aportacion %> &euro;</div>
+  <% if @current_cart.sub_total > 0 %>
+      <% @current_cart.valid_cart_items.each do |ci| %>
+          <div class="row">
+            <div class="col-sm-2"><%= link_to ci.proyecto.titulo, ci.proyecto %></div>
+            <div class="col-sm-2"><%= ci.aportacion %> &euro;</div>
+          </div>
+      <% end %>
+      <div class="row">
+        <div class="col-sm-2"><b>Total carrito</b></div>
+        <div class="col-sm-2"><%= @current_cart.sub_total %> &euro;</div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2">
+          <%= link_to 'Pagar con Paypal', express_new_order_path, class: 'btn btn-primary' %>
         </div>
+      </div>
+  <% else %>
+  Añada algún proyecto con el que colaborar
+      <br/>
+      <%= link_to 'Inicio', root_path, class:'btn btn-primary' %>
   <% end %>
-  <br>
-  <div class="row">
-    <div class="col-sm-2"><b>Total carrito</b></div>
-    <div class="col-sm-2"><%= @current_cart.sub_total %> &euro;</div>
-  </div>
-  <div class="row">
-    <div class="col-sm-2">
-      <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), express_new_order_path %>
-    </div>
-  </div>
+
 </div>

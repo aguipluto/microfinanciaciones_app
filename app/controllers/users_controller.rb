@@ -51,13 +51,13 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :family_name, :email, :birthdate, :password, :password_confirmation, :avatar)
+    params.require(:user).permit(:name, :family_name, :email, :birthdate, :password, :password_confirmation, :avatar, :terms_of_service)
   end
 
   # Before filters
   def correct_user
     @user = User.find(params[:id])
-    redirect_to(root_url) unless current_user?(@user)
+    redirect_to(root_url) unless (current_user?(@user) || current_user.admin?)
   end
 
 end

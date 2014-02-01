@@ -15,4 +15,6 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require unslider.min.js
+//= require jquery.validate.min
 //= require_tree .
+

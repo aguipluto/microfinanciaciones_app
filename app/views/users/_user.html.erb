@@ -3,6 +3,6 @@
   <%= link_to user.name + user.family_name, user %>
   <% if current_user.admin? && !current_user?(user) %>
       | <%= link_to "Borrar", user, method: :delete,
-                    data: { confirm: "¿Está seguro?" } %>
+                    data: { confirm: "¿Está seguro?" }, class:'btn btn-danger' %>
   <% end %>
 </div>

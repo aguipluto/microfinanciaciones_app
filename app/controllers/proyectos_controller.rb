@@ -36,6 +36,7 @@ class ProyectosController < ApplicationController
   end
 
   def edit
+    @proyecto = Proyecto.find(params[:id])
   end
 
   def show
@@ -46,6 +47,22 @@ class ProyectosController < ApplicationController
   def add_to_cart
     @proyecto = Proyecto.find(params[:id])
     current_user.cart.add_item(id: @proyecto.id, name: @proyecto.titulo, cost: params[:microfinanciacion])
+  end
+
+  def update
+    @proyecto = Proyecto.find(params[:id])
+    if @proyecto.update_attributes(proyecto_params)
+      if params[:proyecto][:attachment_array]
+        params[:proyecto][:attachment_array].each do |file|
+          @attachment = @proyecto.attachments.build(:attachment => file)
+          @attachment.save
+        end
+      end
+      flash[:success] = "Proyecto actualizado"
+      redirect_to @proyecto
+    else
+      render 'edit'
+    end
   end
 
 

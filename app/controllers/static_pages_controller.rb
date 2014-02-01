@@ -13,4 +13,13 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
+  def prueba
+    id = params[:id]
+    @data = Proyecto.find(id)
+
+    respond_to do |format|
+      format.json { render :json => @data }
+    end
+  end
 end

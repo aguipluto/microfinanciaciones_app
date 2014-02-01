@@ -2,6 +2,10 @@
 
 <h2>Usuarios</h2>
 
+<% if signed_in? && current_user.admin? %>
+    <%= link_to "Nuevo usuario", new_user_path, class:'btn btn-default' %>
+<% end %>
+
 <div>
   <%= render @users %>
 </div>

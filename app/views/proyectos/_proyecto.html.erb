@@ -1,45 +1,39 @@
 # encoding: utf-8
 
-<div id="proyecto" class="col-lg-4">
-  <div class="well">
-    <h2><%= proyecto.titulo %></h2>
-    <div class="row">
-      <div class="banner" style="width: 100%">
-        <ul>
-          <% proyecto.attachments.each do |img| %>
-              <li><%= image_tag img.attachment.url(:small) %></li>
-          <% end %>
-        </ul>
-        <a href="#" class="unslider-arrow prev">Previous slide</a>
-        <a href="#" class="unslider-arrow next">Next slide</a>
-      </div>
+<div class="col-md-4 zeropading">
+  <div id="<%= proyecto.id %>" class="proyectoHome">
+    <h3 id="tituloProyecto"><%= proyecto.titulo %></h3>
+    <div class="banner">
+      <ul>
+        <% proyecto.attachments.each do |img| %>
+            <li><%= image_tag img.attachment.url(:small) %></li>
+        <% end %>
+      </ul>
     </div>
-    <div class="row">
+    <div class="descripcionCorta">
       <%= proyecto.descripcion_corta %>
     </div>
-    <div class="row">
-      <div class="col-md-10">
-        <div class="progress progress-striped">
-          <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= proyecto.total_collected %>" aria-valuemin="0"
-               aria-valuemax="<%= proyecto.cantidad_total %>" style="width: <%= (proyecto.total_collected * 100) / proyecto.cantidad_total  %>%">
-            <span class="sr-only">40% de <%= proyecto.cantidad_total %> conseguido </span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2">
-        <%= proyecto.cantidad_total %>&euro;
+    <div class="progress">
+      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= proyecto.total_collected %>" aria-valuemin="0"
+           aria-valuemax="<%= proyecto.cantidad_total %>" style="clear:both;width: <%= (proyecto.total_collected * 100) / proyecto.cantidad_total  %>%">
+        <span class="sr-only">40% de <%= proyecto.cantidad_total %> conseguido </span>
       </div>
     </div>
-    <div class="row">
+    <div class="cantidadTotal">
+      <%= proyecto.cantidad_total.to_i %>&euro;
+    </div>
+    <div class="finAportaciones">
       Quedan <%= time_ago_in_words(proyecto.fin_aportaciones) %>
     </div>
-    <div class="row">
-      <div class="col-md-2">Aportación</div>
-      <div class="col-md-10">
-        <% if signed_in? && current_user.admin? %>
-            <%= link_to "Editar", edit_proyecto_path(proyecto) %>
-        <% end %>
-      </div>
+    <div class="botonesEdicionProyectos">
+      <% if signed_in? && current_user.admin? %>
+          <%= link_to "Editar", edit_proyecto_path(proyecto), class: 'btn btn-default' %>
+          <%= link_to "Borrar", proyecto, method: :delete,
+                      data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning' %>
+      <% end %>
     </div>
   </div>
 </div>
+
+
+
