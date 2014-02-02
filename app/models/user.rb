@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   has_attached_file :avatar, styles: {thumb: '100x100>', square: '200x200#', medium: '300x300>'},
                     :default_url => '/assets/images/user.png'
 
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end

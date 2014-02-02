@@ -9,7 +9,7 @@ gem 'bootstrap-sass', '~> 3.0.2.0'
 gem 'faker', '1.1.2'
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
-gem 'paperclip'
+gem 'paperclip', '3.5.2'
 gem 'aws-sdk'
 gem 'therubyracer', platforms: :ruby
 gem 'activemerchant'
