@@ -23,9 +23,11 @@ ValidarPoliticaPrivacidad = () ->
   unless $('#user_terms_of_service').is(':checked')
     $('#user_terms_of_service').parent().css('font-weight', 'bold')
     $('#user_terms_of_service').parent().css('color', '#b94a48')
+    false
   else
     $('#user_terms_of_service').parent().css('font-weight', 'normal')
     $('#user_terms_of_service').parent().css('color', '#333333')
+    true
 
 
 
