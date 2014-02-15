@@ -2,7 +2,7 @@ class ProyectosController < ApplicationController
   before_action :admin_user, only: [:new, :create, :update, :edit]
 
   def index
-    @proyectos = Proyecto.paginate(page: params[:page], per_page: 50)
+    @proyectos = Proyecto.paginate(page: params[:page], per_page: 15)
     respond_to do |format|
       format.html
       format.js
@@ -30,7 +30,8 @@ class ProyectosController < ApplicationController
   end
 
   def destroy
-    Proyecto.find(params[:id]).destroy
+    proyecto = Proyecto.find(params[:id])
+    proyecto.toggle!(:visible)
     flash[:success] = "Proyecto borrado."
     redirect_to proyectos_url
   end
@@ -42,7 +43,13 @@ class ProyectosController < ApplicationController
   def show
     @proyecto = Proyecto.find(params[:id])
     @cartitem = CartItem.new(proyecto_id: @proyecto.id)
+
+    respond_to do |format|
+      format.json { render :json => @proyecto }
+      format.html
+    end
   end
+
 
   def add_to_cart
     @proyecto = Proyecto.find(params[:id])

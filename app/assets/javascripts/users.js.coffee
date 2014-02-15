@@ -3,8 +3,13 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 ValidarEnviarFormulario = () ->
-  $('form').submit (event) ->
+  $('#formulario-registro').submit (event) ->
     unless (ValidarLongitudMinima('#user_name', 3) & ValidarLongitudMinima('#user_family_name', 3) & ValidarLongitudMinima('#user_email', 5) & ValidarLongitudMinima('#user_password', 6) & ValidarLongitudMinima('#user_password_confirmation', 6) & ValidarPoliticaPrivacidad())
+      $('html, body').animate({scrollTop:0}, 'slow');
+      $('#error_explanation_js').show()
+      event.preventDefault()
+  $('#formulario-editar').submit (event) ->
+    unless (ValidarLongitudMinima('#user_name', 3) & ValidarLongitudMinima('#user_family_name', 3) & ValidarLongitudMinima('#user_email', 5) & ValidarLongitudMinima('#user_password', 6) & ValidarLongitudMinima('#user_password_confirmation', 6) )
       $('html, body').animate({scrollTop:0}, 'slow');
       $('#error_explanation_js').show()
       event.preventDefault()
@@ -43,10 +48,38 @@ ValidarFormulario = () ->
   $('#user_password_confirmation').blur ->
     ValidarLongitudMinima('#user_password_confirmation', 6)
 
+MenuIzqClicked = () ->
+  $('#menuIzqPerfil').click ->
+    $('h2').text('Perfil de Usuario')
+    $('#menuIzqPerfil').addClass('active')
+    $('#menuIzqEditar').removeClass('active')
+    $('#menuIzqPagos').removeClass('active')
+    $('#perfilDeUsuario').removeClass('hidden')
+    $('#editarPerfilDeUsuario').addClass('hidden')
+    $('#aportacionesRealizadas').addClass('hidden')
+  $('#menuIzqEditar').click ->
+    $('h2').text('Editar Usuario')
+    $('#menuIzqPerfil').removeClass('active')
+    $('#menuIzqEditar').addClass('active')
+    $('#menuIzqPagos').removeClass('active')
+    $('#perfilDeUsuario').addClass('hidden')
+    $('#editarPerfilDeUsuario').removeClass('hidden')
+    $('#aportacionesRealizadas').addClass('hidden')
+  $('#menuIzqPagos').click ->
+    $('h2').text('Aportaciones Realizadas')
+    $('#menuIzqPerfil').removeClass('active')
+    $('#menuIzqEditar').removeClass('active')
+    $('#menuIzqPagos').addClass('active')
+    $('#perfilDeUsuario').addClass('hidden')
+    $('#editarPerfilDeUsuario').addClass('hidden')
+    $('#aportacionesRealizadas').removeClass('hidden')
+
 
 $ ->
   ValidarFormulario()
   ValidarEnviarFormulario()
+  MenuIzqClicked()
 
   $('#aceptoPrivacidad').click ->
     $('#user_terms_of_service').prop('checked', true);
+

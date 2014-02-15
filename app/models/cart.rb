@@ -1,8 +1,8 @@
 class Cart < ActiveRecord::Base
   belongs_to :user
   has_one :order
-  has_many :valid_cart_items, -> { where(active: true) },   class_name: 'CartItem'
-  has_many :deleted_cart_items, -> { where(active: true) },   class_name: 'CartItem'
+  has_many :valid_cart_items, -> { where(active: true) }, class_name: 'CartItem'
+  has_many :deleted_cart_items, -> { where(active: true) }, class_name: 'CartItem'
 
   accepts_nested_attributes_for :valid_cart_items
 
@@ -25,15 +25,15 @@ class Cart < ActiveRecord::Base
   end
 
   def remove_proyecto(proyecto_id)
-    citems = self.cart_items.each {|ci| ci.inactivate! if proyecto_id.to_i == ci.proyecto_id }
+    citems = self.cart_items.each { |ci| ci.inactivate! if proyecto_id.to_i == ci.proyecto_id }
     return citems
   end
 
   def cart_items_in_array_of_hashs
-      array = []
+    array = []
     valid_cart_items.each do |ci|
       hash = {}
-      hash[:name] =  ci.proyecto.titulo
+      hash[:name] = ci.proyecto.titulo
       hash[:description] = ci.proyecto.descripcion_corta
       hash[:quantity] = 1
       hash[:amount] = ci.aportacion_in_cents
@@ -41,6 +41,14 @@ class Cart < ActiveRecord::Base
     end
     array
   end
+
+  def as_json(options = {})
+    h = super(options)
+    h[:subtotal] = sub_total
+    h[:valid_cart_items] = valid_cart_items
+    h
+  end
+
 
   private
   def update_cart(cart_item, aportacion = 0)

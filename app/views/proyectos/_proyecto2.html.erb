@@ -1,9 +1,0 @@
-# encoding: utf-8
-<div class="row">
-  <%= link_to proyecto.titulo, proyecto %>
-  <% if signed_in? && current_user.admin? %>
-      | <%= link_to "Borrar", proyecto, method: :delete,
-                    data: { confirm: "¿Está seguro?" } %>
-  <% end %>
-</div>
-

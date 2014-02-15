@@ -11,7 +11,6 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @purchased_carts = @user.purchased_carts
   end
 
   def new
@@ -51,7 +50,13 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :family_name, :email, :birthdate, :password, :password_confirmation, :avatar, :terms_of_service)
+    if current_user.admin?
+      params.require(:user).permit(:name, :family_name, :admin, :email, :birthdate, :password, :password_confirmation, :avatar, :terms_of_service)
+    else
+      params.require(:user).permit(:name, :family_name, :email, :birthdate, :password, :password_confirmation, :avatar, :terms_of_service)
+    end
+
+
   end
 
   # Before filters

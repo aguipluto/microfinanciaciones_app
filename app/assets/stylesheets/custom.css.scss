@@ -5,10 +5,31 @@ body {
   padding-top: 50px;
 }
 
-//.navbar-inverse{
-//  background-color: white;
-//  border-bottom: 1px solid #aed7f7;
+.navbar-default {
+  color: #66757f;
+  font-weight: bold;
+
+  #img-nav-bar {
+    padding-bottom: 0;
+    padding-right: 0;
+    padding-top: 5px;
+    padding-left: 10px;
+  }
+}
+//
+//.navbar-inverse .navbar-nav, .navbar-inverse .navbar-brand {
+//  li {
+//    a {
+//      color: #66757f;
+//      &:hover{
+//        color: #0084B4;
+//        border-bottom-color: #0084B4;
+//        border-bottom-width: 3px;
+//      }
+//    }
+//  }
 //}
+
 //
 //navbar-inverse .navbar-nav > li > a {
 //  font-weight: bold;
@@ -41,12 +62,10 @@ div.date.row {
   margin-right: 0px;
 }
 
-
-
-.divMensajeValidacion{
-   display: none;
+.divMensajeValidacion {
+  display: none;
 }
 
-#error_explanation_js{
+#error_explanation_js {
   display: none;
 }

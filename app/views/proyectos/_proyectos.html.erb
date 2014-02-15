@@ -1,0 +1,31 @@
+<div class="row">
+  <table id="tabla-proyectos" class="table table-hover">
+    <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Cantidad total</th>
+      <th>Aportaciones Recibidas</th>
+      <th>Fin Aportaciones</th>
+      <th>Fecha Inicio</th>
+      <th>Fecha Fin</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @proyectos.each do |proyecto| %>
+        <tr class="<%= proyecto.assign_class %>">
+          <td><%= proyecto.titulo %></td>
+          <td><%= proyecto.cantidad_total.to_i %>&euro;</td>
+          <td><%= proyecto.total_collected.to_i %>&euro;</td>
+          <td>
+            <% if proyecto.past? %>Cerrado hace
+            <% else %> Queda
+            <% end %>
+            <%= proyecto.fin_aportaciones_in_words %></td>
+          <td><%= proyecto.fecha_inicio %></td>
+          <td><%= proyecto.fecha_fin %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<%= will_paginate previous_label: t("Anterior"), next_label: t("Siguiente") %>

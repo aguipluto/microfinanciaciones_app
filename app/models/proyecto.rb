@@ -3,6 +3,7 @@ class Proyecto < ActiveRecord::Base
   belongs_to :user
   has_many :cart_items
   default_scope { order('fin_aportaciones ASC') }
+  scope :aportables, where("visible = ? AND fin_aportaciones > ?", true, Time.current).order('fin_aportaciones ASC')
 
   has_many :attachments, :dependent => :destroy
   accepts_nested_attributes_for :attachments, :allow_destroy => true
@@ -28,6 +29,23 @@ class Proyecto < ActiveRecord::Base
 
   def total_collected
     self.cart_items.map(&:purchased_cart_item_in_euro).sum
+  end
+
+  def fin_aportaciones_in_words
+     time_ago_in_words(fin_aportaciones)
+  end
+
+  def past?
+     fin_aportaciones < Time.current
+  end
+
+  def assign_class
+    if total_collected > cantidad_total
+      'success'
+    elsif past?
+      'warning'
+    end
+
   end
 
 end

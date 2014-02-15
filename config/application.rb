@@ -24,5 +24,6 @@ module MicrofinanciacionesApp
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
+    config.time_zone = "Madrid"
   end
 end

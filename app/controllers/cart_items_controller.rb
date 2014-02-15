@@ -25,6 +25,20 @@ class CartItemsController < ApplicationController
     end
   end
 
+  def prueba
+    session_cart.save if session_cart.new_record?
+    aportacion = params[:aportacion].to_f
+    @cartitem = session_cart.add_proyecto(params[:proyecto_id], current_user.id, aportacion)
+    if @cartitem.save
+      respond_to do |format|
+        format.json { render :json => session_cart }
+        format.html
+      end
+    else
+      render :json => {:errors => session_cart.errors.full_messages}
+    end
+  end
+
 
 #  aportacion = params[:cart_item][:aportacion].to_f
 #  if cart_item = session_cart.add_proyecto(params[:cart_item][:proyecto_id]., current_user.id, aportacion)
@@ -42,14 +56,14 @@ class CartItemsController < ApplicationController
 
 # DELETE /carts/1
 # DELETE /carts/1.xml
-def destroy
-  session_cart.remove_proyecto(params[:proyecto_id]) if params[:proyecto_id]
-  redirect_to(cart_items_url)
-end
+  def destroy
+    session_cart.remove_proyecto(params[:proyecto_id]) if params[:proyecto_id]
+    redirect_to(cart_items_url)
+  end
 
-private
-def cartitem_params
-  params.require(:cart_item).permit(:aportacion, :proyecto_id)
-end
+  private
+  def cartitem_params
+    params.require(:cart_item).permit(:aportacion, :proyecto_id)
+  end
 
 end

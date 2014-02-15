@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140112125354) do
+ActiveRecord::Schema.define(version: 20140215161735) do
 
   create_table "attachments", force: true do |t|
     t.datetime "created_at"
@@ -95,12 +95,13 @@ ActiveRecord::Schema.define(version: 20140112125354) do
     t.date     "fecha_fin"
     t.string   "descripcion_corta"
     t.text     "descripcion_larga"
-    t.decimal  "cantidad_total",      precision: 6, scale: 2, default: 0.0, null: false
+    t.decimal  "cantidad_total",      precision: 6, scale: 2, default: 0.0,  null: false
     t.datetime "inicio_aportaciones"
     t.datetime "fin_aportaciones"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "visible",                                     default: true
   end
 
   create_table "users", force: true do |t|
