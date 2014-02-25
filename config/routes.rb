@@ -19,6 +19,9 @@ MicrofinanciacionesApp::Application.routes.draw do
 
   match '/proyectosShow', to: 'proyectos#show', via: 'get'
   match '/cartItemCreate', to: 'cart_items#prueba', via: 'post'
+  match '/cartitem/indexadmin', to: 'cart_items#indexAdmin', via: 'get'
+  match '/cart', to: 'proyectos#show', via: 'get'
+  match '/getNumberOfItems', to: 'cart#get_number_of_items', via: 'get'
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/contact', to: 'static_pages#contact', via: 'get'

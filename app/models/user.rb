@@ -42,6 +42,20 @@ class User < ActiveRecord::Base
     purchaseds
   end
 
+  def assign_class
+    if admin
+       'warning'
+    end
+  end
+
+  def self.search(search)
+    if search
+      where('name LIKE ? OR family_name LIKE ? OR email LIKE ?', "%#{search}%","%#{search}%","%#{search}%")
+    else
+      scoped
+    end
+  end
+
   private
 
   def create_remember_token

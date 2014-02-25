@@ -1,19 +1,20 @@
 <div class="row">
-  <table id="tabla-proyectos" class="table table-hover">
+  <table id="adminTable" class="table table-hover">
     <thead>
     <tr>
-      <th>Titulo</th>
-      <th>Cantidad total</th>
-      <th>Aportaciones Recibidas</th>
-      <th>Fin Aportaciones</th>
-      <th>Fecha Inicio</th>
-      <th>Fecha Fin</th>
+      <th><%= sortable "titulo" , "Titulo"%></th>
+      <th><%= sortable "cantidad_total","Total" %></th>
+      <th>Aportaciones</th>
+      <th><%= sortable "fin_aportaciones", "Fin Aportaciones" %></th>
+      <th><%= sortable "fecha_inicio","Fecha Inicio" %></th>
+      <th><%= sortable "fecha_fin","Fecha Fin" %></th>
+      <th><%= sortable "visible","Visible" %></th>
     </tr>
     </thead>
     <tbody>
     <% @proyectos.each do |proyecto| %>
         <tr class="<%= proyecto.assign_class %>">
-          <td><%= proyecto.titulo %></td>
+          <td><%= link_to proyecto.titulo, proyecto %></td>
           <td><%= proyecto.cantidad_total.to_i %>&euro;</td>
           <td><%= proyecto.total_collected.to_i %>&euro;</td>
           <td>
@@ -21,9 +22,10 @@
             <% else %> Queda
             <% end %>
             <%= proyecto.fin_aportaciones_in_words %></td>
-          <td><%= proyecto.fecha_inicio %></td>
-          <td><%= proyecto.fecha_fin %></td>
-        </tr>
+          <td><%= proyecto.fecha_inicio.strftime("%d/%m/%Y") %></td>
+          <td><%= proyecto.fecha_fin.strftime("%d/%m/%Y") %></td>
+          <td><%= transbol(proyecto.visible) %></td>
+        </tr>                                                                  (
     <% end %>
     </tbody>
   </table>

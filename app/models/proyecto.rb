@@ -42,10 +42,17 @@ class Proyecto < ActiveRecord::Base
   def assign_class
     if total_collected > cantidad_total
       'success'
-    elsif past?
+    elsif past? || visible == false
       'warning'
     end
+  end
 
+  def self.search(search)
+    if search
+      where('titulo LIKE ? OR descripcion_corta LIKE ? OR descripcion_larga LIKE ?', "%#{search}%","%#{search}%","%#{search}%")
+    else
+      scoped
+    end
   end
 
 end

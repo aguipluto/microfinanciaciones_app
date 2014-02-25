@@ -1,0 +1,23 @@
+<div class="row">
+  <table id="adminTable" class="table table-hover">
+    <thead>
+    <tr>
+      <th><%= sortable "name" , "Nombre"%></th>
+      <th><%= sortable "family_name","Apellidos" %></th>
+      <th><%= sortable "email", "Email" %></th>
+      <th><%= sortable "birthdate","Fecha de Nacimiento" %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+        <tr class="<%= user.assign_class %>">
+          <td><%= link_to user.name, user %></td>
+          <td><%= user.family_name %>&euro;</td>
+          <td><%= user.email %></td>
+          <td><%= user.birthdate.strftime("%d/%m/%Y") %></td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<%= will_paginate previous_label: t("Anterior"), next_label: t("Siguiente") %>

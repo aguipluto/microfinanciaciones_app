@@ -8,6 +8,16 @@ SliderAportacionChange = () ->
     console.log(cantidad)
     $('#aportationInfo').html(cantidad + '&euro;')
 
+SessionCartNumberUpdate = () ->
+  $.ajax '/getNumberOfItems',
+    type: 'GET'
+    dataType: 'json'
+    success: (data, textStatus, jqXHR) ->
+      if data['result'] > 0
+        $('.badge').removeClass('hidden')
+        $('.badge').html(data['result'])
+      else
+        $('.badge').addClass('hidden')
 
 AbrirModalProyecto = () ->
   $('.proyectoHome').click (event) ->
@@ -42,11 +52,18 @@ RealizarAportacion = () ->
       error: (jqXHR, textStatus, errorThrown) ->
         alert errorThrown
       success: (data, textStatus, jqXHR) ->
-        console.log(data)
+        SessionCartNumberUpdate()
+
+this.myApi = {
+  SessionCartNumberUpdate : SessionCartNumberUpdate
+}
 
 $ ->
   AbrirModalProyecto()
   SliderAportacionChange()
   RealizarAportacion()
+  $(document).ready ->
+    SessionCartNumberUpdate()
+
 
 

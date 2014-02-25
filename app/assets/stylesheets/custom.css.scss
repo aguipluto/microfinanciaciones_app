@@ -15,7 +15,13 @@ body {
     padding-top: 5px;
     padding-left: 10px;
   }
+
+  .badge{
+    background-color: #00aeef;
+  }
 }
+
+
 //
 //.navbar-inverse .navbar-nav, .navbar-inverse .navbar-brand {
 //  li {
@@ -68,4 +74,8 @@ div.date.row {
 
 #error_explanation_js {
   display: none;
+}
+
+select.select-for-search  {
+  width: 150px;
 }

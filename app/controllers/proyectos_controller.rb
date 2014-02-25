@@ -1,8 +1,10 @@
 class ProyectosController < ApplicationController
-  before_action :admin_user, only: [:new, :create, :update, :edit]
+  include ApplicationHelper
+  before_action :admin_user, only: [:index, :new, :create, :update, :edit]
+  helper_method :sort_column, :sort_direction
 
   def index
-    @proyectos = Proyecto.paginate(page: params[:page], per_page: 15)
+    @proyectos = Proyecto.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 4)
     respond_to do |format|
       format.html
       format.js
@@ -72,12 +74,19 @@ class ProyectosController < ApplicationController
     end
   end
 
-
   private
 
   def proyecto_params
     params.require(:proyecto).permit(:titulo, :descripcion_corta, :descripcion_larga, :lugar, :fecha_inicio,
                                      :fecha_fin, :cantidad_total, :inicio_aportaciones, :fin_aportaciones, :attachments_array)
+  end
+
+  def sort_column
+    Proyecto.column_names.include?(params[:sort]) ? params[:sort] : "fin_aportaciones"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end

@@ -24,6 +24,7 @@ class OrdersController < ApplicationController
     if @order.save
       if @order.purchase(current_user.id)
         render :action => 'success'
+        session_cart
       else
         render :action => 'failure'
       end

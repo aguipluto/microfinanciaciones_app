@@ -1,16 +1,24 @@
 <% provide(:title, 'Proyectos') %>
 
 <div class="row">
-  <div class="col-sm-2">
+  <div class="col-md-2">
     <h2>Proyectos</h2>
   </div>
-  <div class="col-sm-4" id="divBtnNuevoProyecto">
-    <% if signed_in? && current_user.admin? %>
-        <%= link_to "Nuevo proyecto", new_proyecto_path, class: 'btn btn-primary', id: 'btnNuevoProyecto' %>
+  <div class="col-md-8" id="divBtnNuevoProyecto">
+    <%= form_tag proyectos_path, method: "get", class: "form-inline formBusqueda" do %>
+        <%= hidden_field_tag :direction, params[:direction]  %>
+        <%= hidden_field_tag :sort, params[:sort]  %>
+        <p>
+          <%= text_field_tag :search, params[:search], class:'form-control', placeholder:'Buscar', id:'inputBuscar' %>
+          <%= submit_tag "Buscar", class:'btn btn-default', name:nil %>
+          <%= link_to "Nuevo", new_proyecto_path, class: 'btn btn-primary', id: 'btnNuevoProyecto' %>
+        </p>
     <% end %>
   </div>
 </div>
+<div class="row">
 
+</div>
 <div id="proyectos">
-  <%= render partial: 'proyectos' %>
+  <%= render 'proyectos' %>
 </div>

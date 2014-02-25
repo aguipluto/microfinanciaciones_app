@@ -1,13 +1,37 @@
-<div>
-  <%= form_for @order do |f| %>
-      <% unless @order.express_token.blank? %>
-          <h2>Datos del pago</h2>
-          <%= f.hidden_field :express_token %>
-          <p>Nombre: <%= @order.first_name %> <%= @order.second_name %></p>
+<% provide(:title, 'Confirmar Pago') %>
 
-          <p>Pulse aquí para confirmar la compra</p>
-
-          <p><%= f.submit "Confirmar", class: 'btn btn-success' %></p>
-      <% end %>
-  <% end %>
+<div class="row pagos">
+  <div class="col-sm-6 well-sm">
+    <%= form_for @order do |f| %>
+        <% unless @order.express_token.blank? %>
+            <h2>Confirmar Pago</h2>
+            <%= f.hidden_field :express_token %>
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Proyecto</th>
+                <th>Aportación</th>
+              </tr>
+              </thead>
+              <% session_cart.valid_cart_items.each do |ci| %>
+                  <tr>
+                    <td><%= ci.proyecto.titulo %></td>
+                    <td><%= ci.aportacion %> &euro;</td>
+                  </tr>
+              <% end %>
+              <tfoot>
+              <tr>
+                <td>
+                  <b>Total carrito</b>
+                </td>
+                <td>
+                  <b><%= session_cart.sub_total %> &euro;</b>
+                </td>
+              </tr>
+              </tfoot>
+            </table>
+            <p><%= f.submit "Confirmar", class: 'btn btn-success', id:'confirm_new_order'%><em> Pulse aquí para confirmar la compra</em></p>
+        <% end %>
+    <% end %>
+  </div>
 </div>

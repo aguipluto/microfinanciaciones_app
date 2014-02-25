@@ -1,9 +1,20 @@
 # encoding: utf-8
 class CartItemsController < ApplicationController
+  before_action :admin_user, only: [:indexAdmin]
+  helper_method :sort_column, :sort_direction
+
 
   # GET /shopping/cart_items
   def index
     @cart_items = session_cart.cart_items
+  end
+
+  def indexAdmin
+    @cart_items = cart_items_search
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   # POST /shopping/cart_items
@@ -64,6 +75,24 @@ class CartItemsController < ApplicationController
   private
   def cartitem_params
     params.require(:cart_item).permit(:aportacion, :proyecto_id)
+  end
+
+  def sort_column
+    %w[proyectos.titulo users.family_name aportacion carts.purchased_at id].include?(params[:sort]) ? params[:sort] : "proyectos.titulo"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+  end
+
+  def cart_items_search
+    if params[:aportationType] == nil || params[:aportationType] == 'Pagadas'
+      @cart_items = CartItem.joins(cart: :order).includes([:proyecto, :cart, :user]).search(params[:search], params[:aportationType]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 15)
+    elsif params[:aportationType] && params[:aportationType] == 'Sin Pagar'
+      @cart_items = CartItem.includes([:proyecto, :cart, :user]).search(params[:search], params[:aportationType]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 15)
+    else
+      @cart_items = CartItem.includes([:proyecto, :cart, :user]).search(params[:search], params[:aportationType]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 15)
+    end
   end
 
 end

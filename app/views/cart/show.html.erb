@@ -1,39 +1,42 @@
 <% provide(:title, 'Proyectos') %>
 
 <h2>Carrito de la compra</h2>
-
-<div class="col-sm-12 well-sm">
-  <% if @current_cart.sub_total > 0 %>
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th>Proyecto</th>
-          <th>Aportación</th>
-        </tr>
-        </thead>
-        <% @current_cart.valid_cart_items.each do |ci| %>
-            <td><%= link_to ci.proyecto.titulo, ci.proyecto %></td>
-            <td><%= ci.aportacion %> &euro;</td>
-        <% end %>
-        <tfoot>
-        <tr>
-          <td>
-            <b>Total carrito</b>
-          </td>
-          <td>
-            <%= @current_cart.sub_total %> &euro;
-          </td>
-        </tr>
-        </tfoot>
-      </table>
-      <div class="row">
-        <div class="col-sm-2">
-          <%= link_to 'Pagar con Paypal', express_new_order_path, class: 'btn btn-primary' %>
+<div class="row">
+  <div class="col-sm-12 well-sm">
+    <% if @current_cart.sub_total > 0 %>
+        <table class="table table-hover">
+          <thead>
+          <tr>
+            <th>Proyecto</th>
+            <th>Aportación</th>
+          </tr>
+          </thead>
+          <% @current_cart.valid_cart_items.each do |ci| %>
+              <tr>
+                <td><%= link_to ci.proyecto.titulo, ci.proyecto %></td>
+                <td><%= ci.aportacion %> &euro;</td>
+              </tr>
+          <% end %>
+          <tfoot>
+          <tr>
+            <td>
+              <b>Total carrito</b>
+            </td>
+            <td>
+              <b><%= @current_cart.sub_total %> &euro;</b>
+            </td>
+          </tr>
+          </tfoot>
+        </table>
+        <div class="row">
+          <div class="col-sm-2">
+            <%= link_to 'Pagar con Paypal', express_new_order_path, class: 'btn btn-primary' %>
+          </div>
         </div>
-      </div>
-  <% else %>
-      Añada algún proyecto con el que colaborar
-      <br/>
-      <%= link_to 'Inicio', root_path, class: 'btn btn-primary' %>
-  <% end %>
+    <% else %>
+        Añada algún proyecto con el que colaborar
+        <br/>
+        <%= link_to 'Inicio', root_path, class: 'btn btn-primary' %>
+    <% end %>
+  </div>
 </div>

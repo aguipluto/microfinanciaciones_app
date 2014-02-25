@@ -39,8 +39,12 @@
         </div>
       </div>
       <div class="form-group cantidadForm">
+
         <%= f.label :cantidad_total, "Cantidad total (en euros)", class: "control-label" %>
-        <%= f.text_field :cantidad_total, class: "form-control", placeholder: "Cantidad total" %>
+        <div class="input-group">
+          <%= f.text_field :cantidad_total, class: "form-control", placeholder: "Cantidad total" %>
+          <span class="input-group-addon">&euro;</span>
+        </div>
       </div>
       <div class="form-group">
         <%= f.label :inicio_aportaciones, class: "control-label" %>
@@ -57,10 +61,10 @@
         </div>
       </div>
       <div class="form-group">
-        <%= f.file_field :attachment_array, :multiple => 'multiple', class:"form-control" %>
+        <%= f.file_field :attachment_array, :multiple => 'multiple', class: "form-control" %>
       </div>
       <div class="form-group">
-      <%= f.submit "Crear proyecto", class: "btn btn-primary" %>
+        <%= f.submit "Crear proyecto", class: "btn btn-primary" %>
       </div>
   <% end %>
 </div>

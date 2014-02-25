@@ -1,0 +1,25 @@
+<table class="table table-hover" id="adminTable">
+  <thead>
+  <tr>
+    <th><%= sortable "cartItems.id", "Id" %></th>
+    <th><%= sortable "proyectos.titulo", "Proyecto" %></th>
+    <th><%= sortable "users.family_name", "Usuario" %></th>
+    <th><%= sortable "aportacion", "Aportacion" %></th>
+    <th><%= sortable "carts.purchased_at", "Fecha Aportación" %></th>
+    <th>Token Paypal</th>
+  </tr>
+  </thead>
+  <% @cart_items.each do |ci| %>
+      <tr>
+        <td><%= ci.id %></td>
+        <td><%= link_to ci.proyecto.titulo, ci.proyecto %></td>
+        <td><%= link_to ci.user.family_name + ', ' + ci.user.name, ci.user %></td>
+        <td><%= ci.aportacion.to_i %> &euro;</td>
+        <td><%= dateAndTime(ci.cart.purchased_at) %></td>
+        <% if ci.cart.order %>
+            <td><%= ci.cart.order.express_token %>
+        <% end %>
+        <tr>
+  <% end %>
+</table>
+<%= will_paginate previous_label: t("Anterior"), next_label: t("Siguiente") %>

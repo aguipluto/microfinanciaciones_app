@@ -151,6 +151,10 @@ div.proyectoHome {
 
 
 /**********************************************************************************************/
-#btnNuevoProyecto{
+.formBusqueda{
   margin-top: 20px;
+  input[type="text"]
+  {
+    width: 175px;
+  }
 }

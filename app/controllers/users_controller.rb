@@ -1,12 +1,17 @@
 # encoding: utf-8
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update]
+  before_action :signed_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update, :show]
-  before_action :admin_user,     only: :destroy
+  before_action :admin_user,     only: [:index, :destroy]
+  helper_method :sort_column, :sort_direction
 
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 50)
+    @users = User.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 15)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def show
@@ -50,7 +55,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    if current_user.admin?
+    if current_user && current_user.admin?
       params.require(:user).permit(:name, :family_name, :admin, :email, :birthdate, :password, :password_confirmation, :avatar, :terms_of_service)
     else
       params.require(:user).permit(:name, :family_name, :email, :birthdate, :password, :password_confirmation, :avatar, :terms_of_service)
@@ -63,6 +68,14 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless (current_user?(@user) || current_user.admin?)
+  end
+
+  def sort_column
+    User.column_names.include?(params[:sort]) ? params[:sort] : "family_name"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 
 end
