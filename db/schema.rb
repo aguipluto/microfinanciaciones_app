@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140215161735) do
+ActiveRecord::Schema.define(version: 20140302130246) do
 
   create_table "attachments", force: true do |t|
     t.datetime "created_at"
@@ -65,6 +65,10 @@ ActiveRecord::Schema.define(version: 20140215161735) do
     t.string   "first_name"
     t.string   "second_name"
     t.integer  "user_id"
+    t.boolean  "shown",            default: false
+    t.string   "invoice_name"
+    t.string   "invoice_nif"
+    t.string   "invoice_others"
   end
 
   create_table "payment_notifications", force: true do |t|
@@ -104,6 +108,20 @@ ActiveRecord::Schema.define(version: 20140215161735) do
     t.boolean  "visible",                                     default: true
   end
 
+  create_table "suggests", force: true do |t|
+    t.string   "title"
+    t.string   "name"
+    t.string   "email"
+    t.string   "tel"
+    t.text     "suggestion"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "shown",       default: false
+    t.text     "answer"
+    t.datetime "answer_date"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "family_name"
@@ -118,6 +136,7 @@ ActiveRecord::Schema.define(version: 20140215161735) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
+    t.string   "nif"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

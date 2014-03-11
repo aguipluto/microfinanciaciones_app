@@ -1,0 +1,42 @@
+<!-- Modal -->
+<div class="modal fade" id="modalSuggest" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div id="modalId" class="hidden"></div>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" id="modalTitle"></h3>
+      </div>
+      <div class="modal-body">
+        <p id="modalName"></p>
+
+        <p id="modalEmail"></p>
+
+        <p id="modalTel"></p>
+
+        <p id="modalTit"></p>
+
+        <p id="modalSug"></p>
+
+        <div class="modal-answer">
+          <h3>Respuesta</h3>
+          <textarea id="suggestion-answer" rows="5" class="form-control"></textarea>
+          <span class="label label-warning hidden">Ha ocurrido un error, por favor intente de nuevo más tarde.</span>
+
+          <div id="contenido-answer">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="loading hidden"><%= image_tag('loading.gif') %></div>
+        <div style="float: right">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button id="btnAnswerSuggest" type="button" class="btn btn-primary">Responder</button>
+        </div>
+
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -13,6 +13,9 @@ gem 'paperclip', '3.5.2'
 gem 'aws-sdk'
 gem 'therubyracer', platforms: :ruby
 gem 'activemerchant'
+gem 'wkhtmltopdf-binary'
+gem "wicked_pdf"
+gem "wkhtmltopdf-heroku"
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'

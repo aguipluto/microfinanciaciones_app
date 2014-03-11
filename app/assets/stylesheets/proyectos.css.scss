@@ -66,9 +66,14 @@ div.proyectoHome {
 }
 
 /**********************************************************************************************/
+.modal-title {
+  text-align: center;
+  color: #0084b4;
+}
+
+
 #modalProyecto {
   font-family: 'Ubuntu', sans-serif;
-
   .modal-dialog {
     max-width: 800px;
   }
@@ -82,38 +87,6 @@ div.proyectoHome {
   }
   .modal-footer {
     border-top: 2px;
-  }
-
-  .modal-title {
-    text-align: center;
-    color: #0084b4;
-  }
-  .progress {
-    margin-top: 10px;
-    margin: 5px;
-  }
-  .img-container {
-    text-align: center;
-    padding-bottom: 10px;
-    .modal-img {
-      max-width: 90%;
-    }
-  }
-  #modalRecaudado {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: bold;
-    font-size: 1.2em;
-    color: $verdeRecaudado;
-    width: 70%;
-    float: left;
-  }
-  #modalQueda {
-    text-align: right;
-    width: 30%;
-    float: left;
-  }
-
-  .modal-footer {
     font-family: 'Ubuntu', sans-serif;
     font-weight: bold;
     font-size: 1.2em;
@@ -143,7 +116,30 @@ div.proyectoHome {
       margin-right: 5px;
     }
   }
-
+  .progress {
+    margin-top: 10px;
+    margin: 5px;
+  }
+  .img-container {
+    text-align: center;
+    padding-bottom: 10px;
+    .modal-img {
+      max-width: 90%;
+    }
+  }
+  #modalRecaudado {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: $verdeRecaudado;
+    width: 70%;
+    float: left;
+  }
+  #modalQueda {
+    text-align: right;
+    width: 30%;
+    float: left;
+  }
 
 }
 

@@ -27,7 +27,7 @@ AbrirModalProyecto = () ->
       type: 'GET'
       dataType: 'json'
       error: (jqXHR, textStatus, errorThrown) ->
-        alert errorThrown
+        console.log errorThrown
       success: (data, textStatus, jqXHR) ->
         $('#modalProyecto').modal('show')
         $('#modalTitle').text(data.titulo)

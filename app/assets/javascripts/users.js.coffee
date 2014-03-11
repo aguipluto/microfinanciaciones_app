@@ -4,15 +4,25 @@
 
 ValidarEnviarFormulario = () ->
   $('#formulario-registro').submit (event) ->
-    unless (ValidarLongitudMinima('#user_name', 3) & ValidarLongitudMinima('#user_family_name', 3) & ValidarLongitudMinima('#user_email', 5) & ValidarLongitudMinima('#user_password', 6) & ValidarLongitudMinima('#user_password_confirmation', 6) & ValidarPoliticaPrivacidad())
-      $('html, body').animate({scrollTop:0}, 'slow');
+    unless (ValidarLongitudMinima('#user_name', 3) & ValidarLongitudMinima('#user_family_name',
+      3) & ValidarLongitudMinima('#user_email', 5) & ValidarLongitudMinima('#user_password',
+      6) & ValidarLongitudMinima('#user_password_confirmation', 6) & ValidarPoliticaPrivacidad())
+      $('html, body').animate({scrollTop: 0}, 'slow');
       $('#error_explanation_js').show()
       event.preventDefault()
   $('#formulario-editar').submit (event) ->
-    unless (ValidarLongitudMinima('#user_name', 3) & ValidarLongitudMinima('#user_family_name', 3) & ValidarLongitudMinima('#user_email', 5) & ValidarLongitudMinima('#user_password', 6) & ValidarLongitudMinima('#user_password_confirmation', 6) )
-      $('html, body').animate({scrollTop:0}, 'slow');
+    unless (ValidarLongitudMinima('#user_name', 3) & ValidarLongitudMinima('#user_family_name',
+      3) & ValidarLongitudMinima('#user_email', 5) )
+      $('html, body').animate({scrollTop: 0}, 'slow');
       $('#error_explanation_js').show()
       event.preventDefault()
+  $('#suggest_form').submit (event) ->
+    unless (ValidarLongitudMinima('#suggest_name', 3) & ValidarLongitudMinima('#suggest_email',
+      3) & ValidarLongitudMinima('#suggest_suggestion', 5) )
+      $('html, body').animate({scrollTop: 0}, 'slow');
+      $('#error_explanation_js').show()
+      event.preventDefault()
+
 
 
 ValidarLongitudMinima = (elemento, longitud) ->
@@ -35,8 +45,8 @@ ValidarPoliticaPrivacidad = () ->
     true
 
 
-
 ValidarFormulario = () ->
+#  Usuarios
   $('#user_name').blur ->
     ValidarLongitudMinima('#user_name', 3)
   $('#user_family_name').blur ->
@@ -47,6 +57,12 @@ ValidarFormulario = () ->
     ValidarLongitudMinima('#user_password', 6)
   $('#user_password_confirmation').blur ->
     ValidarLongitudMinima('#user_password_confirmation', 6)
+#Sugerencias
+  $('#suggest_name').blur ->
+    ValidarLongitudMinima('#suggest_name', 3)
+  $('#suggest_suggestion').blur ->
+    ValidarLongitudMinima('#suggest_suggestion', 5)
+
 
 MenuIzqClicked = () ->
   $('#menuIzqPerfil').click ->
@@ -82,4 +98,9 @@ $ ->
 
   $('#aceptoPrivacidad').click ->
     $('#user_terms_of_service').prop('checked', true);
+
+  $('#change_password').click (event) ->
+    event.preventDefault()
+    $(this).addClass('hidden')
+    $('#div_change_password').removeClass('hidden')
 

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :purchased_carts, -> { where("purchased_at IS NOT NULL") }, class_name: 'Cart'
   has_many :cart_items
   has_many :deleted_cart_items, -> { where(active: false) }, class_name: 'CartItem'
+  has_many :suggests, dependent: :nullify
 
   before_create :create_remember_token
   before_save { self.email = email.downcase }
@@ -17,7 +18,7 @@ class User < ActiveRecord::Base
             format: {with: VALID_EMAIL_REGEX},
             uniqueness: {case_sensitive: false}
   has_secure_password
-  validates :password, length: {minimum: 6}
+  validates :password, length: {minimum: 6}, on: :create
 
   # This method associates the attribute ":avatar" with a file attachment
   has_attached_file :avatar, styles: {thumb: '100x100>', square: '200x200#', medium: '300x300>'},

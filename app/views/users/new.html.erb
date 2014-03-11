@@ -28,6 +28,10 @@
         <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
       </div>
       <div class="form-group">
+        <%= f.label :nif, 'NIF/DNI', class: "control-label" %>
+        <%= f.text_field :nif, class: "form-control", placeholder: "NIF/DNI" %>
+      </div>
+      <div class="form-group">
         <%= f.label :birthdate, class: "control-label" %>
         <div class="date row">
           <%= f.date_select :birthdate, {:order => [:day, :month, :year], :start_year => 1910, :end_year => 2012}, {:class => 'date-select form-control'} %>

@@ -43,9 +43,10 @@
                   <li class="dropdown-open">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span><b class="caret"></b></a>
                     <ul class="dropdown-menu">
+                      <li><%= link_to "Aportaciones", '/cartitem/indexadmin' %></li>
+                      <li><%= link_to "Buzón" + suggestsNotShown, '/suggests', id:"unread_suggests" %></li>
                       <li><%= link_to "Proyectos", proyectos_path %></li>
                       <li><%= link_to "Usuarios", users_path %></li>
-                      <li><%= link_to "Aportaciones", '/cartitem/indexadmin' %></li>
                     </ul>
                   </li>
               <% end %>

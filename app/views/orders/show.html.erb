@@ -1,0 +1,48 @@
+<% provide(:title, 'Justificante de Pago') %>
+
+<% unless @order.shown? %>
+    <div id="success-payment" class="alert alert-success alert-dismissable">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      Colaboración realizada con éxito. <strong>Muchas gracias por tu ayuda!</strong>
+    </div>
+<% end %>
+<div class="well well-white content">
+  <h2 class="visible-print">JUSTIFICANTE DONACIÓN</h2>
+  <p class="visible-print">
+    El Aula de Voluntariado, de la La Fundación Universitaria San Pablo CEU con CIF G28423275, cuya finalidad es
+    promover, canalizar y coordinar tareas de voluntariado social que, con la colaboración de los miembros de la
+    comunidad educativa, tiene como fin último la ayuda a personas necesitadas, personas en situación de pobreza
+    y/o marginación social <strong>CERTIFICA QUE</strong> ha recibido la siguiente donación:
+  </p>
+  <h3 class="hidden-print">Los datos de la donación son los siguientes:</h3>
+  <% if @order.invoice_name %>
+      <p>Donante: <strong><%= @order.invoice_name %></strong></p>
+  <% end %>
+  <% if @order.invoice_nif %>
+      <p>NIF Donante: <strong><%= @order.invoice_nif %></strong></p>
+  <% end %>
+  <p>Identificador Paypal: <strong><%= @order.express_token %></strong></p>
+
+  <p>Fecha de la donación: <strong><%= dateAndTime @order.cart.purchased_at %></strong></p>
+
+  <p>Importe total de la donación:<strong><%= @order.cart.sub_total %> &euro;</strong></p>
+
+  <p>Proyectos con los que has colaborado:</p>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Proyecto</th>
+      <th>Lugar</th>
+      <th>Aportación</th>
+    </tr>
+    </thead>
+    <% @order.cart.valid_cart_items.each do |ci| %>
+        <tr>
+          <td><%= ci.proyecto.titulo %></td>
+          <td><%= ci.proyecto.lugar %></td>
+          <td><%= ci.aportacion %> &euro;</td>
+        </tr>
+    <% end %>
+  </table>
+</div>
+<%= link_to "Imprimir justificante de pago", "", class: 'btn btn-primary hidden-print', id: 'btn_imprimir_justificante_pago' %>

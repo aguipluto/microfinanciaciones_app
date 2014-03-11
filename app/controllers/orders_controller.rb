@@ -1,7 +1,16 @@
 # encoding: utf-8
 class OrdersController < ApplicationController
+  before_action :signed_in_user, only: [:create]
+  before_action :correct_user, only: [:show]
+  after_action :set_order_shown, only: [:show]
+
   def new
-    @order = Order.new(:express_token => params[:token])
+    @order = Order.includes([:cart]).where('express_token = ? AND carts.purchased_at IS NOT NULL', params[:token]).first
+    if @order
+      redirect_to @order
+    else
+      @order = Order.new(:express_token => params[:token])
+    end
   end
 
   def express
@@ -23,8 +32,7 @@ class OrdersController < ApplicationController
     @order.ip_address = request.remote_ip
     if @order.save
       if @order.purchase(current_user.id)
-        render :action => 'success'
-        session_cart
+        redirect_to @order
       else
         render :action => 'failure'
       end
@@ -33,11 +41,25 @@ class OrdersController < ApplicationController
     end
   end
 
+  def show
+
+  end
+
 
   private
 
   def order_params
-    params.require(:order).permit(:express_token)
+    params.require(:order).permit(:express_token, :invoice_name, :invoice_nif, :invoice_others)
+  end
+
+  def correct_user
+    @order = Order.find(params[:id])
+    @user = User.find(@order.user_id)
+    redirect_to(root_url) unless (current_user?(@user) || current_user.admin?)
+  end
+
+  def set_order_shown
+    @order.update_attribute(:shown, true)
   end
 
 end

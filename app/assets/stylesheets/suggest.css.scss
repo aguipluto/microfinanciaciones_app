@@ -1,0 +1,26 @@
+// Place all the styles related to the suggest controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#suggests {
+  #adminTable {
+    tbody {
+      tr {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.suggest-shown {
+  background-color: #f3f3f3;
+}
+
+div.loading{
+  width: 25px;
+  float: right
+}
+
+

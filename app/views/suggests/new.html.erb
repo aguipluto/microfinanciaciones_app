@@ -1,0 +1,43 @@
+<% provide(:title, 'Contacto') %>
+<h2>Contacte con nosotros</h2>
+<div class="row">
+  <%= form_for(@suggest, html: {id: "suggest_form", class: "well col-lg-6"}) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div id="error_explanation_js">
+        <div class="alert alert-danger">
+          Compruebe campos en rojo
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, "Nombre", class: "control-label" %>
+        <% if current_user %>
+            <%= f.text_field :name, class: "form-control", placeholder: "Nombre", value: current_user.name + ' ' + current_user.family_name %>
+        <% else %>
+            <%= f.text_field :name, class: "form-control", placeholder: "Nombre" %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email, "Email", class: "control-label" %>
+        <% if current_user %>
+            <%= f.email_field :email, class: "form-control", placeholder: "Email", value: current_user.email %>
+        <% else %>
+            <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
+        <% end %>
+      </div>
+      <div class="form-group">
+        <%= f.label :tel, 'Teléfono', class: "control-label" %>
+        <%= f.telephone_field :tel, class: "form-control", placeholder: "Teléfono" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :title, 'Asunto', class: "control-label" %>
+        <%= f.text_field :title, class: "form-control", placeholder: "Asunto" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :suggestion, 'Comentario', class: "control-label" %>
+        <%= f.text_area :suggestion, class: "form-control", placeholder: "Comentario", rows: 5 %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Enviar", class: "btn btn-primary", id: "suggest_submit" %>
+      </div>
+  <% end %>
+</div>

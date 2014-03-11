@@ -1,0 +1,35 @@
+<div class="row">
+  <table id="adminTable" class="table table-hover">
+    <thead>
+    <tr>
+      <th><%= sortable "name", "Nombre" %></th>
+      <th><%= sortable "email", "Email" %></th>
+      <th><%= sortable "title", "Titulo" %></th>
+      <th><%= sortable "created_at", "Fecha" %></th>
+      <th><%= "Respondido" %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @suggests.each do |suggest| %>
+        <tr id="<%= suggest.id %>" class="<%= suggest.assign_class %>">
+          <td>
+            <% if suggest.user %>
+                <%= link_to suggest.name, suggest.user %>
+            <% else %>
+                <%= suggest.name %>
+            <% end %>
+          </td>
+          <td><%= suggest.email %></td>
+          <td><%= suggest.title %></td>
+          <td><%= dateAndTime suggest.created_at %></td>
+          <td id="tick-suggest-answered-<%= suggest.id %>" style="text-align: center; color: green">
+            <% if suggest.answered? %>
+                <span class="glyphicon glyphicon-ok"></span>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<%= will_paginate previous_label: t("Anterior"), next_label: t("Siguiente") %>
