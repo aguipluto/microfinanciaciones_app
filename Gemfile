@@ -16,6 +16,9 @@ gem 'activemerchant'
 gem 'wkhtmltopdf-binary'
 gem "wicked_pdf"
 gem "wkhtmltopdf-heroku"
+gem 'social-share-button'
+gem 'remotipart', '~> 1.2'
+gem 'carrierwave'
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'
@@ -36,8 +39,8 @@ gem 'turbolinks', '1.1.1'
 gem 'jbuilder', '1.0.2'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'exception_notification'
-
-
+#gem 'rmagick', '~> 2.13.2', :platforms => :ruby
+gem 'rmagick', :require => 'RMagick'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false
