@@ -1,0 +1,40 @@
+<!-- Modal -->
+<div class="modal fade" id="modalProyecto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div id="modalId" style="visibility: hidden"></div>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3 class="modal-title" id="modalTitle"></h3>
+      </div>
+      <div class="modal-body">
+        <div class="img-container">
+          <img id="modalImg" class="modal-img img-rounded" style="width: 80%">
+        </div>
+        <div id="modalDescripcionLarga"></div>
+        <div id="modalFecha"></div>
+        <div id="modalLugar"></div>
+        <div class="progress">
+          <div id="modalProgress" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+               aria-valuemin="0" aria-valuemax="100">
+          </div>
+        </div>
+        <div id="modalRecaudado"></div>
+        <div id="modalQueda"></div>
+      </div>
+      <div class="modal-footer">
+        <div id="colaborarCon">
+          Colaborar con
+        </div>
+        <div id="divSlider">
+            <input id="aportationSlider" type="range" min="5" max="80" value="5" class="form-control"/>
+        </div>
+        <div id="aportationInfo"></div>
+        <div id="divAportar"><button id="btnAportar" type="button" class="btn btn-primary" data-dismiss="modal">Colaborar</button></div>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div><!-- /.modal -->
+

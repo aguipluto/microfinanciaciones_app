@@ -3,13 +3,9 @@
 <div class="col-md-4 zeropading">
   <div id="<%= proyecto.id %>" class="proyectoHome">
     <h3 id="tituloProyecto"><%= proyecto.titulo %></h3>
-    <div class="banner">
-      <ul>
-        <% proyecto.attachments.each do |img| %>
-            <li><%= image_tag img.attachment.url(:small) %></li>
-        <% end %>
-      </ul>
-    </div>
+
+    <%= render '/shared/carousel', proyecto: proyecto %>
+
     <div class="descripcionCorta">
       <%= proyecto.descripcion_corta %>
     </div>
@@ -25,12 +21,18 @@
     <div class="finAportaciones">
       Quedan <%= time_ago_in_words(proyecto.fin_aportaciones) %>
     </div>
-    <div class="botonesEdicionProyectos">
-      <% if signed_in? && current_user.admin? %>
-          <%= link_to "Editar", edit_proyecto_path(proyecto), class: 'btn btn-default' %>
-          <%= link_to "Borrar", proyecto, method: :delete,
-                      data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning' %>
-      <% end %>
+
+    <div class="row">
+      <div class="col-sm-4 social-buttons">
+        <%= social_share_button_tag('Colabora tú también con esta iniciativa CEU: ' + proyecto.titulo, :url => 'www.microfinanciacionesapp.com' + url_for(proyecto)) %>
+      </div>
+      <div class="col-sm-8 text-right">
+        <% if signed_in? && current_user.admin? %>
+            <%= link_to "Editar", edit_proyecto_path(proyecto), class: 'btn btn-default' %>
+            <%= link_to "Borrar", proyecto, method: :delete,
+                        data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

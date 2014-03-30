@@ -56,9 +56,10 @@ div.proyectoHome {
     clear: both;
     font-size: 0.8em;
   }
-  .botonesEdicionProyectos {
-    float: right;
+  .social-buttons {
+    margin-top: 15px;
   }
+
 }
 
 .cantidadForm {
@@ -70,7 +71,6 @@ div.proyectoHome {
   text-align: center;
   color: #0084b4;
 }
-
 
 #modalProyecto {
   font-family: 'Ubuntu', sans-serif;
@@ -143,14 +143,21 @@ div.proyectoHome {
 
 }
 
-
-
-
 /**********************************************************************************************/
-.formBusqueda{
+.formBusqueda {
   margin-top: 20px;
-  input[type="text"]
-  {
+  input[type="text"] {
     width: 175px;
   }
+}
+
+/*********************************************************************************************/
+.btn-delete-img-p {
+  position: absolute;
+  left: 215px;
+  top: 10px;
+}
+
+.edit-project-img{
+ padding-bottom: 5px;
 }

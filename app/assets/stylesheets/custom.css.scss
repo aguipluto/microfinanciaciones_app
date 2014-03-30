@@ -87,3 +87,8 @@ div.date.row {
 select.select-for-search  {
   width: 150px;
 }
+
+//Para centrar imagen del carousel
+.carousel-inner > .item > img {
+  margin: 0 auto;
+}

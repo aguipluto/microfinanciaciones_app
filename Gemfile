@@ -40,7 +40,7 @@ gem 'jbuilder', '1.0.2'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'exception_notification'
 #gem 'rmagick', '~> 2.13.2', :platforms => :ruby
-gem 'rmagick', :require => 'RMagick'
+gem 'rmagick'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

@@ -1,62 +1,97 @@
 # encoding: utf-8
-<% provide(:title, 'Nuevo Proyecto') %>
+<% provide(:title, 'Editar Proyecto') %>
 
-<h2>Editar Proyecto</h2>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2>Editar Proyecto</h2>
+  </div>
+</div>
 
+<div class="row">
+  <ul class="col-md-3 nav nav-pills nav-stacked">
+    <li id="menuIzqDatosProyecto" class="active"><a href="#">Datos del Proyecto</a></li>
+    <li id="menuIzqImagenes"><a href="#">Imágenes</a></li>
+  </ul>
 
-<%= form_for @proyecto, html: {class: "well col-lg-6", :multipart => true} do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
-    <div class="form-group">
-      <%= f.label :titulo, "Título", class: "control-label" %>
-      <%= f.text_field :titulo, class: "form-control", placeholder: "Título" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :descripcion_corta, "Descripción corta", class: "control-label" %>
-      <%= f.text_area :descripcion_corta, rows: "2", class: "form-control",
-                      placeholder: "Descripción corta" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :descripcion_larga, "Descripción larga", class: "control-label" %>
-      <%= f.text_area :descripcion_larga, rows: "4", class: "form-control",
-                      placeholder: "Descripción larga" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :lugar, "Lugar", class: "control-label" %>
-      <%= f.text_field :lugar, class: "form-control", placeholder: "Lugar" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :fecha_inicio, "Fecha de inicio del proyecto", class: "control-label" %>
-      <div class="date row">
-        <%= f.date_select :fecha_inicio,
-                          {:order => [:day, :month, :year], :start_year => Time.now.year - 5, :end_year => Time.now.year + 5}, {:class => 'date-select form-control'} %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :fecha_fin, "Fecha de fin del proyecto", class: "control-label" %>
-      <div class="date row">
-        <%= f.date_select :fecha_fin,
-                          {:order => [:day, :month, :year], :start_year => Time.now.year - 1, :end_year => Time.now.year + 10}, {:class => 'date-select form-control'} %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :cantidad_total, "Cantidad total (en euros)", class: "control-label" %>
-      <%= f.text_field :cantidad_total, class: "form-control", placeholder: "Cantidad total" %>
-    </div>
-    <div class="form-group">
-      <%= f.label :inicio_aportaciones, class: "control-label" %>
-      <div class="date row">
-        <%= f.datetime_select :inicio_aportaciones,
-                              {:order => [:day, :month, :year], :default => {:hour => 01, :minute => 00}}, {:class => 'date-select form-control'} %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= f.label :fin_aportaciones, class: "control-label" %>
-      <div class="date row">
-        <%= f.datetime_select :fin_aportaciones,
-                              {:order => [:day, :month, :year], :default => {:hour => 23, :minute => 59}}, {:class => 'date-select form-control'} %>
-      </div>
-    </div>
-    <%= f.file_field :attachment_array, :multiple => 'multiple' %>
+  <div id="editarProyecto" class="col-md-7">
+    <%= form_for @proyecto, remote: true, html: {class: "well", :multipart => true} do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="form-group">
+          <%= f.label :titulo, "Título", class: "control-label" %>
+          <%= f.text_field :titulo, class: "form-control", placeholder: "Título" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :descripcion_corta, "Descripción corta", class: "control-label" %>
+          <%= f.text_area :descripcion_corta, rows: "2", class: "form-control",
+                          placeholder: "Descripción corta" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :descripcion_larga, "Descripción larga", class: "control-label" %>
+          <%= f.text_area :descripcion_larga, rows: "4", class: "form-control",
+                          placeholder: "Descripción larga" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :lugar, "Lugar", class: "control-label" %>
+          <%= f.text_field :lugar, class: "form-control", placeholder: "Lugar" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :fecha_inicio, "Fecha de inicio del proyecto", class: "control-label" %>
+          <div class="date row">
+            <%= f.date_select :fecha_inicio,
+                              {:order => [:day, :month, :year], :start_year => Time.now.year - 5, :end_year => Time.now.year + 5}, {:class => 'date-select form-control'} %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :fecha_fin, "Fecha de fin del proyecto", class: "control-label" %>
+          <div class="date row">
+            <%= f.date_select :fecha_fin,
+                              {:order => [:day, :month, :year], :start_year => Time.now.year - 1, :end_year => Time.now.year + 10}, {:class => 'date-select form-control'} %>
+          </div>
+        </div>
+        <div class="form-group cantidadForm">
 
-    <%= f.submit "Crear proyecto", class: "btn btn-primary" %>
-<% end %>
+          <%= f.label :cantidad_total, "Cantidad total (en euros)", class: "control-label" %>
+          <div class="input-group">
+            <%= f.text_field :cantidad_total, class: "form-control", placeholder: "Cantidad total" %>
+            <span class="input-group-addon">&euro;</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :inicio_aportaciones, class: "control-label" %>
+          <div class="date row">
+            <%= f.datetime_select :inicio_aportaciones,
+                                  {:order => [:day, :month, :year], :default => {:hour => 01, :minute => 00}}, {:class => 'date-select form-control'} %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.label :fin_aportaciones, class: "control-label" %>
+          <div class="date row">
+            <%= f.datetime_select :fin_aportaciones,
+                                  {:order => [:day, :month, :year], :default => {:hour => 23, :minute => 59}}, {:class => 'date-select form-control'} %>
+          </div>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Actualizar proyecto", class: "btn btn-primary" %>
+        </div>
+    <% end %>
+  </div>
+
+  <div id="editarImagenesProyecto" class="col-md-8 hidden">
+    <%= form_for @proyecto, html: {class: "well", :multipart => true} do |f| %>
+        <div class="form-group">
+          <label class: "control-label">Imágenes</label>
+          <%= f.file_field :attachment_array, :multiple => 'multiple', class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Añadir imágenes", class: "btn btn-primary" %>
+        </div>
+    <% end %>
+    <% @proyecto.attachments.each_with_index do |img, i| %>
+        <div id="attachment-<%= img.id %>" class="col-md-6 edit-project-img">
+          <%= image_tag img.attachment.url(:small), class: 'img-rounded' %>
+          <button id="<%= img.id %>" class="btn btn-danger btn-delete-img-p">Borrar</button>
+        </div>
+    <% end %>
+  </div>
+</div>
+

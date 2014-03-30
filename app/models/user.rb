@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   # This method associates the attribute ":avatar" with a file attachment
   has_attached_file :avatar, styles: {thumb: '100x100>', square: '200x200#', medium: '300x300>'},
                     :default_url => '/assets/images/user.png'
+  mount_uploader :image, ImageUploader
 
 
   def User.new_remember_token

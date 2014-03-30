@@ -13,8 +13,10 @@
 // The fileuploads is for multiple image upload
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require bootstrap
-//= require unslider.min.js
 //= require jquery.validate.min
+//= require social-share-button
 //= require_tree .
+
 

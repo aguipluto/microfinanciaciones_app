@@ -19,8 +19,14 @@ SessionCartNumberUpdate = () ->
       else
         $('.badge').addClass('hidden')
 
+
+
+
 AbrirModalProyecto = () ->
-  $('.proyectoHome').click (event) ->
+  $(document).on 'click', '.carousel',  (event) ->
+    event.stopPropagation()
+
+  $(document).on 'click', '.proyectoHome',  (event) ->
     id = $(this).attr("id")
     $('#modalId').text(id)
     $.ajax '/proyectos/' + $(this).attr("id"),

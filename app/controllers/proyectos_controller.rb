@@ -1,3 +1,4 @@
+# encoding: utf-8
 class ProyectosController < ApplicationController
   include ApplicationHelper
   before_action :admin_user, only: [:index, :new, :create, :update, :edit]
@@ -71,6 +72,15 @@ class ProyectosController < ApplicationController
       redirect_to @proyecto
     else
       render 'edit'
+    end
+  end
+
+  def destroy_attachment
+    Attachment.find(params[:id]).destroy
+    response = {:message => 'Imagen borrada con éxito'}
+    respond_to do |format|
+      format.json { render :json => response }
+      format.html
     end
   end
 
