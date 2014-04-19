@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-<div class="col-md-4 zeropading">
+<div class="col-sm-4 zeropading">
   <div id="<%= proyecto.id %>" class="proyectoHome">
     <h3 id="tituloProyecto"><%= proyecto.titulo %></h3>
 
@@ -24,7 +24,7 @@
 
     <div class="row">
       <div class="col-sm-4 social-buttons">
-        <%= social_share_button_tag('Colabora tú también con esta iniciativa CEU: ' + proyecto.titulo, :url => 'www.microfinanciacionesapp.com' + url_for(proyecto)) %>
+        <%= social_share_button_tag('Colabora tú también con esta iniciativa CEU: ' + proyecto.titulo, :url =>  proyecto_path(proyecto, only_path:false)) %>
       </div>
       <div class="col-sm-8 text-right">
         <% if signed_in? && current_user.admin? %>

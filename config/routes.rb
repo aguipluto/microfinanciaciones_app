@@ -1,5 +1,6 @@
 MicrofinanciacionesApp::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   resources :cart_items
   resources :cart
   resources :proyectos
@@ -9,15 +10,19 @@ MicrofinanciacionesApp::Application.routes.draw do
   resources :orders
   resources :suggests
   resources :order_transactions
+  resources :blog_posts do
+    member do
+      put 'approve'
+    end
+  end
+
   resources :orders do
     new do
       get 'express'
     end
   end
 
-
-
-
+  match '/blog', to: 'blog_posts#home', via: 'get'
   match '/proyectosShow', to: 'proyectos#show', via: 'get'
   match '/cartItemCreate', to: 'cart_items#prueba', via: 'post'
   match '/cartitem/indexadmin', to: 'cart_items#indexAdmin', via: 'get'
@@ -26,10 +31,10 @@ MicrofinanciacionesApp::Application.routes.draw do
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   root to: 'static_pages#home'
-  match '/signup',  to: 'users#new',            via: 'get'
-  match '/signin',  to: 'sessions#new',         via: 'get'
-  match '/signout', to: 'sessions#destroy',     via: 'delete'
-  match '/contact',  to: 'suggests#new',         via: 'get'
+  match '/signup', to: 'users#new', via: 'get'
+  match '/signin', to: 'sessions#new', via: 'get'
+  match '/signout', to: 'sessions#destroy', via: 'delete'
+  match '/contact', to: 'suggests#new', via: 'get'
   match '/deleteAttachment', to: 'proyectos#destroy_attachment', via: 'delete'
 
   # The priority is based upon order of creation: first created -> highest priority.

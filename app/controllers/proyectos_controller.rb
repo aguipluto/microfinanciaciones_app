@@ -21,7 +21,7 @@ class ProyectosController < ApplicationController
     if @proyecto.save
       if params[:proyecto][:attachment_array]
         params[:proyecto][:attachment_array].each do |file|
-          @attachment = @proyecto.attachments.build(:attachment => file)
+          @attachment = @proyecto.attachments.build(:image => file)
           @attachment.save
         end
       end
@@ -60,18 +60,26 @@ class ProyectosController < ApplicationController
   end
 
   def update
-    @proyecto = Proyecto.find(params[:id])
-    if @proyecto.update_attributes(proyecto_params)
-      if params[:proyecto][:attachment_array]
-        params[:proyecto][:attachment_array].each do |file|
-          @attachment = @proyecto.attachments.build(:attachment => file)
-          @attachment.save
+    respond_to do |format|
+      @proyecto = Proyecto.find(params[:id])
+      if @proyecto.update_attributes(proyecto_params)
+        if params[:proyecto][:attachment_array]
+          params[:proyecto][:attachment_array].each do |file|
+            @attachment = @proyecto.attachments.build(:image => file)
+            @attachment.save
+          end
+        end
+        format.js
+        format.html do
+          flash[:success] = "Proyecto actualizado"
+          redirect_to @proyecto
+        end
+      else
+        format.js
+        format.html do
+          render 'edit'
         end
       end
-      flash[:success] = "Proyecto actualizado"
-      redirect_to @proyecto
-    else
-      render 'edit'
     end
   end
 

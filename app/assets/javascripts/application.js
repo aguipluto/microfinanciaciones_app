@@ -17,6 +17,8 @@
 //= require bootstrap
 //= require jquery.validate.min
 //= require social-share-button
+//= require ckeditor/override
+//= require ckeditor/init
 //= require_tree .
 
 

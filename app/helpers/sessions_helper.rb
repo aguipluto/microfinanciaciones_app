@@ -77,6 +77,15 @@ module SessionsHelper
     end
   end
 
+  def signed_in_user?
+    unless signed_in?
+      store_location
+      flash[:info] = "Por favor, inicie sesión."
+      redirect_to signin_url
+    end
+    signed_in?
+  end
+
   def sign_out
     self.current_user = nil
     self.session_cart = nil
@@ -103,10 +112,28 @@ module SessionsHelper
   end
 
   def admin_user
-    unless signed_in? && current_user.admin?
-      store_location
-      flash[:info] = "Por favor, inicie sesión."
-      redirect_to signin_path
+    if signed_in_user? && !current_user.admin?
+      redirect_to root_path
     end
   end
+
+  def blog_editor_user
+    if signed_in_user? && !(current_user.blog_editor? || current_user.admin?)
+      redirect_to root_path
+    end
+  end
+
+  def blog_editor_user?
+    signed_in? && (current_user.admin? || current_user.blog_editor?)
+  end
+
+  def current_user_admin?
+    signed_in? && current_user.admin?
+  end
+
+  def current_user_bog_editor?
+    signed_in? && current_user.blog_editor?
+  end
+
+
 end

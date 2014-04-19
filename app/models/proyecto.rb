@@ -2,6 +2,7 @@ class Proyecto < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
   belongs_to :user
   has_many :cart_items
+  has_many :blog_posts
   default_scope { order('fin_aportaciones ASC') }
   scope :aportables, where("visible = ? AND fin_aportaciones > ?", true, Time.current).order('fin_aportaciones ASC')
 
@@ -51,7 +52,7 @@ class Proyecto < ActiveRecord::Base
     if search
       where('titulo LIKE ? OR descripcion_corta LIKE ? OR descripcion_larga LIKE ?', "%#{search}%","%#{search}%","%#{search}%")
     else
-      scoped
+      all
     end
   end
 

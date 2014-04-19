@@ -17,8 +17,7 @@
       </div>
       <div class="form-group">
         <%= f.label :descripcion_larga, "Descripción larga", class: "control-label" %>
-        <%= f.text_area :descripcion_larga, rows: "4", class: "form-control",
-                        placeholder: "Descripción larga" %>
+        <%= f.cktext_area :descripcion_larga, class: 'form-control', :ckeditor => {:toolbar => "mini"}  %>
       </div>
       <div class="form-group">
         <%= f.label :lugar, "Lugar", class: "control-label" %>
@@ -64,7 +63,8 @@
         <%= f.file_field :attachment_array, :multiple => 'multiple', class: "form-control" %>
       </div>
       <div class="form-group">
-        <%= f.submit "Crear proyecto", class: "btn btn-primary" %>
+        <%= f.submit "Crear proyecto", id:'add-images', class: "btn btn-primary" %><div class="loading-left hidden"><%= image_tag('loading.gif') %></div>
       </div>
+
   <% end %>
 </div>

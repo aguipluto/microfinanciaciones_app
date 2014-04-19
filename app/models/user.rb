@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :carts, dependent: :nullify
   has_many :purchased_carts, -> { where("purchased_at IS NOT NULL") }, class_name: 'Cart'
   has_many :cart_items
+  has_many :blog_posts, dependent: :nullify
   has_many :deleted_cart_items, -> { where(active: false) }, class_name: 'CartItem'
   has_many :suggests, dependent: :nullify
 
@@ -18,7 +19,12 @@ class User < ActiveRecord::Base
             format: {with: VALID_EMAIL_REGEX},
             uniqueness: {case_sensitive: false}
   has_secure_password
-  validates :password, length: {minimum: 6}, on: :create
+  validates :password             , length: { minimum: 6 }, :if => :validate_password?
+  validates :password_confirmation, presence: true        , :if => :validate_password?
+
+  def validate_password?
+    password.present? || password_confirmation.present?
+  end
 
   # This method associates the attribute ":avatar" with a file attachment
   has_attached_file :avatar, styles: {thumb: '100x100>', square: '200x200#', medium: '300x300>'},
@@ -54,7 +60,7 @@ class User < ActiveRecord::Base
     if search
       where('name LIKE ? OR family_name LIKE ? OR email LIKE ?', "%#{search}%","%#{search}%","%#{search}%")
     else
-      scoped
+      all
     end
   end
 

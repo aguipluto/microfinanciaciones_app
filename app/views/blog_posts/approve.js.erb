@@ -1,0 +1,8 @@
+$('#btn_approve_<%= @blog_post.id %>').remove()
+$('#pendiente_aprovacion').remove()
+$('tr#blog_post_<%= @blog_post.id %>').removeClass('warning')
+$('tr#blog_post_<%= @blog_post.id %>').addClass('success')
+$('#advise-container').hide()
+$('#advise-container').html('<div class="alert alert-success alert-dismissable">Post publicado correctamente' +
+        '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>')
+$('#advise-container').fadeIn('slow');

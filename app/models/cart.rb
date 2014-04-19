@@ -2,7 +2,7 @@ class Cart < ActiveRecord::Base
   belongs_to :user
   has_one :order
   has_many :valid_cart_items, -> { where(active: true) }, class_name: 'CartItem'
-  has_many :deleted_cart_items, -> { where(active: true) }, class_name: 'CartItem'
+  has_many :deleted_cart_items, -> { where(active: false) }, class_name: 'CartItem'
 
   accepts_nested_attributes_for :valid_cart_items
 

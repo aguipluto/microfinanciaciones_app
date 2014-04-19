@@ -1,0 +1,28 @@
+<% provide(:title, 'Nuevo Post') %>
+
+<h2>Nuevo Post</h2>
+
+<div class="row">
+  <%= form_for(@blogpost, html: {class: "well col-lg-6"}) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="form-group">
+        <%= f.label :title, "Título", class: "control-label" %>
+        <%= f.text_field :title, class: "form-control", placeholder: "Título" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :proyecto_id, 'Proyecto', class: "control-label" %>
+        <%= f.collection_select :proyecto_id, Proyecto.all, :id, :titulo,{prompt: "Categoría general"}, {class: "form-control"}%>
+      </div>
+      <div class="form-group">
+        <%= f.label :content, "Contenido", class: "control-label" %>
+        <%= f.cktext_area :content, class: "form-control", :ckeditor => {:toolbar => "img"} %>
+      </div>
+      <div class="form-group">
+        <%= f.label :author, 'Autor', class: "control-label" %>
+        <%= f.text_field :author, class: "form-control", value: current_user.name + ' ' + current_user.family_name %>
+      </div>
+      <div class="form-group">
+        <%= f.submit "Enviar", class: "btn btn-primary" %>
+      </div>
+  <% end %>
+</div>

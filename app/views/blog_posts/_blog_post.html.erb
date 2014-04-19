@@ -1,0 +1,35 @@
+<div id="blog_post_<%= blog_post.id %>" class="row">
+  <h2><%= blog_post.title %>
+    <div class="pull-right">
+      <% if current_user_admin? && !blog_post.approved? %>
+          <%= link_to "Publicar", approve_blog_post_path(blog_post),id:'btn_approve_' + blogpost.id.to_s, method: :put, remote: true, class: 'btn btn-success btn-sm' %>
+      <% end %>
+      <% if current_user_bog_editor? || current_user_admin? %>
+          <%= link_to "Editar", edit_blog_post_path(blog_post), class: 'btn btn-default btn-sm' %>
+      <% end %>
+      <% if current_user_admin? %>
+          <%= link_to "Borrar", blog_post, method: :delete,
+                      data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning btn-sm' %>
+      <% end %>
+    </div>
+  </h2>
+  <% unless blog_post.approved? %>
+      <span id="pendiente_aprovacion" class="label label-warning">Pendiente de aprobación</span>
+  <% end %>
+  <%= blog_post.content.html_safe %>
+  <div class="well clearfix">
+    <% unless blog_post.proyecto.nil? %>
+        <div class="pull-left">
+          <small>Proyecto: <%= link_to blog_post.proyecto.titulo, blog_post.proyecto %></small>
+        </div>
+    <% end %>
+    <div class="pull-right">
+      <small>Publicado por <%= blog_post.author %> # <%= blog_post.updated_at.strftime("%d/%m/%Y") %></small>
+    </div>
+    <br>
+
+    <div class="pull-right">
+      <%= social_share_button_tag('Colabora tú también con esta iniciativa CEU: ' + blog_post.title, :url => blog_post_path(blog_post, only_path: false)) %>
+    </div>
+  </div>
+</div>

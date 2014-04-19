@@ -10,6 +10,18 @@ MenuIzqClicked = () ->
     $('#editarProyecto').addClass('hidden')
     $('#editarImagenesProyecto').removeClass('hidden')
 
+MenuIzqShowProjectClicked = () ->
+  $('#menuIzqShowProject').click ->
+    $('#menuIzqShowProject').addClass('active')
+    $('#menuIzqBlogProject').removeClass('active')
+    $('#showProject').removeClass('hidden')
+    $('#blogProject').addClass('hidden')
+  $('#menuIzqBlogProject').click ->
+    $('#menuIzqShowProject').removeClass('active')
+    $('#menuIzqBlogProject').addClass('active')
+    $('#showProject').addClass('hidden')
+    $('#blogProject').removeClass('hidden')
+
 $(document).on 'click', '.btn-delete-img-p', (event) ->
   id = $(this).attr("id")
   $.ajax '/deleteAttachment',
@@ -30,6 +42,7 @@ $(document).ready ->
 
 $ ->
   MenuIzqClicked()
+  MenuIzqShowProjectClicked()
   $('#select_for_search').change ->
     event.preventDefault()
     $.get($("#select_for_search").attr("action"),
@@ -47,6 +60,10 @@ $ ->
     $.get($("#inputBuscar").attr("action"),
     {aportationType: $("#select_for_search").val(), search: $("#inputBuscar").val()}, null, "script");
     false
+  $('.close_alert').click ->
+    $('.alert').addClass('hidden')
+  $('input#add-images').click ->
+    $('.loading-left').removeClass('hidden');
 
 
 

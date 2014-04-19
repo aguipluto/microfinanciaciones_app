@@ -1,19 +1,18 @@
 # encoding: utf-8
 <% provide(:title, 'Editar Proyecto') %>
-
+<%=render 'shared/alert_success'%>
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-sm-7 col-sm-offset-3">
     <h2>Editar Proyecto</h2>
   </div>
 </div>
-
 <div class="row">
-  <ul class="col-md-3 nav nav-pills nav-stacked">
+  <ul class="col-sm-3 nav nav-pills nav-stacked">
     <li id="menuIzqDatosProyecto" class="active"><a href="#">Datos del Proyecto</a></li>
     <li id="menuIzqImagenes"><a href="#">Imágenes</a></li>
   </ul>
 
-  <div id="editarProyecto" class="col-md-7">
+  <div id="editarProyecto" class="col-sm-7">
     <%= form_for @proyecto, remote: true, html: {class: "well", :multipart => true} do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="form-group">
@@ -27,8 +26,7 @@
         </div>
         <div class="form-group">
           <%= f.label :descripcion_larga, "Descripción larga", class: "control-label" %>
-          <%= f.text_area :descripcion_larga, rows: "4", class: "form-control",
-                          placeholder: "Descripción larga" %>
+          <%= f.cktext_area :descripcion_larga, class: 'form-control', :ckeditor => {:toolbar => "mini"}  %>
         </div>
         <div class="form-group">
           <%= f.label :lugar, "Lugar", class: "control-label" %>
@@ -83,15 +81,17 @@
           <%= f.file_field :attachment_array, :multiple => 'multiple', class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.submit "Añadir imágenes", class: "btn btn-primary" %>
+          <%= f.submit "Añadir imágenes", id:"add-images", class: "btn btn-primary" %>
+          <div class="loading-left hidden"><%= image_tag('loading.gif') %></div>
         </div>
     <% end %>
     <% @proyecto.attachments.each_with_index do |img, i| %>
         <div id="attachment-<%= img.id %>" class="col-md-6 edit-project-img">
-          <%= image_tag img.attachment.url(:small), class: 'img-rounded' %>
+          <%= image_tag img.image.url(:small), class: 'img-rounded' %>
           <button id="<%= img.id %>" class="btn btn-danger btn-delete-img-p">Borrar</button>
         </div>
     <% end %>
   </div>
+
 </div>
 

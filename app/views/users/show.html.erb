@@ -2,20 +2,21 @@
 
 
 <div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <div class="col-sm-6 col-sm-offset-3">
     <h2>Pefil de Usuario</h2>
   </div>
 </div>
 
 <div class="row">
-  <ul class="col-md-3 nav nav-pills nav-stacked">
+  <ul class="col-sm-3 nav nav-pills nav-stacked">
     <li id="menuIzqPerfil" class="active"><a href="#">Perfil</a></li>
     <li id="menuIzqEditar"><a href="#">Editar Perfil</a></li>
+    <li id="menuIzqCambiar"><a href="#">Cambiar contraseña</a></li>
     <li id="menuIzqPagos"><a href="#">Aportaciones Realizadas</a></li>
   </ul>
 
-  <div id="perfilDeUsuario" class="col-md-7">
-    <%= form_for(@user, html: {class: "col-md-9 form"}) do |f| %>
+  <div id="perfilDeUsuario" class="col-sm-7">
+    <%= form_for(@user, html: {class: "col-sm-9 form"}) do |f| %>
         <div class="form-group">
           <label class="control-label">Nombre</label>
 
@@ -41,23 +42,33 @@
         <div class="form-group">
           <label class="control-label">Fecha de nacimiento</label>
 
-          <p class="form-control-static"><%= @user.birthdate %></p>
+          <p class="form-control-static"><%= @user.birthdate.strftime("%d/%m/%Y") %></p>
         </div>
     <% end %>
-    <div class="col-md-3">
+    <div class="col-sm-3">
       <%= image_tag @user.image_url.to_s, class: "img-thumbnail" %>
+    </div>
+    <div class="col-sm-3">
+      <p class="text-center">
+        <% if @user.admin? %>
+            <span class="label label-info">Administrador</span>
+        <% end %>
+        <% if @user.blog_editor? %>
+        <span class="label label-info">Editor del Blog</span>
+        <% end %>
+      </p>
     </div>
   </div>
 
-  <div id="editarPerfilDeUsuario" class="col-md-7 well hidden">
-    <%= form_for(@user, remote: true, html: {id: "formulario-editar", multipart: true, class: "col-md-9 form"}) do |f| %>
+  <div id="editarPerfilDeUsuario" class="col-sm-7 well hidden">
+    <%= form_for(@user, remote: false, html: {id: "formulario-editar", multipart: true, class: "col-sm-9 form"}) do |f| %>
         <%= render 'shared/error_messages', object: f.object %>
         <div class="form-group">
           <%= f.label :image, class: "control-label" %>
           <br/>
-          <%= f.file_field :image, class: "form-control" %>
+          <%= f.file_field :image, class: "form-control", accept: 'image/png,image/gif,image/jpeg,image/jpg' %>
         </div>
-        <div class="form-group">0
+        <div class="form-group">
           <%= f.label :name, "Nombre", class: "control-label" %>
           <%= f.text_field :name, class: "form-control", placeholder: "Nombre" %>
         </div>
@@ -79,34 +90,49 @@
             <%= f.date_select :birthdate, {:order => [:day, :month, :year], :start_year => 1910, :end_year => 2012}, {:class => 'date-select form-control'} %>
           </div>
         </div>
-        <div id="div_change_password" class="hidden">
-          <div class="form-group">
-            <%= f.label :password, "Contraseña", class: "control-label" %>
-            <%= f.password_field :password, class: "form-control", placeholder: "Contraseña" %>
-          </div>
-          <div class="form-group">
-            <%= f.label :password_confirmation, "Repita contraseña", class: "control-label" %>
-            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Repita contraseña" %>
-          </div>
-        </div>
         <% if current_user.admin? %>
-            <div class="checkbox">
-              <label>
-                <%= f.check_box :admin %> Administrador</a>
-              </label>
+            <div class="form-inline">
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :admin %> Administrador</a>
+                </label>
+              </div>
+              <div class="checkbox">
+                <label>
+                  <%= f.check_box :blog_editor %> Editor del Blog</a>
+                </label>
+              </div>
             </div>
         <% end %>
+        <br>
+
         <div class="form-group">
           <%= f.submit "Guardar cambios", class: "btn btn-primary" %>
-          <button id="change_password" class="btn btn-default">Cambiar contraseña</button>
         </div>
     <% end %>
-    <div class="col-md-3">
+    <div class="col-sm-3">
       <%= image_tag @user.image_url.to_s, class: "img-thumbnail" %>
     </div>
   </div>
 
-  <div id="aportacionesRealizadas" class="col-md-7 hidden">
+  <div id="changePassword" class="col-sm-7 well hidden">
+    <%= form_for(@user, remote: false, html: {id: "formulario-editar", multipart: true, class: "col-sm-9 form"}) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+        <div class="form-group">
+          <%= f.label :password, "Nueva contraseña", class: "control-label" %>
+          <%= f.password_field :password, class: "form-control", placeholder: "Contraseña" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :password_confirmation, "Repita nueva contraseña", class: "control-label" %>
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Repita nueva contraseña" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit "Cambiar contraseña", class: "btn btn-primary" %>
+        </div>
+    <% end %>
+  </div>
+
+  <div id="aportacionesRealizadas" class="col-sm-7 hidden">
     <table class="table table-hover">
       <thead>
       <tr>

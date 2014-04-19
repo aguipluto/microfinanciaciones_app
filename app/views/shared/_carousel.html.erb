@@ -15,7 +15,7 @@
     <% proyecto.attachments.each_with_index do |img, i| %>
 
         <div class="item <%= 'active' if i==0 %>">
-          <%= image_tag img.attachment.url(:small) %>
+          <%= image_tag img.image.url(:bootstrap) %>
         </div>
     <% end %>
   </div>

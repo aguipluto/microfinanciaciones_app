@@ -26,7 +26,7 @@ div.proyectoHome {
   margin: 5px;
   padding: 10px;
   background-color: #f7f7f7;
-  min-height: 560px;
+//  min-height: 560px;
   max-width: 400px;
   overflow: hidden;
   &:hover {
@@ -127,22 +127,25 @@ div.proyectoHome {
       max-width: 90%;
     }
   }
-  #modalRecaudado {
-    font-family: 'Ubuntu', sans-serif;
-    font-weight: bold;
-    font-size: 1.2em;
-    color: $verdeRecaudado;
-    width: 70%;
-    float: left;
-  }
-  #modalQueda {
-    text-align: right;
-    width: 30%;
-    float: left;
-  }
+
+
 
 }
 
+#modalRecaudado {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: $verdeRecaudado;
+  width: 70%;
+  float: left;
+}
+
+#modalQueda {
+  text-align: right;
+  width: 30%;
+  float: left;
+}
 /**********************************************************************************************/
 .formBusqueda {
   margin-top: 20px;
@@ -160,4 +163,15 @@ div.proyectoHome {
 
 .edit-project-img{
  padding-bottom: 5px;
+}
+
+.add-images{
+  float: left;
+}
+
+.blue-letter{
+  ont-family: 'Ubuntu', sans-serif;
+  font-weight: bold;
+  font-size: 1.2em;
+  color: $azulBoton;
 }

@@ -1,71 +1,44 @@
 <% provide(:title, @proyecto.titulo) %>
 
-<script>
-    $(function () {
-        $('.banner').unslider({
-            speed: 500,               //  The speed to animate each slide (in milliseconds)
-            delay: 3000,              //  The delay between slide animations (in milliseconds)
-            complete: function () {
-            },  //  A function that gets called after every slide animation
-            keys: true,               //  Enable keyboard (left, right) arrow shortcuts
-            dots: true,               //  Display dot navigation
-            fluid: false              //  Support responsive design. May break non-responsive designs
-        });
-    });
-</script>
-<script>
-    var unslider = $('.banner').unslider();
-
-    $('.unslider-arrow').click(function () {
-        var fn = this.className.split(' ')[1];
-
-        //  Either do unslider.data('unslider').next() or .prev() depending on the className
-        unslider.data('unslider')[fn]();
-    });
-</script>
-
-<div class="col-lg-10">
-  <h1><%= @proyecto.titulo %></h1>
-
-  <div class="row text-info">
-    <%= @proyecto.descripcion_corta %>
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <h2><%= @proyecto.titulo %>
+      <% if current_user_admin? %>
+          <div class="pull-right">
+            <%= link_to "Editar", edit_proyecto_path(@proyecto), class: 'btn btn-default btn-sm' %>
+            <%= link_to "Borrar", @proyecto, method: :delete,
+                        data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning btn-sm' %>
+          </div>
+      <% end %>
+    </h2>
   </div>
-  <div class="row">
-    <div class="col-md-10">
-      <div class="banner" style="width: 100%">
-        <ul>
-          <% @proyecto.attachments.each do |img| %>
-              <li><%= image_tag img.attachment.url(:small) %></li>
-          <% end %>
-        </ul>
-        <a href="#" class="unslider-arrow prev">Previous slide</a>
-        <a href="#" class="unslider-arrow next">Next slide</a>
-      </div>
+</div>
+
+<div class="row">
+  <ul class="col-sm-3 nav nav-pills nav-stacked">
+    <li id="menuIzqShowProject" class="active"><a href="#">Datos del Proyecto</a></li>
+    <li id="menuIzqBlogProject"><a href="#">Blog</a></li>
+  </ul>
+  <div id="showProject" class="col-sm-8">
+    <div id="modalId" class="hidden">
+      <%= @proyecto.id %>
     </div>
-  </div>
-  <br/>
-  <br/>
-
-  <div class="row">
-    <div class="col-md-10">
-      <%= @proyecto.descripcion_larga %>
+    <div class="col-sm-12">
+      <%= @proyecto.descripcion_corta %>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-10">
+    <div class="col-sm-12">
+      <%= render '/shared/carousel', proyecto: @proyecto %>
+    </div>
+    <div class="col-sm-12">
+      <%= @proyecto.descripcion_larga.html_safe %>
+    </div>
+    <div class="col-sm-12">
+      Desde <%= @proyecto.fecha_inicio %> hasta <%= @proyecto.fecha_fin %>
+    </div>
+    <div class="col-sm-12">
       Lugar: <%= @proyecto.lugar %>
     </div>
-  </div>
-  <div class="row">
-    <div class="col-md-5">
-      Inicio del proyecto: <%= @proyecto.fecha_inicio %>
-    </div>
-    <div class="col-md-5">
-      Fin del proyecto: <%= @proyecto.fecha_fin %>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-7">
+    <div class="col-sm-8">
       <div class="progress progress-striped">
         <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= @proyecto.total_collected %>" aria-valuemin="0"
              aria-valuemax="<%= @proyecto.cantidad_total %>" style="width: <%= (@proyecto.total_collected * 100) / @proyecto.cantidad_total  %>%">
@@ -73,29 +46,32 @@
         </div>
       </div>
     </div>
-    <div class="col-md-2">
-      <%= @proyecto.cantidad_total %>&euro;
+    <div class="col-sm-4">
+      <%= @proyecto.cantidad_total.to_i %>&euro;
     </div>
-  </div>
-  <div class="row">
-    <%= form_for @cartitem, :html => {:class => "form-inline"} do |f| %>
-        <%= f.hidden_field :proyecto_id %>
-          <div class="col-md-10">Quiero <%= f.submit "Colaborar", class: "btn btn-primary" %> con <%= f.text_field :aportacion, class: 'form-control', style:'width:70px' %> &euro;</div>
-    <% end %>
-  </div>
-  <div class="row">
-    <div class="col-md-10">
-      (Queda <%= time_ago_in_words(@proyecto.fin_aportaciones) %> para que finalice el periodo para colaborar.)
-    </div>
-  </div>
-  <br/>
-  <br/>
-  <% if signed_in? && current_user.admin? %>
-      <div class="row">
-        <%= link_to "Editar", edit_proyecto_path(@proyecto), class: 'btn btn-default' %>
-        <%= link_to "Borrar", @proyecto, method: :delete,
-                    data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning' %>
+    <div class="col-sm-12">
+      <div id="modalRecaudado">
+        Conseguidos <%= @proyecto.total_collected.to_i %>&euro;
       </div>
-  <% end %>
-
+      <div class="modalQueda">
+        Quedan <%= time_ago_in_words(@proyecto.fin_aportaciones) %>
+      </div>
+    </div>
+    <div class="col-sm-12 well">
+      <div class="col-sm-3 blue-letter">
+        Colaborar con
+      </div>
+      <div class="col-sm-6">
+        <input id="aportationSlider" type="range" min="5" max="80" value="5" class="form-control"/>
+      </div>
+      <div id="aportationInfo" class="col-sm-1 blue-letter"></div>
+      <div class="col-sm-2">
+        <button id="btnAportar" type="button" class="btn btn-primary" data-dismiss="modal">Colaborar</button>
+      </div>
+    </div>
+  </div>
+  <div id="blogProject" class="col-sm-8 hidden">
+    <%= render @proyecto.blog_posts %>
+  </div>
 </div>
+

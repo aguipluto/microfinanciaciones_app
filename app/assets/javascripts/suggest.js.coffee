@@ -15,7 +15,7 @@ AbrirModalSuggest = () ->
         console.log errorThrown
       success: (data, textStatus, jqXHR) ->
         console.log(data)
-        $('.loading').addClass('hidden');
+        $('.loading-right').addClass('hidden');
         $('#modalSuggest').modal('show')
         $('#modalTitle').html('Recibido el ' + data.suggest.createdAt)
         $('#modalNombre').html('Nombre: <strong>' + data.suggest.name + '</strong>')
@@ -27,14 +27,16 @@ AbrirModalSuggest = () ->
         if data.suggest.answer
           $('#suggestion-answer').addClass('hidden')
           $('#contenido-answer').text(data.suggest.answer.replace(/\r\n/, '<br/>'));
+          $('#btnAnswerSuggest').addClass('hidden')
         else
           $('#suggestion-answer').removeClass('hidden')
           $('#contenido-answer').text('');
+          $('#btnAnswerSuggest').removeClass('hidden')
 
 
 AnswerSuggest = () ->
   $('#btnAnswerSuggest').click (event) ->
-    $('.loading').removeClass('hidden');
+    $('.loading-right').removeClass('hidden');
     respuesta = $('#suggestion-answer').val()
     if respuesta
       idSuggest = $('#modalId').text()
@@ -50,13 +52,13 @@ AnswerSuggest = () ->
             $('#suggestion-answer').addClass('hidden')
             $('#contenido-answer').text(respuesta.replace(/\r\n/, '<br/>'));
             $('#tick-suggest-answered-'+idSuggest).html('<span class="glyphicon glyphicon-ok"></span>')
-            $('.loading').addClass('hidden');
+            $('.loading-right').addClass('hidden');
           else
             $('#contenido-answer').text('Ha ocurrido un error. Por favor, intente de nuevo más tarde.')
-            $('.loading').addClass('hidden');
+            $('.loading-right').addClass('hidden');
     else
       $('#contenido-answer').text('Por favor, escriba una respuesta.')
-      $('.loading').addClass('hidden');
+      $('.loading-right').addClass('hidden');
 
 $ ->
   AbrirModalSuggest()

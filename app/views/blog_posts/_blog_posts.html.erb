@@ -1,0 +1,39 @@
+<div class="row">
+  <table id="adminTable" class="table table-hover">
+    <thead>
+    <tr>
+      <th><%= sortable "title", "Título" %></th>
+      <th><%= "Contenido" %></th>
+      <th><%= "Proyecto" %></th>
+      <th><%= sortable "updated_at", "Última modificación" %></th>
+      <th><%= sortable "author", "Autor" %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @blog_posts.each do |blogpost| %>
+        <tr id="blog_post_<%= blogpost.id %>" class="<%= blogpost.assign_class %>">
+          <td><%= link_to blogpost.title, blogpost %></td>
+          <td><%= strip_tags(blogpost.content[0, 45]) %></td>
+          <% unless blogpost.proyecto.nil? %>
+              <td><%= link_to blogpost.proyecto.titulo, blogpost.proyecto %></td>
+          <% else %>
+              <td>Blog General</td>
+          <% end %>
+          <td><%= dateAndTime(blogpost.updated_at) %></td>
+          <td><%= link_to blogpost.author, blogpost.user %></td>
+          <td>
+            <div class="pull-right">
+            <% unless blogpost.approved? %>
+                <%= link_to "Publicar", approve_blog_post_path(blogpost), id:'btn_approve_' + blogpost.id.to_s, method: :put, remote: true, class: 'btn btn-success btn-xs' %>
+            <% end %>
+            <%= link_to "Editar", edit_blog_post_path(blogpost), class: 'btn btn-default btn-xs' %>
+            <%= link_to "Borrar", blogpost, method: :delete, :remote => true,
+                        data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning btn-xs' %>
+            </div>
+          </td>
+        </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<%= will_paginate previous_label: t("Anterior"), next_label: t("Siguiente") %>

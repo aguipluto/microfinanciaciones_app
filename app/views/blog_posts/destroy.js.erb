@@ -1,0 +1,5 @@
+$('#blog_post_<%= @blog_post.id %>').remove()
+$('#advise-container').hide()
+$('#advise-container').html('<div class="alert alert-success alert-dismissable">Post borrado correctamente' +
+        '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>')
+$('#advise-container').fadeIn('slow');

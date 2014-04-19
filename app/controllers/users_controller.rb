@@ -3,8 +3,6 @@ class UsersController < ApplicationController
   before_action :signed_in_user, only: [:edit, :update]
   before_action :correct_user, only: [:edit, :update, :show]
   before_action :admin_user, only: [:index, :destroy]
-  helper_method :sort_column, :sort_direction
-
 
   def index
     @users = User.search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 15)
@@ -24,6 +22,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+
     if @user.save
       sign_in @user
       flash[:success] = "Bienvenido a las MicroAportaciones!"
@@ -37,17 +36,16 @@ class UsersController < ApplicationController
   end
 
   def update
-    respond_to do |format|
       @user = User.find(params[:id])
       if @user.update_attributes(user_params)
-        format.js
-        #flash[:success] = "Datos de Usuario actualizados"
-        #redirect_to @user
+        flash[:success] = "Datos de Usuario actualizados"
+        redirect_to @user
       else
-        #render 'edit'
+        flash[:warning] = "No se han podido cambiar los datos. Intente de nuevo."
+        render 'show'
       end
-    end
   end
+
 
   def destroy
     User.find(params[:id]).destroy
@@ -59,7 +57,7 @@ class UsersController < ApplicationController
 
   def user_params
     if current_user && current_user.admin?
-      params.require(:user).permit(:name, :family_name, :admin, :email, :birthdate, :password, :password_confirmation, :avatar, :terms_of_service, :nif, :image)
+      params.require(:user).permit(:name, :family_name, :admin, :blog_editor, :email, :birthdate, :password, :password_confirmation, :avatar, :terms_of_service, :nif, :image)
     else
       params.require(:user).permit(:name, :family_name, :email, :birthdate, :password, :password_confirmation, :avatar, :terms_of_service, :nif, :image)
     end

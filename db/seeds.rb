@@ -11,4 +11,6 @@ user = User.create!(name: "Antonio",
                     email: "aguipluto@gmail.com",
                     password: "27101988",
                     password_confirmation: "27101988",
-                    admin: true)
+                    nif: '52895101T',
+                    admin: true,
+                    confirmed: true)

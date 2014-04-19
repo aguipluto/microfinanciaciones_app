@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140319194625) do
+ActiveRecord::Schema.define(version: 20140419101324) do
 
   create_table "attachments", force: true do |t|
     t.datetime "created_at"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20140319194625) do
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
     t.integer  "proyecto_id"
+    t.string   "image"
+  end
+
+  create_table "blog_posts", force: true do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "proyecto_id"
+    t.string   "author"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "approved",    default: false
   end
 
   create_table "cart_items", force: true do |t|
@@ -39,6 +51,22 @@ ActiveRecord::Schema.define(version: 20140319194625) do
     t.datetime "updated_at"
     t.datetime "purchased_at"
   end
+
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable"
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type"
 
   create_table "order_transactions", force: true do |t|
     t.integer  "order_id"
@@ -131,13 +159,16 @@ ActiveRecord::Schema.define(version: 20140319194625) do
     t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.boolean  "admin"
+    t.boolean  "admin",               default: false
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.string   "nif"
     t.string   "image"
+    t.boolean  "blog_editor",         default: false
+    t.string   "confirmation_code"
+    t.boolean  "confirmed",           default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

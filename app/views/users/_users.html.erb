@@ -6,15 +6,29 @@
       <th><%= sortable "family_name","Apellidos" %></th>
       <th><%= sortable "email", "Email" %></th>
       <th><%= sortable "birthdate","Fecha de Nacimiento" %></th>
+      <th><%= sortable "admin","Permisos" %></th>
     </tr>
     </thead>
     <tbody>
     <% @users.each do |user| %>
-        <tr class="<%= user.assign_class %>">
+        <tr id="user_<%= user.id %>" class="<%= user.assign_class %>">
           <td><%= link_to user.name, user %></td>
-          <td><%= user.family_name %>&euro;</td>
+          <td><%= user.family_name %></td>
           <td><%= user.email %></td>
           <td><%= user.birthdate.strftime("%d/%m/%Y") %></td>
+          <td>
+            <% if user.admin? %>
+                <span class="label label-info">Administrador</span>
+            <% end %>
+            <% if user.blog_editor? %>
+                <span class="label label-info">Editor del Blog</span>
+            <% end %>
+          </td>
+          <td>
+            <%= link_to "Editar", user_path(user), class: 'btn btn-default btn-xs' %>
+            <%= link_to "Borrar", user, method: :delete, :remote => true,
+                        data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning btn-xs' %>
+          </td>
         </tr>
     <% end %>
     </tbody>

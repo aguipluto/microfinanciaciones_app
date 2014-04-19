@@ -39,7 +39,7 @@ AbrirModalProyecto = () ->
         $('#modalTitle').text(data.titulo)
         $('#modalTitle').text(data.titulo)
         $('#modalImg').attr('src', data.attachments[0].url)
-        $('#modalDescripcionLarga').text(data.descripcion_larga)
+        $('#modalDescripcionLarga').html(data.descripcion_larga)
         $('#modalFecha').html('Desde ' + data.fechaInicio + ' hasta ' + data.fechaFin)
         $('#modalLugar').html('Lugar: ' + data.lugar)
         $('#modalProgress').attr('aria-valuenow', data.total_collected)
@@ -51,6 +51,7 @@ AbrirModalProyecto = () ->
 
 RealizarAportacion = () ->
   $('#btnAportar').click (event) ->
+    alert('hola')
     $.ajax '/cartItemCreate',
       type: 'POST'
       data: {aportacion: $('#aportationSlider').val(), proyecto_id: $('#modalId').text()}

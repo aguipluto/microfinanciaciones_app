@@ -12,13 +12,28 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li><%= link_to "¿Quiénes somos?", about_path %></li>
-          <li><%= link_to "Contacte", contact_path %></li>
-          <li><%= link_to "Ayuda", help_path %></li>
+          <li class="dropdown-open">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Sobre nosotros <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "¿Quiénes somos?", about_path %></li>
+              <li><%= link_to "Contacte", contact_path %></li>
+              <li><%= link_to "Ayuda", help_path %></li>
+            </ul>
+          </li>
+          <% if blog_editor_user? %>
+              <li class="dropdown-open">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Blog <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Blog", blog_path %></li>
+                  <li><%= link_to "Nuevo Post", new_blog_post_path %></li>
+                </ul>
+              </li>
+          <% else %>
+              <li><%= link_to "Blog", blog_path %></li>
+          <% end %>
         </ul>
-
         <ul class="nav navbar-nav navbar-right">
-          <% if signed_in? && %>
+          <% if signed_in? %>
               <li id="liSessionCart"><%= link_to session_cart do %>
                     <% if session_cart.valid_cart_items.count>0 %>
                         <span class="badge"><%= session_cart.valid_cart_items.count %></span>
@@ -43,8 +58,9 @@
                   <li class="dropdown-open">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span><b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                      <li><%= link_to "Aportaciones", '/cartitem/indexadmin' %></li>
-                      <li><%= link_to "Buzón" + suggestsNotShown, '/suggests', id:"unread_suggests" %></li>
+                      <li><%= link_to "Aportaciones", cartitem_indexadmin_path %></li>
+                      <li><%= link_to "Blog", blog_posts_path %></li>
+                      <li><%= link_to "Buzón" + suggestsNotShown, '/suggests', id: "unread_suggests" %></li>
                       <li><%= link_to "Proyectos", proyectos_path %></li>
                       <li><%= link_to "Usuarios", users_path %></li>
                     </ul>
