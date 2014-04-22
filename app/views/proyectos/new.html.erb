@@ -37,18 +37,6 @@
                             {:order => [:day, :month, :year], :start_year => Time.now.year - 1, :end_year => Time.now.year + 10}, {:class => 'date-select form-control'} %>
         </div>
       </div>
-      <div class="form-inline">
-        <div class="checkbox">
-          <label>
-            <%= f.check_box :admin %> ¿Voluntarios?</a>
-          </label>
-        </div>
-        <div class="checkbox">
-          <label>
-            <%= f.check_box :blog_editor %> ¿Financiación?</a>
-          </label>
-        </div>
-      </div>
       <div class="form-group cantidadForm">
         <%= f.label :cantidad_total, "Cantidad total (en euros)", class: "control-label" %>
         <div class="input-group">

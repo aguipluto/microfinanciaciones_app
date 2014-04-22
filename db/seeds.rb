@@ -14,3 +14,13 @@ user = User.create!(name: "Antonio",
                     nif: '52895101T',
                     admin: true,
                     confirmed: true)
+
+user = User.create!(name: "Teodoro",
+                    family_name: "Rojo Aladro",
+                    birthdate: "27/10/1988",
+                    email: "teo.rojo@ceu.es",
+                    password: "teoteo",
+                    password_confirmation: "teoteo",
+                    nif: '24106903D',
+                    admin: true,
+                    confirmed: true)
