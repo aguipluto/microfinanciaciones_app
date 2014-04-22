@@ -88,3 +88,7 @@ select.select-for-search  {
 .carousel-inner > .item > img {
   margin: 0 auto;
 }
+
+tr[data-link]{
+  cursor: pointer;
+}

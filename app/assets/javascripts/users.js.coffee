@@ -112,6 +112,11 @@ $ ->
   ValidarEnviarFormulario()
   MenuIzqClicked()
 
+#  TR de las tablas como links
+  $(document).on 'click', 'tr[data-link]', (event) ->
+    window.location = $(this).data("link")
+
+
   $('#aceptoPrivacidad').click ->
     $('#user_terms_of_service').prop('checked', true);
 
@@ -119,4 +124,6 @@ $ ->
     event.preventDefault()
     $(this).addClass('hidden')
     $('#div_change_password').removeClass('hidden')
+
+
 

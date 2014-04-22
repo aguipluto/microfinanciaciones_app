@@ -13,7 +13,7 @@
     </thead>
     <tbody>
     <% @proyectos.each do |proyecto| %>
-        <tr class="<%= proyecto.assign_class %>">
+        <tr data-link="<%= proyecto_path(proyecto) %>" class="<%= proyecto.assign_class %>">
           <td><%= link_to proyecto.titulo, proyecto %></td>
           <td><%= proyecto.cantidad_total.to_i %>&euro;</td>
           <td><%= proyecto.total_collected.to_i %>&euro;</td>

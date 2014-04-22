@@ -2,7 +2,7 @@
   <h2><%= blog_post.title %>
     <div class="pull-right">
       <% if current_user_admin? && !blog_post.approved? %>
-          <%= link_to "Publicar", approve_blog_post_path(blog_post),id:'btn_approve_' + blogpost.id.to_s, method: :put, remote: true, class: 'btn btn-success btn-sm' %>
+          <%= link_to "Publicar", approve_blog_post_path(blog_post),id:'btn_approve_' + blog_post.id.to_s, method: :put, remote: true, class: 'btn btn-success btn-sm' %>
       <% end %>
       <% if current_user_bog_editor? || current_user_admin? %>
           <%= link_to "Editar", edit_blog_post_path(blog_post), class: 'btn btn-default btn-sm' %>

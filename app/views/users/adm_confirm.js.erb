@@ -1,0 +1,7 @@
+$('#btn_confirm_<%= @user.id %>').remove()
+$('#pendiente_aprovacion').remove()
+$('tr#user_<%= @user.id %>').removeClass('warning')
+$('#advise-container').hide()
+$('#advise-container').html('<div class="alert alert-success alert-dismissable">Email <%= @user.email %> confirmado' +
+        '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>')
+$('#advise-container').fadeIn('slow');

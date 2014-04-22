@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   end
 
   def assign_class
-    if admin
+    unless confirmed
        'warning'
     end
   end
@@ -62,6 +62,13 @@ class User < ActiveRecord::Base
     else
       all
     end
+  end
+
+  def send_password_token
+    self.password_reset_token = SecureRandom.urlsafe_base64
+    self.password_reset_send = Time.zone.now
+    save!
+    UserMailer.password_reset_email(self).deliver!
   end
 
   private

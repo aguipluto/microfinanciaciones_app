@@ -1,0 +1,14 @@
+<% provide(:title, 'Recuperar contraseña') %>
+
+<h2>Recuperar contraseña</h2>
+<div class="row">
+  <div class="well col-lg-6">
+    <%= form_tag(controller: :password_ressets, action: :create) do %>
+        <div class="form-group">
+          <%= label_tag :email, 'Email', class: "control-label" %>
+          <%= text_field_tag :email, params[:email], class: "form-control", placeholder: "Email" %>
+        </div>
+        <%= submit_tag "Recuperar contraseña", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

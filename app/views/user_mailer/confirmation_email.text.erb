@@ -1,0 +1,6 @@
+<% link_confirmacion = root_url + '/users/' + @user.id.to_s + '/confirm/' + @user.confirmation_code %>
+Bienvenido a las Microfinanciaciones.
+Por favor, confirme su email
+pulsando <%= link_to 'aquí', link_confirmacion %> o escribiendo la siguiente dirección
+en el navegador <%= link_to link_confirmacion, link_confirmacion %> para comenzar a colaborar
+con los proyectos de voluntariado de la Fundación Universitaria San Pablo CEU.

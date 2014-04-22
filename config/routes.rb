@@ -4,7 +4,12 @@ MicrofinanciacionesApp::Application.routes.draw do
   resources :cart_items
   resources :cart
   resources :proyectos
-  resources :users
+  resources :users do
+    member do
+      put 'adm_confirm'
+      get 'confirm/:confirmation_code', action: 'confirm'
+    end
+  end
   resources :sessions, only: [:new, :create, :destroy]
   resources :payment_notifications, only: [:create]
   resources :orders
@@ -15,6 +20,7 @@ MicrofinanciacionesApp::Application.routes.draw do
       put 'approve'
     end
   end
+  resources :password_ressets
 
   resources :orders do
     new do
@@ -36,6 +42,9 @@ MicrofinanciacionesApp::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
   match '/contact', to: 'suggests#new', via: 'get'
   match '/deleteAttachment', to: 'proyectos#destroy_attachment', via: 'delete'
+
+
+  get '*path' => redirect('/')
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

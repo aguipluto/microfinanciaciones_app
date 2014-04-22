@@ -15,9 +15,6 @@ class BlogPostsController < ApplicationController
   def create
     @blogpost = BlogPost.new(blogpost_params)
     @blogpost.user = current_user
-    if current_user_admin?
-      @blogpost.approved = true;
-    end
     if @blogpost.save
       flash[:success] = "Post pendiente de aprobación."
       redirect_to @blogpost
@@ -42,7 +39,7 @@ class BlogPostsController < ApplicationController
   end
 
   def home
-    @blog_posts = BlogPost.where(approved: true).paginate(page: params[:page], per_page: 15)
+    @blog_posts = BlogPost.where(approved: true).paginate(page: params[:page], per_page: 5)
     respond_to do |format|
       format.html
       format.js

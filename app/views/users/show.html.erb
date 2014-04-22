@@ -50,11 +50,14 @@
     </div>
     <div class="col-sm-3">
       <p class="text-center">
+        <% unless @user.confirmed? %>
+            <span class="label label-warning">Pendiente confirmación</span>
+        <% end %>
         <% if @user.admin? %>
             <span class="label label-info">Administrador</span>
         <% end %>
         <% if @user.blog_editor? %>
-        <span class="label label-info">Editor del Blog</span>
+            <span class="label label-info">Editor del Blog</span>
         <% end %>
       </p>
     </div>
@@ -112,6 +115,19 @@
     <% end %>
     <div class="col-sm-3">
       <%= image_tag @user.image_url.to_s, class: "img-thumbnail" %>
+    </div>
+    <div class="col-sm-3">
+      <p class="text-center">
+        <% unless @user.confirmed? %>
+            <span class="label label-warning">Pendiente confirmación</span>
+        <% end %>
+        <% if @user.admin? %>
+            <span class="label label-info">Administrador</span>
+        <% end %>
+        <% if @user.blog_editor? %>
+            <span class="label label-info">Editor del Blog</span>
+        <% end %>
+      </p>
     </div>
   </div>
 
