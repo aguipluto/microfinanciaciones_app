@@ -51,7 +51,6 @@ AbrirModalProyecto = () ->
 
 RealizarAportacion = () ->
   $('#btnAportar').click (event) ->
-    alert('hola')
     $.ajax '/cartItemCreate',
       type: 'POST'
       data: {aportacion: $('#aportationSlider').val(), proyecto_id: $('#modalId').text()}

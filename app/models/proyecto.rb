@@ -4,7 +4,7 @@ class Proyecto < ActiveRecord::Base
   has_many :cart_items
   has_many :blog_posts
   default_scope { order('fin_aportaciones ASC') }
-  scope :aportables, where("visible = ? AND fin_aportaciones > ?", true, Time.current).order('fin_aportaciones ASC')
+  scope :aportables, where("visible = ? AND fin_aportaciones > ?", true, Time.now).order('fin_aportaciones ASC')
 
   has_many :attachments, :dependent => :destroy
   accepts_nested_attributes_for :attachments, :allow_destroy => true

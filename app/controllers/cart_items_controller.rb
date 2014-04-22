@@ -1,6 +1,7 @@
 # encoding: utf-8
 class CartItemsController < ApplicationController
   before_action :admin_user, only: [:indexAdmin]
+  before_action :signed_in_user, only: [:create, :prueba]
   helper_method :sort_column, :sort_direction
 
 
