@@ -2,7 +2,7 @@ class BlogPost < ActiveRecord::Base
   belongs_to :user
   belongs_to :proyecto
 
-  default_scope { order('updated_at DESC') }
+  default_scope -> { order('updated_at DESC') }
 
   def assign_class
     if approved

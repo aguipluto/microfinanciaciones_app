@@ -18,7 +18,7 @@ class Suggest < ActiveRecord::Base
     if search
       where('name LIKE ? OR tel LIKE ? OR email LIKE ? OR title LIKE ? OR suggestion LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%")
     else
-      scoped
+      all
     end
   end
 
