@@ -90,12 +90,23 @@ MicrofinanciacionesApp::Application.configure do
   }
 
   #Paypal
-  config.after_initialize do
-    ActiveMerchant::Billing::Base.mode = :production
+  #config.after_initialize do
+  #  ActiveMerchant::Billing::Base.mode = :production
+  #  paypal_options = {
+  #      login: "aguipluto_api1.gmail.com",
+  #      password: "C7MXZRPHKCK9CYZV",
+  #      signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31A4kX9G87iST0zwUFlENsU-o6h-oT"
+  #  }
+  #  ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  #end
+
+  #Paypal
+  config.to_prepare do
+    ActiveMerchant::Billing::Base.mode = :test
     paypal_options = {
-        login: "aguipluto_api1.gmail.com",
-        password: "C7MXZRPHKCK9CYZV",
-        signature: "AFcWxV21C7fd0v3bYYYRCpSSRl31A4kX9G87iST0zwUFlENsU-o6h-oT"
+        :login => "seller_1229899173_biz_api1.railscasts.com",
+        :password => "FXWU58S7KXFC6HBE",
+        :signature => "AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu"
     }
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
