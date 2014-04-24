@@ -101,27 +101,6 @@ MicrofinanciacionesApp::Application.configure do
   #end
 
   #Paypal
-  config.to_prepare do
-    ActiveMerchant::Billing::Base.mode = :test
-    paypal_options = {
-        :login => "seller_1229899173_biz_api1.railscasts.com",
-        :password => "FXWU58S7KXFC6HBE",
-        :signature => "AGjv6SW.mTiKxtkm6L9DcSUCUgePAUDQ3L-kTdszkPG8mRfjaRZDYtSu"
-    }
-    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
-  end
 
-  config.action_mailer.default_url_options = { :host => 'microfinanciacionesceu.herokuapp.com' }
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.smtp_settings = {
-      address: 'smtp.gmail.com',
-      port: 587,
-      domain: 'microfinanciacionesceu.herokuapp.com',
-      user_name: 'aguipluto@gmail.com',
-      password: 'Go02011492@g',
-      authentication: 'plain',
-      enable_starttls_auto: true
-  }
 
 end
