@@ -56,7 +56,7 @@ RealizarAportacion = () ->
       data: {aportacion: $('#aportationSlider').val(), proyecto_id: $('#modalId').text()}
       dataType: 'json'
       error: (jqXHR, textStatus, errorThrown) ->
-        alert errorThrown
+        alert 'Por favor, inicie sesión'
       success: (data, textStatus, jqXHR) ->
         SessionCartNumberUpdate()
 

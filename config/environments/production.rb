@@ -111,4 +111,17 @@ MicrofinanciacionesApp::Application.configure do
     ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
   end
 
+  config.action_mailer.default_url_options = { :host => 'microfinanciacionesceu.herokuapp.com' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+      address: 'smtp.gmail.com',
+      port: 587,
+      domain: 'microfinanciacionesceu.herokuapp.com',
+      user_name: 'aguipluto@gmail.com',
+      password: 'Go02011492@g',
+      authentication: 'plain',
+      enable_starttls_auto: true
+  }
+
 end

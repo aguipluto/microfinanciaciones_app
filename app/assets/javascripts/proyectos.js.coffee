@@ -34,11 +34,11 @@ $(document).on 'click', '.btn-delete-img-p', (event) ->
       $('div#attachment-' + id).fadeOut(300, ->
         $(this).remove())
 
-$(document).ready ->
-  $("#edit_proyecto_3").on("ajax:success", (e, data, status, xhr) ->
-    alert 'funcioooona'
-  ).bind "ajax:error", (e, xhr, status, error) ->
-    alert 'errorrrr'
+#$(document).ready ->
+#  $("#edit_proyecto_3").on("ajax:success", (e, data, status, xhr) ->
+#    alert 'funcioooona'
+#  ).bind "ajax:error", (e, xhr, status, error) ->
+#    alert 'errorrrr'
 
 $ ->
   MenuIzqClicked()
