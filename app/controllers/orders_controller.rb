@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
   def correct_user
     @order = Order.find(params[:id])
     unless @order.user_id.nil? #Donaciones anónimas
-      @user = User.find(@order.user_id)
+      @user = User.find_by_id(@order.user_id)
       redirect_to(root_url) unless (current_user?(@user) || current_user.admin?)
     end
   end

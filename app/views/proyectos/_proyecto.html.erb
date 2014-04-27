@@ -1,7 +1,10 @@
 # encoding: utf-8
 
 <div class="col-sm-4 zeropading">
-  <div id="<%= proyecto.id %>" class="proyectoHome">
+  <div id="<%= proyecto.id %>" class="
+    <% if proyecto.total_collected > proyecto.cantidad_total %>
+    extracollected
+    <% end %> proyectoHome">
     <h3 id="tituloProyecto"><%= proyecto.titulo %></h3>
 
     <%= render '/shared/carousel', proyecto: proyecto %>
@@ -9,22 +12,17 @@
     <div class="descripcionCorta">
       <%= proyecto.descripcion_corta %>
     </div>
-    <div class="progress">
-      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= proyecto.total_collected %>" aria-valuemin="0"
-           aria-valuemax="<%= proyecto.cantidad_total %>" style="clear:both;width: <%= (proyecto.total_collected * 100) / proyecto.cantidad_total  %>%">
-        <span class="sr-only">40% de <%= proyecto.cantidad_total %> conseguido </span>
-      </div>
-    </div>
+    <%= render 'shared/progress_bar', proyecto: proyecto %>
     <div class="cantidadTotal">
       <%= proyecto.cantidad_total.to_i %>&euro;
     </div>
     <div class="finAportaciones">
-      Queda <%=  time_ago_in_words(proyecto.fin_aportaciones) %>
+      Quedan <%= time_ago_in_words(proyecto.fin_aportaciones) %>
     </div>
 
     <div class="row">
       <div class="col-sm-4 social-buttons">
-        <%= social_share_button_tag('Colabora tú también con esta iniciativa CEU: ' + proyecto.titulo, :url =>  proyecto_path(proyecto, only_path:false)) %>
+        <%= social_share_button_tag('Colabora tú también con esta iniciativa CEU: ' + proyecto.titulo, :url => proyecto_path(proyecto, only_path: false)) %>
       </div>
       <div class="col-sm-8 text-right">
         <% if signed_in? && current_user.admin? %>

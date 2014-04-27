@@ -3,6 +3,7 @@
 
 body {
   padding-top: 50px;
+  min-width: 405px;
 }
 
 .navbar-default {
@@ -96,4 +97,8 @@ tr[data-link]{
 .carousel-modal{
   margin: 0 auto;
   width: 350px;
+}
+
+.progress-bar-extracollected {
+  background-color: #9ad717;
 }

@@ -28,6 +28,27 @@ class Proyecto < ActiveRecord::Base
     h
   end
 
+  def anchobar
+    ancho = (total_collected * 100) / cantidad_total
+    if total_collected >= cantidad_total
+      cantidad_total * 100 / (total_collected)
+    else
+      ancho
+    end
+  end
+
+  def totalbar
+    if total_collected >= cantidad_total
+      total_collected
+    else
+      cantidad_total
+    end
+  end
+
+  def extrabar
+    ((total_collected-cantidad_total) * 100) / (total_collected)
+  end
+
   def fechaFin
     fecha_fin.strftime("%d/%m/%Y")
   end

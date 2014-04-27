@@ -22,6 +22,8 @@ gem 'carrierwave'
 gem 'sprockets', '2.11.0'
 gem "fog"
 gem 'unf'
+#Pongo la url ya que Rubygem parece no tener la última versión
+gem 'obfuscate_id', :git => 'https://github.com/namick/obfuscate_id.git'
 
 group :development, :test do
   gem 'sqlite3', '1.3.7'
