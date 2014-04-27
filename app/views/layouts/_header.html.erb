@@ -33,15 +33,26 @@
           <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <% if signed_in? %>
-              <li id="liSessionCart"><%= link_to session_cart do %>
+
+              <li class="dropdown-open">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span id="cart-modal-count"
                     <% if session_cart.valid_cart_items.count>0 %>
-                        <span class="badge"><%= session_cart.valid_cart_items.count %></span>
+                         class="badge"><%= session_cart.valid_cart_items.count %>
                     <% else %>
-                        <span class="badge hidden"><%= session_cart.valid_cart_items.count %></span>
+                        class="badge hidden">
                     <% end %>
-                    <span class="glyphicon glyphicon-shopping-cart"></span>
-                <% end %></li>
+                  </span>
+                  <span class="glyphicon glyphicon-shopping-cart"></span>
+                </a>
+
+                <ul id="cart-modal-menu" class="dropdown-menu">
+                  <div id="cart-modal" class="well " style=" position: absolute; top:0px; left: 0px">
+                    <%= render 'cart/show2' %>
+                  </div>
+                </ul>
+              </li>
+          <% if signed_in? %>
               <li class="dropdown-open">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <span class="glyphicon glyphicon-user"></span> <b class="caret"></b>

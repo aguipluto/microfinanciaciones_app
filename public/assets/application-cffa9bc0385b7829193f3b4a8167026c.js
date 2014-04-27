@@ -13811,14 +13811,6 @@ CKEDITOR.config.wsc_customDictionaryIds||"";a.config.wsc_userDictionaryName=a.co
     });
   });
 
-  $(document).ready(function() {
-    return $("#edit_proyecto_3").on("ajax:success", function(e, data, status, xhr) {
-      return alert('funcioooona');
-    }).bind("ajax:error", function(e, xhr, status, error) {
-      return alert('errorrrr');
-    });
-  });
-
   $(function() {
     MenuIzqClicked();
     MenuIzqShowProjectClicked();
@@ -13861,14 +13853,14 @@ CKEDITOR.config.wsc_customDictionaryIds||"";a.config.wsc_userDictionaryName=a.co
 
 }).call(this);
 (function() {
-  var AbrirModalProyecto, RealizarAportacion, SessionCartNumberUpdate, SliderAportacionChange;
+  var AbrirModalProyecto, AbrirModalProyecto2, RealizarAportacion, SessionCartNumberUpdate, SliderAportacionChange;
 
   SliderAportacionChange = function() {
-    return $('#aportationSlider').change(function() {
+    return $('.aportationSlider').change(function() {
       var cantidad;
       cantidad = $(this).val();
       console.log(cantidad);
-      return $('#aportationInfo').html(cantidad + '&euro;');
+      return $('.aportationInfo').html(cantidad + '&euro;');
     });
   };
 
@@ -13884,6 +13876,17 @@ CKEDITOR.config.wsc_customDictionaryIds||"";a.config.wsc_userDictionaryName=a.co
           return $('.badge').addClass('hidden');
         }
       }
+    });
+  };
+
+  AbrirModalProyecto2 = function() {
+    $(document).on('click', '.carousel', function(event) {
+      return event.stopPropagation();
+    });
+    return $(document).on('click', '.proyectoHome', function(event) {
+      var id;
+      id = $(this).attr("id");
+      return $('#modalProyecto-' + id).modal('show');
     });
   };
 
@@ -13912,7 +13915,7 @@ CKEDITOR.config.wsc_customDictionaryIds||"";a.config.wsc_userDictionaryName=a.co
           $('#modalProgress').attr('aria-valuenow', data.total_collected);
           $('#modalProgress').attr('aria-valuemax', data.cantidad_total);
           $('#modalProgress').css('width', (data.total_collected * 100) / data.cantidad_total + '%');
-          $('#modalQueda').html('Quedan:' + data.queda);
+          $('#modalQueda').html('Quedan: ' + data.queda);
           $('#modalRecaudado').html('Conseguidos ' + data.total_collected + "&euro;");
           return $('#aportationInfo').html($('#aportationSlider').val() + '&euro;');
         }
@@ -13922,7 +13925,6 @@ CKEDITOR.config.wsc_customDictionaryIds||"";a.config.wsc_userDictionaryName=a.co
 
   RealizarAportacion = function() {
     return $('#btnAportar').click(function(event) {
-      alert('hola');
       return $.ajax('/cartItemCreate', {
         type: 'POST',
         data: {
@@ -13931,7 +13933,7 @@ CKEDITOR.config.wsc_customDictionaryIds||"";a.config.wsc_userDictionaryName=a.co
         },
         dataType: 'json',
         error: function(jqXHR, textStatus, errorThrown) {
-          return alert(errorThrown);
+          return alert('Por favor, inicie sesión');
         },
         success: function(data, textStatus, jqXHR) {
           return SessionCartNumberUpdate();
@@ -13945,12 +13947,12 @@ CKEDITOR.config.wsc_customDictionaryIds||"";a.config.wsc_userDictionaryName=a.co
   };
 
   $(function() {
-    AbrirModalProyecto();
     SliderAportacionChange();
     RealizarAportacion();
-    return $(document).ready(function() {
+    $(document).ready(function() {
       return SessionCartNumberUpdate();
     });
+    return AbrirModalProyecto2();
   });
 
 }).call(this);

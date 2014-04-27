@@ -3,10 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 SliderAportacionChange = () ->
-  $('#aportationSlider').change () ->
+  $('.aportationSlider').change () ->
     cantidad = $(this).val()
     console.log(cantidad)
-    $('#aportationInfo').html(cantidad + '&euro;')
+    $('.aportationInfo').html(cantidad + '&euro;')
 
 SessionCartNumberUpdate = () ->
   $.ajax '/getNumberOfItems',
@@ -20,6 +20,12 @@ SessionCartNumberUpdate = () ->
         $('.badge').addClass('hidden')
 
 
+AbrirModalProyecto2 = () ->
+  $(document).on 'click', '.carousel',  (event) ->
+    event.stopPropagation()
+  $(document).on 'click', '.proyectoHome',  (event) ->
+    id = $(this).attr("id")
+    $('#modalProyecto-' + id).modal('show')
 
 
 AbrirModalProyecto = () ->
@@ -45,7 +51,7 @@ AbrirModalProyecto = () ->
         $('#modalProgress').attr('aria-valuenow', data.total_collected)
         $('#modalProgress').attr('aria-valuemax', data.cantidad_total)
         $('#modalProgress').css('width', (data.total_collected * 100) / data.cantidad_total + '%')
-        $('#modalQueda').html('Quedan:' + data.queda)
+        $('#modalQueda').html('Quedan: ' + data.queda)
         $('#modalRecaudado').html('Conseguidos ' + data.total_collected + "&euro;")
         $('#aportationInfo').html($('#aportationSlider').val() + '&euro;')
 
@@ -65,11 +71,13 @@ this.myApi = {
 }
 
 $ ->
-  AbrirModalProyecto()
+#  AbrirModalProyecto()
   SliderAportacionChange()
   RealizarAportacion()
   $(document).ready ->
     SessionCartNumberUpdate()
+  AbrirModalProyecto2()
+
 
 
 

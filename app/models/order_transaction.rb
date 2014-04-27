@@ -3,7 +3,7 @@ class OrderTransaction < ActiveRecord::Base
   belongs_to :user
   serialize :params
 
-  validates :user, presence: true
+  #validates :user, presence: true Se quita desde que las donaciones pueden ser anónimas
 
   def aportacion
     amount/100

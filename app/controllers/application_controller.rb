@@ -5,4 +5,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
   http_basic_authenticate_with :name => 'teo.rojo@ceu.es', :password => 'teoteo' if Rails.env.production?
+
+
 end

@@ -30,7 +30,7 @@ MicrofinanciacionesApp::Application.routes.draw do
 
   match '/blog', to: 'blog_posts#home', via: 'get'
   match '/proyectosShow', to: 'proyectos#show', via: 'get'
-  match '/cartItemCreate', to: 'cart_items#prueba', via: 'post'
+  match '/cartItemCreate', to: 'cart_items#createjs', via: 'post'
   match '/cartitem/indexadmin', to: 'cart_items#indexAdmin', via: 'get'
   match '/cart', to: 'proyectos#show', via: 'get'
   match '/getNumberOfItems', to: 'cart#get_number_of_items', via: 'get'

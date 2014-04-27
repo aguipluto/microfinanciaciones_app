@@ -3,5 +3,7 @@
 </div>
 <div class="row">
   <%= render @proyectos %>
-  <%= render '/shared/modal_proyecto' %>
+  <% @proyectos.each do |p| %>
+      <%= render '/shared/modal_proyecto', proyecto: p %>
+  <% end %>
 </div>

@@ -52,8 +52,13 @@ module SessionsHelper
         @session_cart = nil if @session_cart.purchased_at
       end
       unless @session_cart
-        @session_cart = Cart.create(:user_id => current_user.id)
-        cookies[:cart_id] = @session_cart.id
+        if current_user
+          @session_cart = Cart.create(:user_id => current_user.id)
+          cookies[:cart_id] = @session_cart.id
+        else
+          @session_cart = Cart.create
+          cookies[:cart_id] = @session_cart.id
+        end
       end
     elsif current_user
       @session_cart = Cart.create(:user_id => current_user.id)

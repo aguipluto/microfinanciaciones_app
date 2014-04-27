@@ -1,7 +1,7 @@
 # encoding: utf-8
 class CartItemsController < ApplicationController
   before_action :admin_user, only: [:indexAdmin]
-  before_action :signed_in_user, only: [:create, :prueba]
+  before_action :signed_in_user, only: [:create]
   helper_method :sort_column, :sort_direction
 
 
@@ -37,17 +37,22 @@ class CartItemsController < ApplicationController
     end
   end
 
-  def prueba
+  def createjs
     session_cart.save if session_cart.new_record?
     aportacion = params[:aportacion].to_f
-    @cartitem = session_cart.add_proyecto(params[:proyecto_id], current_user.id, aportacion)
+    id = nil
+    id = current_user.id unless current_user.nil?
+    @cartitem = session_cart.add_proyecto(params[:proyecto_id].to_i, id, aportacion)
     if @cartitem.save
       respond_to do |format|
         format.json { render :json => session_cart }
         format.html
+        format.js
       end
     else
-      render :json => {:errors => session_cart.errors.full_messages}
+      format.json { render :json => {:errors => session_cart.errors.full_messages} }
+      format.html
+      format.js
     end
   end
 
@@ -79,11 +84,11 @@ class CartItemsController < ApplicationController
   end
 
   def sort_column
-    %w[proyectos.titulo users.family_name aportacion carts.purchased_at id].include?(params[:sort]) ? params[:sort] : "proyectos.titulo"
+    %w[proyectos.titulo users.family_name aportacion carts.purchased_at cart_items.id].include?(params[:sort]) ? params[:sort] : "cart_items.id"
   end
 
   def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
   end
 
   def cart_items_search

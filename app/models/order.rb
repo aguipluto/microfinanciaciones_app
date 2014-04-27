@@ -3,7 +3,7 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :transactions, :class_name => 'OrderTransaction'
 
-  validates_presence_of :user
+  #validates_presence_of :user Ya que la aportación puede ser anónima
 
   def price_in_cents
     (cart.sub_total*100).round

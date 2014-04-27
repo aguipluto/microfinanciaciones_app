@@ -20,7 +20,7 @@ class Proyecto < ActiveRecord::Base
 
   def as_json(options = { })
     h = super(options)
-    h[:total_collected]   = total_collected.to_i
+    h[:total_collected]   = total_collected
     h[:fechaInicio] = fecha_inicio.strftime("%d/%m/%Y")
     h[:fechaFin] = fecha_fin.strftime("%d/%m/%Y")
     h[:queda]   = time_ago_in_words(fin_aportaciones)
@@ -28,8 +28,20 @@ class Proyecto < ActiveRecord::Base
     h
   end
 
+  def fechaFin
+    fecha_fin.strftime("%d/%m/%Y")
+  end
+
+  def fechaInicio
+    fecha_inicio.strftime("%d/%m/%Y")
+  end
+
+  def queda
+    time_ago_in_words(fin_aportaciones)
+  end
+
   def total_collected
-    self.cart_items.map(&:purchased_cart_item_in_euro).sum
+    self.cart_items.map(&:purchased_cart_item_in_euro).sum.to_i
   end
 
   def fin_aportaciones_in_words

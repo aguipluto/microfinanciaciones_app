@@ -1,9 +1,10 @@
 <table class="table table-hover" id="adminTable">
   <thead>
   <tr>
-    <th><%= sortable "cartItems.id", "Id" %></th>
+    <th><%= sortable "cart_items.id", "Id" %></th>
     <th><%= sortable "proyectos.titulo", "Proyecto" %></th>
-    <th><%= sortable "users.family_name", "Usuario" %></th>
+    <th><%= sortable "users.family_name", "Usuario pago" %></th>
+    <th><%= "Justificante a" %></th>
     <th><%= sortable "aportacion", "Aportacion" %></th>
     <th><%= sortable "carts.purchased_at", "Fecha Aportación" %></th>
     <th>Token Paypal</th>
@@ -13,7 +14,24 @@
       <tr>
         <td><%= ci.id %></td>
         <td><%= link_to ci.proyecto.titulo, ci.proyecto %></td>
-        <td><%= link_to ci.user.family_name + ', ' + ci.user.name, ci.user %></td>
+        <% if ci.cart.order %>
+            <% if ci.user %>
+                <td><%= link_to ci.cart.order.first_name + ', ' + ci.cart.order.second_name, ci.user %></td>
+            <% else %>
+                <td><%= ci.cart.order.first_name + ', ' + ci.cart.order.second_name %></td>
+            <% end %>
+        <% else %>
+            <% if ci.user %>
+                <td><%= link_to ci.user.name + ', ' + ci.user.family_name, ci.user %></td>
+            <% else %>
+                <td>Usuario anónimo</td>
+            <% end %>
+        <% end %>
+        <% if ci.cart.order %>
+            <td><%= ci.cart.order.invoice_name + ' / ' + ci.cart.order.invoice_nif %></td>
+        <% else %>
+            <td>Sin pago</td>
+        <% end %>
         <td><%= ci.aportacion.to_i %> &euro;</td>
         <td><%= dateAndTime(ci.cart.purchased_at) %></td>
         <% if ci.cart.order %>

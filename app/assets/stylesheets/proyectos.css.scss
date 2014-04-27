@@ -72,7 +72,7 @@ div.proyectoHome {
   color: #0084b4;
 }
 
-#modalProyecto {
+.modalProyecto {
   font-family: 'Ubuntu', sans-serif;
   .modal-dialog {
     max-width: 800px;
@@ -120,8 +120,8 @@ div.proyectoHome {
     margin-top: 10px;
     margin: 5px;
   }
+
   .img-container {
-    text-align: center;
     padding-bottom: 10px;
     .modal-img {
       max-width: 90%;
@@ -137,13 +137,13 @@ div.proyectoHome {
   font-weight: bold;
   font-size: 1.2em;
   color: $verdeRecaudado;
-  width: 70%;
+  width: 50%;
   float: left;
 }
 
 #modalQueda {
   text-align: right;
-  width: 30%;
+  width: 50%;
   float: left;
 }
 /**********************************************************************************************/

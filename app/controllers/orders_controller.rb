@@ -1,6 +1,5 @@
 # encoding: utf-8
 class OrdersController < ApplicationController
-  before_action :signed_in_user, only: [:create]
   before_action :correct_user, only: [:show]
   after_action :set_order_shown, only: [:show]
 
@@ -28,10 +27,12 @@ class OrdersController < ApplicationController
 
   def create
     @order = session_cart.build_order(order_params)
-    @order.user_id = current_user.id
+    id = nil #Para que puedan hacerse pagos anónimos, de no quererse se puede poner filtro :signed_in_user para create
+    id = current_user.id unless current_user.nil?
+    @order.user_id = id
     @order.ip_address = request.remote_ip
     if @order.save
-      if @order.purchase(current_user.id)
+      if @order.purchase(id)
         redirect_to @order
       else
         render :action => 'failure'
@@ -54,8 +55,10 @@ class OrdersController < ApplicationController
 
   def correct_user
     @order = Order.find(params[:id])
-    @user = User.find(@order.user_id)
-    redirect_to(root_url) unless (current_user?(@user) || current_user.admin?)
+    unless @order.user_id.nil? #Donaciones anónimas
+      @user = User.find(@order.user_id)
+      redirect_to(root_url) unless (current_user?(@user) || current_user.admin?)
+    end
   end
 
   def set_order_shown

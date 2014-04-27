@@ -1,0 +1,30 @@
+<div id="carousel-modal-<%= proyecto.id %>" class="carousel carousel-modal slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <% proyecto.attachments.each_with_index do |img, i| %>
+        <li data-target="#carousel-modal-<%= proyecto.id %>" data-slide-to="<%= i %>"
+            <% if i==0 %> class="active"
+            <% end %>
+            ></li>
+    <% end %>
+  </ol>
+
+  <!-- Wrapper for slides -->
+
+  <div class="carousel-inner">
+    <% proyecto.attachments.each_with_index do |img, i| %>
+
+        <div class="item <%= 'active' if i==0 %>">
+          <%= image_tag img.image.url(:bootstrap) %>
+        </div>
+    <% end %>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-modal-<%= proyecto.id %>" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#carousel-modal-<%= proyecto.id %>" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>
