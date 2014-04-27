@@ -1,5 +1,7 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
+  obfuscate_id
+
   has_many :proyectos, dependent: :nullify
   has_many :carts, dependent: :nullify
   has_many :purchased_carts, -> { where("purchased_at IS NOT NULL") }, class_name: 'Cart'
