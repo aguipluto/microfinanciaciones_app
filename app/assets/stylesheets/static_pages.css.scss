@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 .jumbotron-background {
   background-image: url(vol1.JPG);
   background-repeat: no-repeat;
@@ -19,7 +18,19 @@
     margin-top: 30px;
     font-size: 60px;
   }
-  p{
+  p {
     font-size: 30px;
   }
+}
+
+.jumbotron-white {
+  background-color: white;
+  h1 {
+    color: #7c8086;
+
+  }
+}
+
+.margin-xxl{
+  margin-bottom: 250px !important;
 }

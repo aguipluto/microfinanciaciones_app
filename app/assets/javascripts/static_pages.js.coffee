@@ -78,8 +78,7 @@ $ ->
     SessionCartNumberUpdate()
   AbrirModalProyecto2()
   $('#scrollDown').click ->
-    $('body').scrollspy({ target: '#main-content' })
-
+    $('html,body').animate({ scrollTop: $('#main-content').offset().top-45 }, 'slow');
 
 
 

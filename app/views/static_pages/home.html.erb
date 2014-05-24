@@ -6,15 +6,20 @@
       <div class="container">
         <h1>Microfinanciaciones CEU</h1>
 
-        <p>Construyendo caminos</p>
+        <p class="margin-xxl">Construyendo caminos</p>
 
         <p class="text-center">
-          <button id="scrollDown" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-chevron-down"></span></button>
+          <button id="scrollDown" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
         </p>
       </div>
     </section>
 <% end %>
 <div class="row">
+  <article class="jumbotron jumbotron-white">
+    <h1 class="text-info text-center">La unión hace la fuerza, colabora y hazte voluntario
+      <span class="glyphicon glyphicon-thumbs-up"></span></h1>
+  </article>
   <%= render @proyectos %>
   <% @proyectos.each do |p| %>
       <%= render '/shared/modal_proyecto', proyecto: p %>
