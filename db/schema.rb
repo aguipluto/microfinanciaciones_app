@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140419164448) do
+ActiveRecord::Schema.define(version: 20140515163028) do
 
   create_table "attachments", force: true do |t|
     t.datetime "created_at"
@@ -175,5 +175,12 @@ ActiveRecord::Schema.define(version: 20140419164448) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
+
+  create_table "volunteers", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "proyecto_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

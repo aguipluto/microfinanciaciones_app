@@ -21,6 +21,7 @@ MicrofinanciacionesApp::Application.routes.draw do
     end
   end
   resources :password_ressets
+  resources :volunteers
 
   resources :orders do
     new do

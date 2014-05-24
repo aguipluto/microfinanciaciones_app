@@ -1,0 +1,22 @@
+<div id="proyectosVoluntario" class="col-sm-7 hidden">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>
+        Proyecto
+      </th>
+      <th>
+        Fecha inscripción
+      </th>
+    </tr>
+    </thead>
+    <% @user.volunteers.each do |v| %>
+        <% if v.proyecto %>
+            <tr>
+              <td><%= link_to v.proyecto.titulo, v.proyecto %></td>
+              <td><%= v.created_at.strftime("%d/%m/%Y %H:%M") %></td>
+            </tr>
+        <% end %>
+    <% end %>
+  </table>
+</div>

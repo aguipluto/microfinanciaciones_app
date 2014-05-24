@@ -77,6 +77,9 @@ $ ->
   $(document).ready ->
     SessionCartNumberUpdate()
   AbrirModalProyecto2()
+  $('#scrollDown').click ->
+    $('body').scrollspy({ target: '#main-content' })
+
 
 
 

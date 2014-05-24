@@ -1,0 +1,26 @@
+<div id="aportacionesRealizadas" class="col-sm-7 hidden">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th>
+        Proyecto
+      </th>
+      <th>
+        Aportación
+      </th>
+      <th>
+        Fecha de colaboración
+      </th>
+    </tr>
+    </thead>
+    <% @user.purchased_cart_items.each do |ci| %>
+        <% if ci.proyecto %>
+            <tr>
+              <td><%= link_to ci.proyecto.titulo, ci.proyecto %></td>
+              <td><%= ci.aportacion %> &euro;</td>
+              <td><%= ci.cart.purchased_at.strftime("%d/%m/%Y %H:%M") %></td>
+            </tr>
+        <% end %>
+    <% end %>
+  </table>
+</div>

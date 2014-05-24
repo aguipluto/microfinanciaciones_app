@@ -1,0 +1,6 @@
+<%= form_for(current_user.volunteers.build(proyecto_id: proyecto.id), remote: true) do |f| %>
+    <div>
+      <%= f.hidden_field :proyecto_id %>
+    </div>
+    <%= f.submit "Ser Voluntario", class: 'btn btn-xs btn-primary' %>
+<% end %>

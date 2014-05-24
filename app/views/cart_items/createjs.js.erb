@@ -1,5 +1,9 @@
-$('#cart-modal').html('<%= escape_javascript render 'cart/show2' %>');
+$('#cart-modal-menu').html('<%= escape_javascript render 'cart/show2' %>');
 $('#cart-modal-count').removeClass('hidden');
 $('#cart-modal-count').html('<%= session_cart.valid_cart_items.count %>');
 $('#modalProyecto-<%= @cartitem.proyecto_id %>').modal('hide');
 $('#cart-modal-menu').dropdown('toggle');
+
+
+
+

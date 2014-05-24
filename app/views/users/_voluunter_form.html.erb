@@ -1,0 +1,9 @@
+<% if signed_in? %>
+    <div id="volunteer_form_<%= proyecto.id %>">
+      <% if !current_user.is_volunteer?(proyecto) %>
+          <%= render 'users/make_volunteer', proyecto: proyecto %>
+      <% else %>
+          <%= render 'users/not_volunteer', proyecto: proyecto %>
+      <% end %>
+    </div>
+<% end %>

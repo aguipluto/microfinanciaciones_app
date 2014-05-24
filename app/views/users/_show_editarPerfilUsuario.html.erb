@@ -1,0 +1,68 @@
+
+<div id="editarPerfilDeUsuario" class="col-sm-7 well hidden">
+  <%= form_for(@user, remote: false, html: {id: "formulario-editar", multipart: true, class: "col-sm-9 form"}) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div class="form-group">
+        <%= f.label :image, class: "control-label" %>
+        <br/>
+        <%= f.file_field :image, class: "form-control", accept: 'image/png,image/gif,image/jpeg,image/jpg' %>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, "Nombre", class: "control-label" %>
+        <%= f.text_field :name, class: "form-control", placeholder: "Nombre" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :family_name, "Apellidos", class: "control-label" %>
+        <%= f.text_field :family_name, class: "form-control", placeholder: "Apellidos" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :email, class: "control-label" %>
+        <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :nif, 'NIF/DNI', class: "control-label" %>
+        <%= f.text_field :nif, class: "form-control", placeholder: "NIF/DNI" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :birthdate, "Fecha de nacimiento", class: "control-label" %>
+        <div class="date row">
+          <%= f.date_select :birthdate, {:order => [:day, :month, :year], :start_year => 1910, :end_year => 2012}, {:class => 'date-select form-control'} %>
+        </div>
+      </div>
+      <% if current_user.admin? %>
+          <div class="form-inline">
+            <div class="checkbox">
+              <label>
+                <%= f.check_box :admin %> Administrador</a>
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <%= f.check_box :blog_editor %> Editor del Blog</a>
+              </label>
+            </div>
+          </div>
+      <% end %>
+      <br>
+
+      <div class="form-group">
+        <%= f.submit "Guardar cambios", class: "btn btn-primary" %>
+      </div>
+  <% end %>
+  <div class="col-sm-3">
+    <%= image_tag @user.image_url.to_s, class: "img-thumbnail" %>
+  </div>
+  <div class="col-sm-3">
+    <p class="text-center">
+      <% unless @user.confirmed? %>
+          <span class="label label-warning">Pendiente confirmación</span>
+      <% end %>
+      <% if @user.admin? %>
+          <span class="label label-info">Administrador</span>
+      <% end %>
+      <% if @user.blog_editor? %>
+          <span class="label label-info">Editor del Blog</span>
+      <% end %>
+    </p>
+  </div>
+</div>

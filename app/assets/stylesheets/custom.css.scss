@@ -1,21 +1,47 @@
 @import "bootstrap";
 @import url(http://fonts.googleapis.com/css?family=Ubuntu);
+@font-face {
+  font-family: 'Museo500-Regular';
+  src: url(font_path('Museo500-Regular-webfont.eot') + '?#iefix') format('embedded-opentype'),
+  url(font_path('Museo500-Regular-webfont.woff')) format('woff'),
+  url(font_path('Museo500-Regular-webfont.ttf'))  format('truetype'),
+  url(font_path('Museo500-Regular-webfont.svg') + '#MuseoSans_500') format('svg');
+}
 
 body {
   padding-top: 50px;
   min-width: 405px;
 }
 
-.navbar-default {
-  color: #66757f;
-  font-weight: bold;
+.navbar-brand{
+  padding: 10px;
+}
 
-  #img-nav-bar {
-    padding-bottom: 0;
-    padding-right: 0;
-    padding-top: 5px;
-    padding-left: 10px;
-  }
+.dropdown-menu-md{ //Estilos dropdown menú carrito
+  min-width: 270px;
+}
+.dropdown-form { //Estilos formulario de login
+  min-width: 342px;
+  width: 100% !important;
+  padding: 25px 40px 10px 40px;
+}
+
+
+.dropdown .alert{
+  margin: 15px;
+}
+
+
+.navbar-default{
+  font-family: "Museo500-Regular";
+  font-size: 14px;
+  font-weight: normal;
+}
+
+
+
+.navbar-default .navbar-nav > li > a{
+  color: #4D5157;
 
   .badge{
     background-color: #00aeef;

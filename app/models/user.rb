@@ -1,6 +1,6 @@
 # encoding: utf-8
 class User < ActiveRecord::Base
-  obfuscate_id
+  #obfuscate_id
 
   has_many :proyectos, dependent: :nullify
   has_many :carts, dependent: :nullify
@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :blog_posts, dependent: :nullify
   has_many :deleted_cart_items, -> { where(active: false) }, class_name: 'CartItem'
   has_many :suggests, dependent: :nullify
+  has_many :volunteers
 
   before_create :create_remember_token
   before_save { self.email = email.downcase }
@@ -71,6 +72,18 @@ class User < ActiveRecord::Base
     self.password_reset_send = Time.zone.now
     save!
     UserMailer.password_reset_email(self).deliver!
+  end
+
+  def is_volunteer?(proyecto)
+    self.volunteers.find_by(proyecto_id: proyecto.id)
+  end
+
+  def make_volunteer!(proyecto)
+    self.volunteers.create!(proyecto_id: proyecto.id)
+  end
+
+  def not_volunteer!(proyecto)
+    self.volunteers.find_by(proyecto_id: proyecto.id).destroy
   end
 
   private

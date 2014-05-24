@@ -3,7 +3,7 @@
 <h2>Nuevo Usuario</h2>
 
 <div class="row">
-  <%= form_for(@user, html: {id: "formulario-registro", class: "well col-lg-6"}) do |f| %>
+  <%= form_for(@user, html: {id: "formulario-registro", class: "well col-lg-6 form-horizontal"}) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div id="error_explanation_js">
         <div class="alert alert-danger">

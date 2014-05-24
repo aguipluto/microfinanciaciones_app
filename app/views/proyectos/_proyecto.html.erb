@@ -26,10 +26,11 @@
       </div>
       <div class="col-sm-8 text-right">
         <% if signed_in? && current_user.admin? %>
-            <%= link_to "Editar", edit_proyecto_path(proyecto), class: 'btn btn-default' %>
+            <%= link_to "Editar", edit_proyecto_path(proyecto), class: 'btn-xs btn-default' %>
             <%= link_to "Borrar", proyecto, method: :delete,
-                        data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning' %>
+                        data: {confirm: "¿Está seguro?"}, class: 'btn-xs btn-warning' %>
         <% end %>
+        <%= render 'users/voluunter_form', proyecto: proyecto %>
       </div>
     </div>
   </div>

@@ -4,7 +4,7 @@
 <h2>Nuevo Proyecto</h2>
 
 <div class="row">
-  <%= form_for @proyecto, html: {class: "well col-md-6", :multipart => true} do |f| %>
+  <%= form_for @proyecto, html: {class: "well col-md-6 form-horizontal", :multipart => true} do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="form-group">
         <%= f.label :titulo, "Título", class: "control-label" %>

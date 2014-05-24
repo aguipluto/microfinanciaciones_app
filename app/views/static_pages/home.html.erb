@@ -1,6 +1,19 @@
-<div class="jumbotron">
-  <h1>MicroFinanciaciones CEU</h1>
-</div>
+<!--<div class="jumbotron">-->
+<!--<h1>MicroFinanciaciones CEU</h1>-->
+<!--</div>-->
+<% content_for :jumbotron do %>
+    <section class="jumbotron jumbotron-background">
+      <div class="container">
+        <h1>Microfinanciaciones CEU</h1>
+
+        <p>Construyendo caminos</p>
+
+        <p class="text-center">
+          <button id="scrollDown" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-chevron-down"></span></button>
+        </p>
+      </div>
+    </section>
+<% end %>
 <div class="row">
   <%= render @proyectos %>
   <% @proyectos.each do |p| %>

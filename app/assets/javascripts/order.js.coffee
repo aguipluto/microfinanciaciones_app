@@ -7,3 +7,6 @@ $ ->
   $('#btn_imprimir_justificante_pago').click (event) ->
     event.preventDefault()
     print()
+
+  $(document).on 'click', '#cart-modal-menu',  (event) ->
+    alert 'pulsadoooo'
