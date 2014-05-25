@@ -1,0 +1,5 @@
+<% if proyecto.volunteers.count > 0 %>
+    <bold><%= pluralize(proyecto.volunteers.count, 'voluntario inscrito', 'voluntarios inscritos') %></bold>
+<% else %>
+    Sé el primer voluntario!
+<% end %>

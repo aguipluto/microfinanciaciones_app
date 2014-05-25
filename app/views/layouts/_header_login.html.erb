@@ -1,4 +1,4 @@
-<li class="dropdown">
+<li id="dropdown-login" class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="inicie sesión">
     <span class="glyphicon glyphicon-log-in"></span>
     inicie Sessión
@@ -10,7 +10,7 @@
         <div class="form-group">
           <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"></span></span>
-            <%= f.text_field :email, class: "form-control", placeholder: "Email" %>
+            <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
           </div>
         </div>
         <div class="form-group">
@@ -22,8 +22,8 @@
         <div class="form-group">
           <%= f.submit "Iniciar sesión", class: "btn btn-primary btn-block" %>
           <%= link_to "¿Olvidó su contraseña?", new_password_resset_path, class: 'btn btn-link btn-block' %>
+          <%= link_to "Regístrese", signup_path, class: 'btn btn-link btn-block' %>
         </div>
-
     <% end %>
   </div>
 </li>

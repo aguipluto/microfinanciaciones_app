@@ -1,5 +1,6 @@
 $verdeRecaudado: #5cb85c;
 $azulBoton: #428bca;
+$brand-success: #5cb85c;
 
 .banner {
   position: relative;
@@ -23,6 +24,43 @@ div.extracollected {
   border: 1px solid #5cb85c;
 }
 
+.project-home {
+  padding-left: 5px;
+  padding-right: 5px;
+  h3 {
+    margin-top: 5px;
+  }
+  .recaudado{
+    color: $brand-success;
+    font-size: 12px;
+  }
+}
+.progress-home{
+  margin-top: 10px;
+  margin-bottom: 0px;
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.badge-cantidad {
+  display: inline-block;
+  min-width: 10px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: normal;
+  color: #6d6d6d;
+  line-height: 1;
+  vertical-align: baseline;
+  white-space: nowrap;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
+
+//TODO Borrar este estilo
 .proyectoHome {
   border: 1px solid #00aeef;
   border-radius: 7px;
@@ -32,24 +70,6 @@ div.extracollected {
   min-height: 50px;
   max-width: 400px;
   overflow: hidden;
-
-  .badge-cantidad{
-    display: inline-block;
-    min-width: 10px;
-    padding: 3px 7px;
-    font-size: 12px;
-    font-weight: normal;
-    color: #6d6d6d;
-    line-height: 1;
-    vertical-align: baseline;
-    white-space: nowrap;
-    text-align: center;
-    background-color: #fff;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-  }
-
-
 
   &:hover {
     background-color: #eeeeee;
@@ -70,7 +90,6 @@ div.extracollected {
   .social-buttons {
     margin-top: 15px;
   }
-
 }
 
 .cantidadForm {
@@ -127,7 +146,7 @@ div.extracollected {
       margin-right: 5px;
     }
   }
-  .progress {
+  .progress{
     margin-top: 10px;
     margin: 5px;
   }
@@ -199,11 +218,4 @@ div.extracollected {
   font-size: 12px;
   line-height: 20px;
   text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
-}
-
-.progress-home {
-  position: relative;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }

@@ -6,4 +6,7 @@
           <%= render 'users/not_volunteer', proyecto: proyecto %>
       <% end %>
     </div>
+<% else %>
+    <button class='btn btn-primary btn-xs hidden-xs btn-block' data-toggle="dropdown" data-target="#dropdown-login">Inscríbete</button>
+    <div class="text-primary small visible-xs">Inicie sesión para inscribirse</div>
 <% end %>

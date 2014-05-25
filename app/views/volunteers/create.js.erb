@@ -1,1 +1,2 @@
 $('#volunteer_form_<%= @proyecto.id %>').html("<%= escape_javascript(render('users/not_volunteer', proyecto: @proyecto)) %>")
+$('#volunteers-project-<%= @proyecto.id %>').html("<%= escape_javascript(render('volunteers/volunteers_project', proyecto: @proyecto)) %>")

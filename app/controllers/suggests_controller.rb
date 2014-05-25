@@ -11,8 +11,13 @@ class SuggestsController < ApplicationController
     @suggest = Suggest.new(suggest_params)
     @suggest.user_id = current_user.id if current_user
     if @suggest.save
-      flash[:success] = "¡Muchas gracias, atenderemos su solicitud lo antes posible!"
-      redirect_to root_path
+      respond_to do |format|
+        format.js
+        format.html do
+          flash[:success] = "¡Muchas gracias, atenderemos su solicitud lo antes posible!"
+          redirect_to root_path
+        end
+      end
     else
       render 'new'
     end

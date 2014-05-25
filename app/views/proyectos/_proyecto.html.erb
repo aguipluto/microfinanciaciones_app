@@ -1,38 +1,53 @@
 # encoding: utf-8
 
-<div class="col-sm-4 zeropading">
-  <div id="<%= proyecto.id %>" class="
-    <% if proyecto.total_collected > proyecto.cantidad_total %>
-    extracollected
-    <% end %> proyectoHome">
-    <h3 id="tituloProyecto"><%= proyecto.titulo %></h3>
+<div class="col-sm-4 project-home">
+  <div class="panel panel-default">
 
-    <%= render '/shared/carousel', proyecto: proyecto %>
+    <div id="<%= proyecto.id %>" class="panel-body">
+      <h3 class="text-center"><%= proyecto.titulo %></h3>
 
-    <div class="descripcionCorta">
-      <%= proyecto.descripcion_corta %>
-    </div>
-    <div class="col-sm-9">
-      <%= render 'shared/progress_bar', proyecto: proyecto %>
-    </div>
-    <div class="col-sm-3"><span class="badge-cantidad" data-toggle="tooltip" data-placement="top" title="Objetivo a recaudar: <%= proyecto.cantidad_total.to_i %>&euro;"><%= proyecto.cantidad_total.to_i %>&euro;</span></div>
-    <div class="finAportaciones">
-      Quedan <%= time_ago_in_words(proyecto.fin_aportaciones) %>
-    </div>
-
-    <div class="row">
-      <div class="col-sm-4 social-buttons">
+      <div class="col-sm-12">
+        <%= render '/shared/carousel', proyecto: proyecto %>
+      </div>
+      <div class="col-sm-12">
+        <%= proyecto.descripcion_corta %>
+      </div>
+      <div class="col-sm-12">
+        <%= render 'shared/progress_bar', proyecto: proyecto %>
+      </div>
+      <div class="col-xs-6 text-left small">
+        <% if proyecto.total_collected > 0 %>
+            <div class="text-success">
+              <%= pluralize(proyecto.total_collected, '€ conseguido', '€ conseguidos') %>
+              de <%= proyecto.cantidad_total.to_i %>€
+            </div>
+        <% else %>
+            <div class="text-info">
+              Sé el primero en colaborar!
+            </div>
+        <% end %>
+      </div>
+      <div class="col-xs-6 text-right small text-muted">
+        Quedan <%= time_ago_in_words(proyecto.fin_aportaciones) %>
+      </div>
+      <div id="volunteers-project-<%= proyecto.id %>" class="col-sm-12 text-center text-primary bold margin-top-sm">
+        <%= render 'volunteers/volunteers_project', proyecto: proyecto %>
+      </div>
+      <div class="col-xs-6 text-left">
         <%= social_share_button_tag('Colabora tú también con esta iniciativa CEU: ' + proyecto.titulo, :url => proyecto_path(proyecto, only_path: false)) %>
       </div>
-      <div class="col-sm-8 text-right">
+      <div class="col-xs-6 text-right">
         <% if signed_in? && current_user.admin? %>
             <%= link_to "Editar", edit_proyecto_path(proyecto), class: 'btn-xs btn-default' %>
             <%= link_to "Borrar", proyecto, method: :delete,
                         data: {confirm: "¿Está seguro?"}, class: 'btn-xs btn-warning' %>
         <% end %>
+      </div>
+      <div class="col-sm-12">
         <%= render 'users/voluunter_form', proyecto: proyecto %>
       </div>
     </div>
+
   </div>
 </div>
 

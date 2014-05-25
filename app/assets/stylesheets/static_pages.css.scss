@@ -17,6 +17,10 @@
   h1 {
     margin-top: 30px;
   }
+
+  .advise-home {
+    margin-top: -6px;
+  }
 }
 
 .jumbotron-white {
@@ -27,6 +31,29 @@
   }
 }
 
-.margin-xxl{
-  margin-bottom: 250px !important;
+.breadcum-title{
+  margin-top: 20px;
+}
+
+
+
+#zenbox_tab {
+  cursor: pointer;
+  position: fixed;
+  top: 23%;
+  z-index: 10000;
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  display: block;
+  background-color: rgb(255, 255, 255);
+  left: -45px;
+}
+
+.ZenboxTabLeft {
+  left: 0;
+  background-position: right 0;
+}
+
+.btn-cuadrado {
+  border-radius: 0px;
 }

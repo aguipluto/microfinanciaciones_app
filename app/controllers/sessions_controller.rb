@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if user && user.confirmed?
       if user && user.authenticate(params[:session][:password])
         sign_in user
-        redirect_back_or user
+        redirect_back_or root_url+'#colabora'
       else
         flash.now[:danger] = 'Usuario y/o contraseña no correctos'
         render 'new'

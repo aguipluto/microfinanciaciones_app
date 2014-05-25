@@ -1,30 +1,40 @@
 <div id="carousel-<%= proyecto.id %>" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <% proyecto.attachments.each_with_index do |img, i| %>
-        <li data-target="#carousel-<%= proyecto.id %>" data-slide-to="<%= i %>"
-            <% if i==0 %> class="active"
-            <% end %>
-            ></li>
-    <% end %>
-  </ol>
+  <% if proyecto.attachments.count > 1 %>
+      <ol class="carousel-indicators">
+        <% proyecto.attachments.each_with_index do |img, i| %>
+            <li data-target="#carousel-<%= proyecto.id %>" data-slide-to="<%= i %>"
+                <% if i==0 %> class="active"
+                <% end %>
+                ></li>
+        <% end %>
+      </ol>
+  <% end %>
 
   <!-- Wrapper for slides -->
 
   <div class="carousel-inner">
-    <% proyecto.attachments.each_with_index do |img, i| %>
+    <% if proyecto.attachments.count > 0 %>
+        <% proyecto.attachments.each_with_index do |img, i| %>
 
-        <div class="item <%= 'active' if i==0 %>">
-          <%= image_tag img.image.url(:bootstrap) %>
+            <div class="item <%= 'active' if i==0 %>">
+              <%= image_tag img.image.url(:bootstrap) %>
+            </div>
+        <% end %>
+    <% else %>
+        <div class="item active">
+          <%= image_tag image_path('fallback/ProjectUploader_default.jpg') %>
         </div>
     <% end %>
   </div>
 
   <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-<%= proyecto.id %>" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-<%= proyecto.id %>" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
+  <% if proyecto.attachments.count > 1 %>
+      <a class="left carousel-control" href="#carousel-<%= proyecto.id %>" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-<%= proyecto.id %>" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+  <% end %>
 </div>

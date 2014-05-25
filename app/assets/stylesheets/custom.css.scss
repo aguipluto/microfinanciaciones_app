@@ -1,11 +1,9 @@
 @import "bootstrap";
 @import url(http://fonts.googleapis.com/css?family=Ubuntu);
+
 @font-face {
   font-family: 'Museo500-Regular';
-  src: url(font_path('Museo500-Regular-webfont.eot') + '?#iefix') format('embedded-opentype'),
-  url(font_path('Museo500-Regular-webfont.woff')) format('woff'),
-  url(font_path('Museo500-Regular-webfont.ttf'))  format('truetype'),
-  url(font_path('Museo500-Regular-webfont.svg') + '#MuseoSans_500') format('svg');
+  src: url(font_path('Museo500-Regular-webfont.eot') + '?#iefix') format('embedded-opentype'), url(font_path('Museo500-Regular-webfont.woff')) format('woff'), url(font_path('Museo500-Regular-webfont.ttf')) format('truetype'), url(font_path('Museo500-Regular-webfont.svg') + '#MuseoSans_500') format('svg');
 }
 
 body {
@@ -14,41 +12,43 @@ body {
   font-family: "Museo500-Regular", Helvetica, Arial, sans-serif;
 }
 
-.navbar-brand{
+.navbar-brand {
   padding: 10px;
 }
 
-.dropdown-menu-md{ //Estilos dropdown menú carrito
+.dropdown-menu-md {
+  //Estilos dropdown menú carrito
   min-width: 270px;
 }
-.dropdown-form { //Estilos formulario de login
+
+.dropdown-form {
+  //Estilos formulario de login
   min-width: 342px;
   width: 100% !important;
   padding: 25px 40px 10px 40px;
 }
 
-
-.dropdown .alert{
+.dropdown .alert {
   margin: 15px;
 }
 
-
-.navbar-default{
+.navbar-default {
   font-family: "Museo500-Regular", Helvetica, Arial, sans-serif;
   font-size: 14px;
   font-weight: normal;
 }
 
-
-
-.navbar-default .navbar-nav > li > a{
+.navbar-default .navbar-nav > li > a {
   color: #4D5157;
 
-  .badge{
+  .badge {
     background-color: #00aeef;
   }
 }
 
+.bold {
+  font-weight: bold;
+}
 
 //
 //.navbar-inverse .navbar-nav, .navbar-inverse .navbar-brand {
@@ -80,12 +80,31 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 5px;
 }
 
-.well-white{
+.well-white {
   background-color: white;
 }
 
-.content{
+.content {
   margin-top: 20px;
+}
+
+.margin-xxl {
+  margin-bottom: 250px !important;
+}
+
+.margin-sm {
+  margin-bottom: 20px;
+}
+
+.margin-top-sm {
+  margin-top: 10px;
+}
+
+.anchor {
+  display: block;
+  position: relative;
+  top: -35px;
+  visibility: hidden;
 }
 
 select.date-select {
@@ -108,7 +127,7 @@ div.date.row {
   display: none;
 }
 
-select.select-for-search  {
+select.select-for-search {
   width: 150px;
 }
 
@@ -117,11 +136,11 @@ select.select-for-search  {
   margin: 0 auto;
 }
 
-tr[data-link]{
+tr[data-link] {
   cursor: pointer;
 }
 
-.carousel-modal{
+.carousel-modal {
   margin: 0 auto;
   width: 350px;
 }

@@ -12,15 +12,18 @@
 <%= render 'layouts/header' %>
 <%= yield :jumbotron %>
 <div id="main-content" class="container">
-  <div>
-    <div id="advise-container">
-      <% flash.each do |key, value| %>
-          <div class="alert alert-<%= key %>">
-            <%= value.html_safe %>
-          </div>
-      <% end %>
-    </div>
-    <%= yield %>
+  <% if @adviseContainer.nil? %>
+      <div id="advise-container">
+        <% flash.each do |key, value| %>
+            <div class="alert alert-<%= key %>">
+              <%= value.html_safe %>
+            </div>
+        <% end %>
+      </div>
+  <% end %>
+  <%= yield %>
+  <div id="contact_form_container">
+    <%= render 'layouts/contact_form' %>
   </div>
   <%= render 'layouts/footer' %>
 </div>
