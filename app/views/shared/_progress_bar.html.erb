@@ -1,10 +1,13 @@
-<div class="progress">
-  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= proyecto.anchobar %>" aria-valuemin="0"
-       aria-valuemax="<%= proyecto.totalbar %>" style="clear:both; width: <%= proyecto.anchobar   %>%">
+<div class="progress .progress-home" data-toggle="tooltip" data-placement="top" title="<%= pluralize(proyecto.total_collected, '€ Recaudado', '€ Recaudados')%>">
+  <div class="progress-bar progress-bar-success " role="progressbar" aria-valuenow="<%= proyecto.anchobar %>" aria-valuemin="0"
+       aria-valuemax="<%= proyecto.totalbar %>" style="width: <%= proyecto.anchobar   %>%">
   </div>
   <% if proyecto.total_collected > proyecto.cantidad_total %>
-      <div class="progress-bar progress-bar-extracollected" style="width: <%= proyecto.extrabar %>%">
+      <div class="progress-bar progress-bar-extracollected progress-home" style="width: <%= proyecto.extrabar %>%">
         <span class="sr-only"><%= proyecto.extrabar %>% Extra</span>
       </div>
+  <% end %>
+  <% if proyecto.anchobar.to_i > 0 %>
+      <span class="center-percentage"><%= proyecto.anchobar.to_i %>%</span>
   <% end %>
 </div>

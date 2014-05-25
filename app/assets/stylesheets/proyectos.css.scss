@@ -19,12 +19,11 @@ $azulBoton: #428bca;
   padding: 0px;
 }
 
-div.extracollected{
+div.extracollected {
   border: 1px solid #5cb85c;
 }
 
 .proyectoHome {
-  font-family: 'Ubuntu', sans-serif;
   border: 1px solid #00aeef;
   border-radius: 7px;
   margin: 5px;
@@ -33,6 +32,25 @@ div.extracollected{
   min-height: 50px;
   max-width: 400px;
   overflow: hidden;
+
+  .badge-cantidad{
+    display: inline-block;
+    min-width: 10px;
+    padding: 3px 7px;
+    font-size: 12px;
+    font-weight: normal;
+    color: #6d6d6d;
+    line-height: 1;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+  }
+
+
+
   &:hover {
     background-color: #eeeeee;
     border-width: 2px;
@@ -44,17 +62,6 @@ div.extracollected{
   .descripcionCorta {
     margin-top: 20px;
     margin-bottom: 10px;
-  }
-  .progress {
-    width: 80%;
-    float: left;
-  }
-  .cantidadTotal {
-    width: 20%;
-    text-align: center;
-    float: left;
-    color: #333333;
-    font-weight: bold;
   }
   .finAportaciones {
     clear: both;
@@ -132,8 +139,6 @@ div.extracollected{
     }
   }
 
-
-
 }
 
 #modalRecaudado {
@@ -150,6 +155,7 @@ div.extracollected{
   width: 50%;
   float: left;
 }
+
 /**********************************************************************************************/
 .formBusqueda {
   margin-top: 20px;
@@ -165,17 +171,39 @@ div.extracollected{
   top: 10px;
 }
 
-.edit-project-img{
- padding-bottom: 5px;
+.edit-project-img {
+  padding-bottom: 5px;
 }
 
-.add-images{
+.add-images {
   float: left;
 }
 
-.blue-letter{
+.blue-letter {
   ont-family: 'Ubuntu', sans-serif;
   font-weight: bold;
   font-size: 1.2em;
   color: $azulBoton;
+}
+
+/********************************************/
+/*Nuevos*/
+
+.center-percentage {
+  color: #4d5157;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  line-height: 20px;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
+}
+
+.progress-home {
+  position: relative;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

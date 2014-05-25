@@ -12,10 +12,10 @@
     <div class="descripcionCorta">
       <%= proyecto.descripcion_corta %>
     </div>
-    <%= render 'shared/progress_bar', proyecto: proyecto %>
-    <div class="cantidadTotal">
-      <%= proyecto.cantidad_total.to_i %>&euro;
+    <div class="col-sm-9">
+      <%= render 'shared/progress_bar', proyecto: proyecto %>
     </div>
+    <div class="col-sm-3"><span class="badge-cantidad" data-toggle="tooltip" data-placement="top" title="Objetivo a recaudar: <%= proyecto.cantidad_total.to_i %>&euro;"><%= proyecto.cantidad_total.to_i %>&euro;</span></div>
     <div class="finAportaciones">
       Quedan <%= time_ago_in_words(proyecto.fin_aportaciones) %>
     </div>
