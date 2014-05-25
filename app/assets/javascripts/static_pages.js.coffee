@@ -23,7 +23,7 @@ SessionCartNumberUpdate = () ->
 AbrirModalProyecto2 = () ->
   $(document).on 'click', '.carousel',  (event) ->
     event.stopPropagation()
-  $(document).on 'click', '.proyectoHome',  (event) ->
+  $(document).on 'click', '.project-home',  (event) ->
     id = $(this).attr("id")
     $('#modalProyecto-' + id).modal('show')
 

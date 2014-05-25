@@ -4,7 +4,5 @@ class ApplicationController < ActionController::Base
   helper_method :sort_column, :sort_direction
   protect_from_forgery with: :exception
   include SessionsHelper
-  http_basic_authenticate_with :name => 'teo.rojo@ceu.es', :password => 'teoteo' if Rails.env.production?
-
-
+  http_basic_authenticate_with :name => 'ceu', :password => 'ceu' if Rails.env.production?
 end

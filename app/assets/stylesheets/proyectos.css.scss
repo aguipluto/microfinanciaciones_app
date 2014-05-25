@@ -30,12 +30,20 @@ div.extracollected {
   h3 {
     margin-top: 5px;
   }
-  .recaudado{
+  .recaudado {
     color: $brand-success;
     font-size: 12px;
   }
+  .panel {
+    &:hover {
+      border-width: 2px;
+      cursor: pointer;
+      border-color: $azulBoton;
+    }
+  }
 }
-.progress-home{
+
+.progress-home {
   margin-top: 10px;
   margin-bottom: 0px;
   position: relative;
@@ -146,7 +154,7 @@ div.extracollected {
       margin-right: 5px;
     }
   }
-  .progress{
+  .progress {
     margin-top: 10px;
     margin: 5px;
   }
