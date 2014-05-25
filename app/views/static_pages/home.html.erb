@@ -29,6 +29,7 @@
   <a class="anchor" name="colabora"></a>
   <article class="jumbotron jumbotron-white">
     <a name="colabora"></a>
+
     <h1 class="text-info text-center">La unión hace la fuerza, colabora y hazte voluntario
       <span class="glyphicon glyphicon-thumbs-up"></span></h1>
   </article>
@@ -36,7 +37,9 @@
   <% @proyectos.in_groups_of(3).each do |group| %>
       <div class="row">
         <% group.each do |p| %>
-            <%= render p %>
+            <% if p %>
+                <%= render p %>
+            <% end %>
         <% end %>
       </div>
   <% end %>
