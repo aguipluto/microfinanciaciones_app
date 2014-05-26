@@ -1,0 +1,11 @@
+<% if signed_in? %>
+    <div id="volunteer_form_show_<%= proyecto.id %>">
+      <% if !current_user.is_volunteer?(proyecto) %>
+          <%= render 'users/make_volunteer_sm', proyecto: proyecto %>
+      <% else %>
+          <%= render 'users/not_volunteer_sm', proyecto: proyecto %>
+      <% end %>
+    </div>
+<% else %>
+    <button class='btn btn-default btn-block' data-toggle="dropdown" data-target="#dropdown-login">Inscríbete</button>
+<% end %>

@@ -35,7 +35,18 @@
   margin-top: 20px;
 }
 
+.label-muted {
+  color: #999;
+}
 
+.label-lg {
+  font-size: 170%;
+}
+
+.label-emphasis {
+  background-color: #eee;
+  color: #999;
+}
 
 #zenbox_tab {
   cursor: pointer;
@@ -46,7 +57,7 @@
   -ms-transform: rotate(-90deg);
   display: block;
   background-color: rgb(255, 255, 255);
-  left: -45px;
+  left: -35px;
 }
 
 .ZenboxTabLeft {

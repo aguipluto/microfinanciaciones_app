@@ -28,6 +28,12 @@ body {
   padding: 25px 40px 10px 40px;
 }
 
+#cart-modal-menu{
+  min-width: 300px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .dropdown .alert {
   margin: 15px;
 }
@@ -48,6 +54,10 @@ body {
 
 .bold {
   font-weight: bold;
+}
+
+.large{
+  font-size: $font-size-large;
 }
 
 //
@@ -96,8 +106,16 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   margin-bottom: 20px;
 }
 
-.margin-top-sm {
+.margin-xs{
+  margin-bottom: 10px;
+}
+
+.margin-top-xs {
   margin-top: 10px;
+}
+
+.margin-top-sm {
+  margin-top: 20px;
 }
 
 .anchor {
@@ -140,10 +158,11 @@ tr[data-link] {
   cursor: pointer;
 }
 
-.carousel-modal {
-  margin: 0 auto;
-  width: 350px;
-}
+//TODO borrar
+//.carousel-modal {
+//  margin: 0 auto;
+//  width: 350px;
+//}
 
 .progress-bar-extracollected {
   background-color: #9ad717;

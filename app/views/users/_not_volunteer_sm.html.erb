@@ -1,0 +1,3 @@
+<%= form_for(current_user.volunteers.find_by(proyecto_id: proyecto.id), html:{method: :delete}, remote: true) do |f| %>
+    <%= f.submit 'No ser voluntario', class: 'btn btn-default btn-block' %>
+<% end %>

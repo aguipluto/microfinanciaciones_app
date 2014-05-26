@@ -4,7 +4,7 @@
   <div class="panel panel-default">
 
     <div class="panel-body">
-      <h3 class="text-center"><%= proyecto.titulo %></h3>
+      <h3 class="text-center"><%= link_to proyecto.titulo, proyecto %></h3>
 
       <div class="col-sm-12">
         <%= render '/shared/carousel', proyecto: proyecto %>
@@ -30,7 +30,7 @@
       <div class="col-xs-6 text-right small text-muted">
         Quedan <%= time_ago_in_words(proyecto.fin_aportaciones) %>
       </div>
-      <div id="volunteers-project-<%= proyecto.id %>" class="col-sm-12 text-center text-primary bold margin-top-sm">
+      <div id="volunteers-project-<%= proyecto.id %>" class="col-sm-12 text-center text-info bold margin-top-xs">
         <%= render 'volunteers/volunteers_project', proyecto: proyecto %>
       </div>
       <div class="col-xs-6 text-left">
@@ -43,7 +43,7 @@
                         data: {confirm: "¿Está seguro?"}, class: 'btn-xs btn-warning' %>
         <% end %>
       </div>
-      <div class="col-sm-12">
+      <div class="col-xs-12">
         <%= render 'users/voluunter_form', proyecto: proyecto %>
       </div>
     </div>

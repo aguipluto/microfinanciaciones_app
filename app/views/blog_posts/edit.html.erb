@@ -1,17 +1,18 @@
-<% provide(:title, 'Nuevo Post') %>
+<% provide(:title, 'Editar Artículo') %>
 
-<h2>Editar Post</h2>
+<ol class="breadcrumb breadcum-title">Editar Artículo</ol>
 
-<div class="row">
-  <%= form_for(@blogpost, html: {class: "well col-lg-6"}) do |f| %>
+
+<div class="col-sm-7 col-xs-12">
+  <%= form_for(@blogpost, html: {class: "form-horizontal"}) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="form-group">
         <%= f.label :title, "Título", class: "control-label" %>
         <%= f.text_field :title, class: "form-control", placeholder: "Título" %>
       </div>
       <div class="form-group">
-        <%= f.label :proyecto, 'Proyecto', class: "control-label" %>
-        <%= f.collection_select :proyecto_id, Proyecto.all, :id, :titulo,{prompt: "Categoría general"}, {class: "form-control"}%>
+        <%= f.label :proyecto_id, 'Proyecto', class: "control-label" %>
+        <%= f.collection_select :proyecto_id, Proyecto.all, :id, :titulo, {prompt: "Categoría general"}, {class: "form-control"} %>
       </div>
       <div class="form-group">
         <%= f.label :content, "Contenido", class: "control-label" %>
@@ -19,10 +20,11 @@
       </div>
       <div class="form-group">
         <%= f.label :author, 'Autor', class: "control-label" %>
-        <%= f.text_field :author, class: "form-control" %>
+        <%= f.text_field :author, class: "form-control", value: current_user.name + ' ' + current_user.family_name %>
       </div>
       <div class="form-group">
-        <%= f.submit "Actualizar", class: "btn btn-primary" %>
+        <%= f.submit "Actualizar artículo", class: "btn btn-primary btn-block" %>
       </div>
   <% end %>
 </div>
+<%= render 'blog_posts/advert' %>

@@ -8,7 +8,12 @@ class OrdersController < ApplicationController
     if @order
       redirect_to @order
     else
-      @order = Order.new(:express_token => params[:token])
+      unless params[:token].blank?
+        @order = Order.new(:express_token => params[:token])
+      else
+        flash[:danger] = 'El pago no ha sido realizado. Por favor, intente de nuevo.'
+        redirect_to session_cart
+      end
     end
   end
 

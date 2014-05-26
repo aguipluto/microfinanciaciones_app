@@ -1,8 +1,17 @@
 <% provide(:title, @proyecto.titulo) %>
 
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
-    <h2><%= @proyecto.titulo %>
+<div class="col-sm-3 hidden-xs">
+  <br>
+  <blockquote>
+    <p>
+      Mantente al día y sigue las últimas acciones emprendidas por el Área de Voluntariado gracias a nuestro Blog.
+    </p>
+  </blockquote>
+</div>
+
+<div class="col-sm-9 col-xs-12">
+  <ol class="breadcrumb breadcum-title">
+    <h4><%= @proyecto.titulo %>
       <% if current_user_admin? %>
           <div class="pull-right">
             <%= link_to "Editar", edit_proyecto_path(@proyecto), class: 'btn btn-default btn-sm' %>
@@ -10,68 +19,121 @@
                         data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning btn-sm' %>
           </div>
       <% end %>
-    </h2>
-  </div>
-</div>
+    </h4>
+  </ol>
 
-<div class="row">
-  <ul class="col-sm-3 nav nav-pills nav-stacked">
-    <li id="menuIzqShowProject" class="active"><a href="#">Datos del Proyecto</a></li>
-    <li id="menuIzqBlogProject"><a href="#">Blog</a></li>
-  </ul>
-  <div id="showProject" class="col-sm-8">
-    <div id="modalId" class="hidden">
-      <%= @proyecto.id %>
+  <div class="panel panel-default">
+    <!--TODO poner categoría a proyectos-->
+    <div class="panel-heading clearfix">Categoria</div>
+    <div class="panel-body clearfix">
+      <div class="col-sm-3 col-xs-7">
+        <span class="label-muted label-lg media-object">
+          <% if @proyecto.aportable? %>
+              <span title="hasta fin de recaudación">
+                <%= time_ago_in_words(@proyecto.fin_aportaciones) %>
+              </span>
+              <% else %>
+              <span title="Ya no se puede colaborar con este proyecto" class="text-warning">Cerrado</span>
+          <% end %>
+        </span>
+      </div>
+      <div class="col-sm-3 col-xs-5" title="objetivo a recaudar">
+        <span class="label label-lg label-emphasis media-object"><%= @proyecto.cantidad_total.to_i %>&euro;</span>
+      </div>
+      <div class="col-sm-3 col-xs-7">
+        <%= render 'shared/progress_bar', proyecto: @proyecto %>
+        <span class="text-center"> <small><%= render 'proyectos/cantidad_conseguida_sin_total', proyecto: @proyecto %></small></span>
+      </div>
+      <div class="col-sm-3 col-xs-5 text-center">
+        <span id="volunteers-project-<%= @proyecto.id %>" class="text-info large">
+          <%= render 'volunteers/volunteers_project', proyecto: @proyecto %>
+        </span>
+      </div>
     </div>
-    <div class="col-sm-12">
-      <%= @proyecto.descripcion_corta %>
-    </div>
-    <div class="col-sm-6 col-sm-offset-3">
-      <%= render '/shared/carousel', proyecto: @proyecto %>
-    </div>
-    <div class="col-sm-12">
-      <%= @proyecto.descripcion_larga.html_safe %>
-    </div>
-    <div class="col-sm-12">
-      Desde <%= @proyecto.fecha_inicio %> hasta <%= @proyecto.fecha_fin %>
-    </div>
-    <div class="col-sm-12">
-      Lugar: <%= @proyecto.lugar %>
-    </div>
-    <div class="col-sm-8">
-      <div class="progress progress-striped">
-        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="<%= @proyecto.total_collected %>" aria-valuemin="0"
-             aria-valuemax="<%= @proyecto.cantidad_total %>" style="width: <%= (@proyecto.total_collected * 100) / @proyecto.cantidad_total  %>%">
-          <span class="sr-only">40% de <%= @proyecto.cantidad_total %> conseguido </span>
+  </div>
+
+  <% if @proyecto.aportable? %>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <%= form_tag('/cartItemCreate', method: 'post', class: 'form-horizontal') do %>
+              <%= hidden_field_tag :proyecto_id, @proyecto.id %>
+              <div class="col-sm-2 text-primary small text-center">
+                <span>Colaborar con</span>
+              </div>
+              <div class="col-sm-3" id="divSlider">
+                <%= range_field_tag :aportacion, 5, min: 5, max: 80, id: 'aportationSlider', class: 'form-control aportationSlider' %>
+              </div>
+              <div id="aportationInfo" class="aportationInfo col-sm-1 large text-primary bold text-left">5€</div>
+              <div class="col-sm-3">
+                <%= submit_tag 'Colaborar', class: 'btn btn-primary btn-block' %>
+              </div>
+          <% end %>
+          <div class="col-sm-3">
+            <%= render 'users/voluunter_form_sm', proyecto: @proyecto %>
+          </div>
+        </div>
+      </div>
+  <% end %>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#details" data-toggle="tab">Detalles del proyecto</a></li>
+        <li><a href="#images" data-toggle="tab">Imágenes</a></li>
+        <li><a href="#blog" data-toggle="tab">Blog</a></li>
+        <li><a href="#aportations" data-toggle="tab">Aportaciones</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade active in" id="details">
+          <div class="panel panel-default margin-top-sm">
+            <div class="panel-body">
+              <h5>Descripción</h5>
+              <%= @proyecto.descripcion_larga.html_safe %>
+              <hr>
+              <h5>Lugar</h5>
+              - <%= @proyecto.lugar %>
+              <h5>Fecha</h5>
+              - Desde el <%= @proyecto.fecha_inicio %> hasta el <%= @proyecto.fecha_fin %>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="images">
+          <div class="panel panel-default margin-top-sm">
+            <div class="panel-body">
+              <% if @proyecto.attachments.count > 0 %>
+                  <% @proyecto.attachments.each_with_index do |img, i| %>
+                      <div id="attachment-<%= img.id %>" class="col-md-6 edit-project-img">
+                        <%= image_tag img.image.url(:small), class: 'img-rounded' %>
+                      </div>
+                  <% end %>
+              <% else %>
+                <h5>Este proyecto aún no tiene imágenes</h5>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="blog">
+          <div class="panel panel-default margin-top-sm">
+            <div class="panel-body">
+              <div class="col-sm-12">
+                <% if @proyecto.blog_posts.count > 0 %>
+                    <%= render @proyecto.blog_posts %>
+                <% else %>
+                    <h5>Aún no hemos publicado ningún artículo sobre este proyecto</h5>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade" id="aportations">
+          <div class="panel panel-default margin-top-sm">
+            <div class="panel-body">
+              Aportaciones
+            </div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-sm-4">
-      <%= @proyecto.cantidad_total.to_i %>&euro;
-    </div>
-    <div class="col-sm-12">
-      <div id="modalRecaudado">
-        Conseguidos <%= @proyecto.total_collected.to_i %>&euro;
-      </div>
-      <div class="modalQueda">
-        Quedan <%= time_ago_in_words(@proyecto.fin_aportaciones) %>
-      </div>
-    </div>
-    <div class="col-sm-12 well">
-      <div class="col-sm-3 blue-letter">
-        Colaborar con
-      </div>
-      <div class="col-sm-6">
-        <input id="aportationSlider" type="range" min="5" max="80" value="5" class="form-control"/>
-      </div>
-      <div id="aportationInfo" class="col-sm-1 blue-letter"></div>
-      <div class="col-sm-2">
-        <button id="btnAportar" type="button" class="btn btn-primary" data-dismiss="modal">Colaborar</button>
-      </div>
-    </div>
-  </div>
-  <div id="blogProject" class="col-sm-8 hidden">
-    <%= render @proyecto.blog_posts %>
   </div>
 </div>
-

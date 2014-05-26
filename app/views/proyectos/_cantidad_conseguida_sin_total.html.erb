@@ -1,0 +1,9 @@
+<% if proyecto.total_collected > 0 %>
+    <div class="text-success">
+      <%= pluralize(proyecto.total_collected, '€ conseguido', '€ conseguidos') %>
+    </div>
+<% else %>
+    <div class="text-info">
+      Sé el primero en colaborar!
+    </div>
+<% end %>

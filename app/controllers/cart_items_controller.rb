@@ -46,7 +46,9 @@ class CartItemsController < ApplicationController
     if @cartitem.save
       respond_to do |format|
         format.json { render :json => session_cart }
-        format.html
+        format.html do
+          redirect_to session_cart
+        end
         format.js
       end
     else

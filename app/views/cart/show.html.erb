@@ -1,9 +1,9 @@
 <% provide(:title, 'Carrito de la compra') %>
 
-<h2>Carrito de la compra</h2>
+<ol class="breadcrumb breadcum-title">Carrito de la compra</ol>
 <div class="row">
-  <div class="col-sm-12 well-sm">
-    <% if @current_cart.sub_total > 0 %>
+  <% if @current_cart.sub_total > 0 %>
+      <div class="col-sm-7 col-xs-12">
         <table class="table table-hover">
           <thead>
           <tr>
@@ -28,15 +28,30 @@
           </tr>
           </tfoot>
         </table>
+        <div>
+          <%= link_to express_new_order_path, class: 'btn btn-primary btn-block' do %>
+              <span class="glyphicon glyphicon-credit-card"></span>
+              Pagar con Paypal
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-3 col-sm-offset-1 hidden-xs">
+        <blockquote>
+          <p>
+            Estás a un click de ayudar a la construcción de una sociedad más justa y fraterna
+          </p>
+        </blockquote>
+      </div>
+  <% else %>
+      <div class="col-sm-7 col-xs-12">
         <div class="row">
-          <div class="col-sm-2">
-            <%= link_to 'Pagar con Paypal', express_new_order_path, class: 'btn btn-primary' %>
+          <div class="alert alert-info">
+            Añada algún proyecto con el que colaborar
           </div>
         </div>
-    <% else %>
-        Añada algún proyecto con el que colaborar
-        <br/>
-        <%= link_to 'Inicio', root_path, class: 'btn btn-primary' %>
-    <% end %>
-  </div>
+        <div class="row">
+          <%= link_to 'Inicio', root_path, class: 'btn btn-default btn-block' %>
+        </div>
+      </div>
+  <% end %>
 </div>

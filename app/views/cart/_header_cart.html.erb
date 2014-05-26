@@ -1,0 +1,39 @@
+<% provide(:title, 'Proyectos') %>
+
+
+<% if session_cart.sub_total > 0 %>
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>Proyecto</th>
+        <th>Aportación</th>
+      </tr>
+      </thead>
+      <% session_cart.valid_cart_items.each do |ci| %>
+          <tr>
+            <td><%= link_to ci.proyecto.titulo, ci.proyecto %></td>
+            <td><%= ci.aportacion %> &euro;</td>
+          </tr>
+      <% end %>
+      <tfoot>
+      <tr>
+        <td>
+          <b>Total carrito</b>
+        </td>
+        <td>
+          <b><%= session_cart.sub_total %> &euro;</b>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+    <div class="col-sm-12">
+      <%= link_to 'Pagar con Paypal', express_new_order_path, id: 'btn_pagar', class: 'btn btn-primary btn-block' %>
+      <%= link_to 'Ir al carrito', session_cart, class: 'btn btn-link btn-block' %>
+    </div>
+<% else %>
+    <li>
+      <div class="alert alert-info">Carrito vacío, realice algúna aportación.</div>
+    </li>
+<% end %>
+
+

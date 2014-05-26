@@ -39,6 +39,10 @@ class Proyecto < ActiveRecord::Base
     end
   end
 
+  def aportable?
+    self.visible && Time.now < self.fin_aportaciones
+  end
+
   def totalbar
     if total_collected >= cantidad_total
       total_collected

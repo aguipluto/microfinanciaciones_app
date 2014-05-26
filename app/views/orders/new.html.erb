@@ -1,55 +1,60 @@
 <% provide(:title, 'Confirmar Pago') %>
 
-<div class="row pagos">
+<div class=" pagos">
 
   <% nombre= nil; nombre = current_user.name + ' ' + current_user.family_name unless current_user.nil? %>
   <% nif= nil; nif = current_user.nif unless current_user.nil? %>
-  <%= form_for @order do |f| %>
-      <% unless @order.express_token.blank? %>
-          <h2>Confimar Pago</h2>
-          <div class="col-sm-4">
-            <div class="form">
-              <div class="form-group">
-                <label for="invoice_name">Nombre</label>
-                <%= f.text_field :invoice_name, class: "form-control", placeholder: "Nombre", value: nombre %>
-              </div>
-              <div class="form-group">
-                <label for="invoice_nif">NIF</label>
-                <%= f.text_field :invoice_nif, class: "form-control", placeholder: "NIF", value: nif %>
-              </div>
-              <p><%= f.submit "Confirmar", class: 'btn btn-success', id: 'confirm_new_order' %><em> Pulse aquí para
-                confirmar la compra</em></p>
-            </div>
+
+  <ol class="breadcrumb breadcum-title">Confimar Pago</ol>
+  <div class="col-sm-5">
+    <%= form_for @order do |f| %>
+
+        <div class="form-horizontal">
+          <%= f.hidden_field :express_token %>
+          <div class="form-group">
+            <label for="invoice_name">Nombre</label>
+            <%= f.text_field :invoice_name, class: "form-control", placeholder: "Nombre", value: nombre %>
           </div>
-          <div class="col-sm-6">
-            <%= f.hidden_field :express_token %>
-            <table class="table">
-              <thead>
-              <tr>
-                <th>Proyecto</th>
-                <th>Aportación</th>
-              </tr>
-              </thead>
-              <% session_cart.valid_cart_items.each do |ci| %>
-                  <tr>
-                    <td><%= ci.proyecto.titulo %></td>
-                    <td><%= ci.aportacion %> &euro;</td>
-                  </tr>
-              <% end %>
-              <tfoot>
-              <tr>
-                <td>
-                  <b>Total carrito</b>
-                </td>
-                <td>
-                  <b><%= session_cart.sub_total %> &euro;</b>
-                </td>
-              </tr>
-              </tfoot>
-            </table>
+          <div class="form-group">
+            <label for="invoice_nif">NIF</label>
+            <%= f.text_field :invoice_nif, class: "form-control", placeholder: "NIF", value: nif %>
           </div>
+          <div class="form-group">
+            <%= f.submit "Confirmar Pago", class: 'btn btn-success btn-block', id: 'confirm_new_order' %>
+            <em> Pulse aquí para
+            confirmar la compra</em>
+          </div>
+        </div>
+    <% end %>
+  </div>
+  <div class="col-sm-6 col-sm-offset-1">
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Proyecto</th>
+        <th>Aportación</th>
+      </tr>
+      </thead>
+      <% session_cart.valid_cart_items.each do |ci| %>
+          <tr>
+            <td><%= ci.proyecto.titulo %></td>
+            <td><%= ci.aportacion %> &euro;</td>
+          </tr>
       <% end %>
-  <% end %>
+      <tfoot>
+      <tr>
+        <td>
+          <b>Total</b>
+        </td>
+        <td>
+          <b><%= session_cart.sub_total %> &euro;</b>
+        </td>
+      </tr>
+      </tfoot>
+    </table>
+
+  </div>
 
 
 </div>

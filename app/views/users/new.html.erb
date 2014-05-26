@@ -2,78 +2,76 @@
 
 
 <ol class="breadcrumb breadcum-title">Bienvenido</ol>
-<div class="row">
-  <div class="col-md-7 col-sm-12">
-    <%= form_for(@user, html: {id: "formulario-registro", class: "form-horizontal"}) do |f| %>
-        <%= render 'shared/error_messages', object: f.object %>
-        <div id="error_explanation_js">
-          <div class="alert alert-danger">
-            Compruebe campos en rojo
-            <div id="errores" style="display: none"> Longitud mínima nombre 3 caracteres</div>
-          </div>
+<div class="col-md-7 col-sm-12">
+  <%= form_for(@user, html: {id: "formulario-registro", class: "form-horizontal"}) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <div id="error_explanation_js">
+        <div class="alert alert-danger">
+          Compruebe campos en rojo
+          <div id="errores" style="display: none"> Longitud mínima nombre 3 caracteres</div>
         </div>
-        <div class="form-group">
-          <%= f.label :image, "Foto de perfil", class: "control-label col-sm-4" %>
-          <div class="col-sm-8">
-            <%= f.file_field :image, class: "form-control", accept: 'image/png,image/gif,image/jpeg,image/jpg' %>
-          </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :image, "Foto de perfil", class: "control-label col-sm-4" %>
+        <div class="col-sm-8">
+          <%= f.file_field :image, class: "form-control", accept: 'image/png,image/gif,image/jpeg,image/jpg' %>
         </div>
-        <div class="form-group">
-          <%= f.label :name, "Nombre", class: "control-label col-sm-4" %>
-          <div class="col-sm-8">
-            <%= f.text_field :name, class: "form-control col-sm-8", placeholder: "Nombre" %>
-          </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :name, "Nombre", class: "control-label col-sm-4" %>
+        <div class="col-sm-8">
+          <%= f.text_field :name, class: "form-control col-sm-8", placeholder: "Nombre" %>
         </div>
-        <div class="form-group">
-          <%= f.label :family_name, "Apellidos", class: "control-label col-sm-4" %>
-          <div class="col-sm-8">
-            <%= f.text_field :family_name, class: "form-control", placeholder: "Apellidos" %>
-          </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :family_name, "Apellidos", class: "control-label col-sm-4" %>
+        <div class="col-sm-8">
+          <%= f.text_field :family_name, class: "form-control", placeholder: "Apellidos" %>
         </div>
-        <div class="form-group">
-          <%= f.label :email, class: "control-label col-sm-4" %>
-          <div class="col-sm-8">
-            <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
-          </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :email, class: "control-label col-sm-4" %>
+        <div class="col-sm-8">
+          <%= f.email_field :email, class: "form-control", placeholder: "Email" %>
         </div>
-        <div class="form-group">
-          <%= f.label :nif, 'NIF/DNI', class: "control-label col-sm-4" %>
-          <div class="col-sm-8">
-            <%= f.text_field :nif, class: "form-control", placeholder: "NIF/DNI" %>
-          </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :nif, 'NIF/DNI', class: "control-label col-sm-4" %>
+        <div class="col-sm-8">
+          <%= f.text_field :nif, class: "form-control", placeholder: "NIF/DNI" %>
         </div>
-        <div class="form-group">
-          <%= f.label :birthdate, class: "control-label col-sm-4" %>
-          <div class="date row col-sm-8">
-            <%= f.date_select :birthdate, {:order => [:day, :month, :year], :start_year => 1910, :end_year => 2012}, {:class => 'date-select form-control'} %>
-          </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :birthdate, class: "control-label col-sm-4" %>
+        <div class="date row col-sm-8">
+          <%= f.date_select :birthdate, {:order => [:day, :month, :year], :start_year => 1910, :end_year => 2012}, {:class => 'date-select form-control'} %>
         </div>
-        <div class="form-group">
-          <%= f.label :password, "Contraseña", class: "control-label col-sm-4" %>
-          <div class="col-sm-8">
-            <%= f.password_field :password, class: "form-control", placeholder: "Contraseña" %>
-          </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :password, "Contraseña", class: "control-label col-sm-4" %>
+        <div class="col-sm-8">
+          <%= f.password_field :password, class: "form-control", placeholder: "Contraseña" %>
         </div>
-        <div class="form-group">
-          <%= f.label :password_confirmation, "Repita contraseña", class: "control-label col-sm-4" %>
-          <div class="col-sm-8">
-            <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Repita contraseña" %>
-          </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :password_confirmation, "Repita contraseña", class: "control-label col-sm-4" %>
+        <div class="col-sm-8">
+          <%= f.password_field :password_confirmation, class: "form-control", placeholder: "Repita contraseña" %>
         </div>
-        <div class="form-group">
-          <div class="checkbox col-sm-8 col-sm-offset-4">
-            <label>
-              <%= f.check_box :terms_of_service %> Acepto la
-              <a data-toggle="modal" href="#myModal">política de privacidad</a>
-            </label>
-          </div>
+      </div>
+      <div class="form-group">
+        <div class="checkbox col-sm-8 col-sm-offset-4">
+          <label>
+            <%= f.check_box :terms_of_service %> Acepto la
+            <a data-toggle="modal" href="#myModal">política de privacidad</a>
+          </label>
         </div>
-        <div class="form-group">
-          <div class=" col-sm-8 col-sm-offset-4">
-            <%= f.submit "Registrar", class: "btn btn-primary btn-block", id: "user_submit" %>
-          </div>
+      </div>
+      <div class="form-group">
+        <div class=" col-sm-8 col-sm-offset-4">
+          <%= f.submit "Registrar", class: "btn btn-primary btn-block", id: "user_submit" %>
         </div>
-    <% end %>
-    <%= render 'terms_of_service' %>
-  </div>
+      </div>
+  <% end %>
+  <%= render 'terms_of_service' %>
 </div>

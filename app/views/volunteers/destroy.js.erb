@@ -1,2 +1,5 @@
 $('#volunteer_form_<%= @proyecto.id %>').html("<%= escape_javascript(render('users/make_volunteer',proyecto: @proyecto)) %>")
 $('#volunteers-project-<%= @proyecto.id %>').html("<%= escape_javascript(render('volunteers/volunteers_project', proyecto: @proyecto)) %>")
+$('#modal_volunteer_form_<%= @proyecto.id %>').html("<%= escape_javascript(render('users/make_volunteer',proyecto: @proyecto)) %>")
+$('#modal-volunteers-project-<%= @proyecto.id %>').html("<%= escape_javascript(render('volunteers/volunteers_project', proyecto: @proyecto)) %>")
+$('#volunteer_form_show_<%= @proyecto.id %>').html("<%= escape_javascript(render('users/make_volunteer_sm',proyecto: @proyecto)) %>")

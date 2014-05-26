@@ -10,13 +10,16 @@ class SessionsController < ApplicationController
         sign_in user
         redirect_back_or root_url+'#colabora'
       else
-        flash.now[:danger] = 'Usuario y/o contraseña no correctos'
-        render 'new'
+        flash[:danger] = 'Usuario y/o contraseña no correctos'
+        redirect_to root_url
       end
     elsif user
       UserMailer.confirmation_email(user).deliver!
-      flash.now[:danger] = 'Email pendiente de confirmación. Por favor, revise su bandeja de entrada.'
-      render 'new'
+      flash[:danger] = 'Email pendiente de confirmación. Por favor, revise su bandeja de entrada.'
+
+    else
+      flash[:danger] = 'Usuario y/o contraseña no correctos'
+      redirect_to root_url
     end
   end
 

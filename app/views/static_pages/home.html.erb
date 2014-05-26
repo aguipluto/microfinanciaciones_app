@@ -31,9 +31,12 @@
     <a name="colabora"></a>
 
     <h1 class="text-info text-center">La unión hace la fuerza, colabora y hazte voluntario
-      <span class="glyphicon glyphicon-thumbs-up"></span></h1>
+      <span class="glyphicon glyphicon-thumbs-up"></span>
+    </h1>
   </article>
 
+
+  <% @button_styles = "btn-xs" %>
   <% @proyectos.in_groups_of(3).each do |group| %>
       <div class="row">
         <% group.each do |p| %>
