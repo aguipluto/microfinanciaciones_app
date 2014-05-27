@@ -8,7 +8,7 @@ class CartItem < ActiveRecord::Base
 
   def visible_name
     if self.cart.visible_cart?
-      self.user.name + ' ' + self.user.family_name
+      self.user.name_second
     else
       'U000' + self.user.id.to_s
     end
