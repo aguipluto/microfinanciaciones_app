@@ -2,13 +2,13 @@
   <table id="adminTable" class="table table-hover">
     <thead>
     <tr>
-      <th><%= sortable "titulo" , "Titulo"%></th>
-      <th><%= sortable "cantidad_total","Total" %></th>
+      <th><%= sortable "titulo", "Titulo" %></th>
+      <th><%= sortable "cantidad_total", "Total" %></th>
       <th>Aportaciones</th>
       <th><%= sortable "fin_aportaciones", "Fin Aportaciones" %></th>
-      <th><%= sortable "fecha_inicio","Fecha Inicio" %></th>
-      <th><%= sortable "fecha_fin","Fecha Fin" %></th>
-      <th><%= sortable "visible","Visible" %></th>
+      <th><%= sortable "fecha_inicio", "Fecha Inicio" %></th>
+      <th><%= sortable "fecha_fin", "Fecha Fin" %></th>
+      <th><%= sortable "visible", "Visible" %></th>
     </tr>
     </thead>
     <tbody>
@@ -25,6 +25,7 @@
           <td><%= proyecto.fecha_inicio.strftime("%d/%m/%Y") %></td>
           <td><%= proyecto.fecha_fin.strftime("%d/%m/%Y") %></td>
           <td><%= transbol(proyecto.visible) %></td>
+          <td><%= link_to 'Ver', proyecto, class: 'btn btn-default btn-xs' %></td>
         </tr>
     <% end %>
     </tbody>

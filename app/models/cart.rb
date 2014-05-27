@@ -25,10 +25,16 @@ class Cart < ActiveRecord::Base
     cart_item
   end
 
-  def remove_proyecto(proyecto_id)
-    citems = self.cart_items.each { |ci| ci.inactivate! if proyecto_id.to_i == ci.proyecto_id }
-    return citems
-  end
+  #Forma antigua de eliminar cart_items. Problemas con contabilidad
+  #def remove_proyecto(proyecto_id)
+  #  citems = self.valid_cart_items.each { |ci| ci.inactivate! if proyecto_id.to_i == ci.proyecto_id }
+  #  return citems
+  #end
+  #
+  #def remove_cart_item(ci_id)
+  #  #citems = self.valid_cart_items.each { |ci| ci.inactivate! if ci_id.to_i == ci.id}
+  #  #return citems
+  #end
 
   def cart_items_in_array_of_hashs
     array = []

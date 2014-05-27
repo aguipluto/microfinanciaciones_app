@@ -15,6 +15,12 @@
               <tr>
                 <td><%= link_to ci.proyecto.titulo, ci.proyecto %></td>
                 <td><%= ci.aportacion %> &euro;</td>
+                <td>
+                  <%= link_to ci, method: :delete,
+                              data: {confirm: "¿Está seguro?"}, title: 'Borrar aportación' do %>
+                  <span class="glyphicon glyphicon-trash"></span>
+                  <% end %>
+                </td>
               </tr>
           <% end %>
           <tfoot>

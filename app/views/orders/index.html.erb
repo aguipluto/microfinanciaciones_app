@@ -1,15 +1,14 @@
-<% provide(:title, 'Aportaciones') %>
+<% provide(:title, 'Pagos') %>
 
 <div class="row">
   <div class="col-sm-3">
-    <h2>Aportaciones</h2>
+    <h2>Pagos</h2>
   </div>
   <div class="col-sm-8">
-    <%= form_tag '/cartitem/indexadmin', method: "get", class: "form-inline formBusqueda" do %>
+    <%= form_tag orders_path, method: "get", class: "form-inline formBusqueda" do %>
         <%= hidden_field_tag :direction, params[:direction] %>
         <%= hidden_field_tag :sort, params[:sort] %>
         <p>
-          <%= select_tag :aportationType, options_for_select(["Pagadas", "Sin Pagar", "Todas"], params[:aportationType]), class: "form-control select-for-search", id: "select_for_search" %>
           <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Buscar', id: 'inputBuscar' %>
           <%= submit_tag "Buscar", class: 'btn btn-default', name: nil %>
         </p>
@@ -17,8 +16,8 @@
   </div>
 
 </div>
-<div id="aportations">
-  <%= render 'cart_items' %>
+<div id="orders">
+  <%= render 'orders' %>
 </div>
 
 <%= render 'shared/modal_detail' %>

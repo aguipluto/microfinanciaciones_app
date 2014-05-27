@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-sm-10 col-xs-12">
+    <div class="col-sm-3">Proyecto:</div>
+    <div class="col-sm-9"><%= link_to cart_item.proyecto.titulo, @cart_item.proyecto %></div>
+    <% unless @cart_item.user.nil? %>
+        <div class="col-sm-3">Usuario:</div>
+        <div class="col-sm-9"><%= link_to @cart_item.user.name_second, @cart_item.user %></div>
+        <div class="col-sm-3">Email:</div>
+        <div class="col-sm-9"><%= @cart_item.user.email %></div>
+    <% end %>
+    <div class="col-sm-3">Aportación:</div>
+    <div class="col-sm-9"><%= @cart_item.aportacion %>&euro;</div>
+    <div class="col-sm-3" title="express_token">¿Publicada?:</div>
+    <div class="col-sm-9"><%= transbol(@cart_item.cart.visible_cart?) %></div>
+    <% unless @cart_item.cart.order.nil? %>
+        <% order = @cart_item.cart.order %>
+        <div class="col-sm-12"><strong><%= link_to 'Pago número: ' + order.id.to_s, admin_order_path(@cart_item.cart.order) %></strong>
+        </div>
+        <div class="col-sm-3" title="persona justificante pago">Justificante:</div>
+        <div class="col-sm-9"><%= @cart_item.justify %></div>
+        <div class="col-sm-3" title="express_token">Id Paypal:</div>
+        <div class="col-sm-9"><%= order.express_token %></div>
+        <div class="col-sm-5" title="token del comprador en paypal">Id Comprador Paypal:</div>
+        <div class="col-sm-7"><%= order.express_payer_id %></div>
+        <div class="col-sm-3" title="express_token">IP:</div>
+        <div class="col-sm-9"><%= order.ip_address %></div>
+        <div class="col-sm-3" title="Fecha de pago">Fecha de pago:</div>
+        <div class="col-sm-9"><%= dateAndTime @cart_item.cart.purchased_at %></div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+<% provide(:title, 'Detalles del Pago') %>
+<div class="col-sm-3 hidden-xs">
+  <br>
+  <blockquote>
+    <p>
+      Detalles del pago.
+    </p>
+  </blockquote>
+</div>
+
+<div class="col-sm-9 col-xs-12">
+  <ol class="breadcrumb breadcum-title">
+    <h4>Pago id. <%= @order.id %>
+      <div class="pull-right small success">
+        <% if @order.cart.visible_cart? %>
+            <div title="La gente sabrá quién ha hecho la aportación">
+              <span class="glyphicon glyphicon-ok-circle"></span>
+              público
+            </div>
+        <% else %>
+            <div title="La gente no sabrá quién ha hecho la aportación">
+              <span class="glyphicon glyphicon-ban-circle"></span> privado
+            </div>
+        <% end %>
+      </div>
+    </h4>
+  </ol>
+
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">Resúmen del pago</div>
+    <div class="panel-body clearfix">
+      <div class="col-sm-4 col-xs-7">
+        <span class="label-muted label-lg media-object">
+        <span title="Aportaciones a proyectos" class="text-info">
+        <%= pluralize @order.cart.valid_cart_items.count, 'aportación', 'aportaciones' %>
+        </span>
+        </span>
+      </div>
+      <div class="col-sm-3 col-xs-5">
+        <span class="label label-lg label-emphasis media-object" title="Recaudado"><%= @order.cart.sub_total %>&euro;</span>
+      </div>
+      <div class="col-sm-4 col-xs-5 text-center">
+        <span class="text-info large" title="Fecha de pago">
+          <%= dateAndTime @order.cart.purchased_at %>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#details" data-toggle="tab">Detalles</a></li>
+        <li><a href="#aportations" data-toggle="tab">Aportaciones</a></li>
+        <li><a href="#transactions" data-toggle="tab">Transacciones</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade active in" id="details">
+          <div class="panel panel-default margin-top-sm">
+            <div class="panel-body">
+              <ul>
+                <% if @order.user %>
+                    <li>Usuario: <span class="text-info"><%= @order.name_second %></span></li>
+                    <li>Email: <span class="text-info"><%= @order.user.email %></span></li>
+                <% else %>
+                    <li title="El usuario no estaba registrado o logueado en la aplicación">Usuario:
+                      <span class="text-info">Usuario no registrado</span></li>
+                <% end %>
+                <li>Justificante: <span class="text-info"><%= @order.justify %></span></li>
+                <li title="Identificador pago paypal">Identificador pago PayPal:
+                  <span class="text-info"><%= @order.express_token %></span></li>
+                <li>Identificador usuario PayPal:
+                  <span class="text-info"><%= @order.express_payer_id %></span></li>
+                <li title="Identificador de la conexión">Dirección IP:
+                  <span class="text-info"><%= @order.ip_address %></span></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="aportations">
+          <div class="panel panel-default margin-top-sm">
+            <table class="table">
+              <% @order.cart.valid_cart_items.each do |ci| %>
+                  <tr>
+                    <td title="id de la aportación"><%= ci.id %></td>
+                    <td class="text-right"><%= ci.aportacion.to_i %>&euro;</td>
+                    <% unless ci.user.nil? %>
+                        <td><span class="glyphicon glyphicon-user"></span> <%= ci.visible_name %></td>
+                        <td title="<%= ci.user.cart_items_purchased.count %> con aportaciones. <%= ci.user.volunteers.count %> como voluntario">Ha
+                          colaborado
+                          con <%= pluralize(ci.user.cart_items_purchased.count + ci.user.volunteers.count, 'proyecto', 'proyectos') %> </td>
+                    <% end %>
+                  </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="transactions">
+          <div class="panel panel-default margin-top-sm">
+            <table class="table">
+              <thead>
+              <tr>
+                <th>Id</th>
+                <th>Cantidad</th>
+                <th>Autorización</th>
+                <th>Estado</th>
+                <th>Detalle</th>
+              </tr>
+              </thead>
+              <% @order.transactions.each do |tr| %>
+                  <% if tr.success? %>
+                      <tr class="success">
+                  <% else %>
+                      <tr class="warning">
+                  <% end %>
+                  <td><%= tr.id %></td>
+                  <td><%= (tr.amount/100) %>&euro;</td>
+                  <td><%= tr.authorization %></td>
+                  <% if tr.success? %>
+                      <td><span class="text-success">PAGADO</span></td>
+                  <% else %>
+                      <td><span class="text-success">OTRO</span></td>
+                  <% end %>
+                  <td>
+                    <%= link_to 'Ver', tr, class: 'btn btn-default btn-xs' %></td>
+                  </tr>
+              <% end %>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>

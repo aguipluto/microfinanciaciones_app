@@ -1,0 +1,29 @@
+<table class="table table-hover" id="adminTable">
+  <thead>
+  <tr>
+    <th><%= sortable 'orders.id', 'Id' %></th>
+    <th><%= sortable 'users.family_name', 'Usuario' %></th>
+    <th><%= "Justificante a" %></th>
+    <th><%= sortable "aportacion", "Aportacion" %></th>
+    <th><%= sortable "carts.purchased_at", "Fecha Aportación" %></th>
+    <th>Token Paypal</th>
+  </tr>
+  </thead>
+  <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.id, order %></td>
+        <% if order.user %>
+            <td><%= link_to order.user.second_com_name, order.user %></td>
+        <% else %>
+            <td>Usuario no registrado</td>
+        <% end %>
+        <td><%= order.justify.to_s %></td>
+        <td><%= order.cart.sub_total.to_i %>&euro;</td>
+        <td><%= dateAndTime(order.cart.purchased_at) %></td>
+        <td><%= order.express_token %></td>
+        <td><%= link_to 'Ver', admin_order_path(order), class: 'btn btn-default btn-xs'%></td>
+      </tr>
+
+  <% end %>
+</table>
+<%= will_paginate previous_label: t("Anterior"), next_label: t("Siguiente") %>

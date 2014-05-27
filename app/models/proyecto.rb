@@ -3,6 +3,8 @@ class Proyecto < ActiveRecord::Base
   belongs_to :user
   has_many :cart_items
   has_many :blog_posts
+
+  has_many :cart_items_purchased, -> { joins(:cart).where("purchased_at IS NOT NULL") }, class_name: 'CartItem'
   default_scope -> { order('fin_aportaciones ASC') }
   scope :aportables, -> { where("visible = ? AND fin_aportaciones > ?",true, Time.now).order('fin_aportaciones ASC')}
 

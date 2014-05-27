@@ -2,6 +2,7 @@
 class OrdersController < ApplicationController
   before_action :correct_user, only: [:show]
   after_action :set_order_shown, only: [:show]
+  before_action :admin_user, only: [:index, :admin]
 
   def new
     @order = Order.includes([:cart]).where('express_token = ? AND carts.purchased_at IS NOT NULL', params[:token]).first
@@ -21,13 +22,22 @@ class OrdersController < ApplicationController
     response = EXPRESS_GATEWAY.setup_purchase(session_cart.build_order.price_in_cents,
                                               :ip => request.remote_ip,
                                               :return_url => new_order_url,
-                                              :cancel_return_url => proyectos_url,
+                                              :cancel_return_url => root_url,
                                               currency: 'EUR',
                                               brand_name: 'Fundación Universitaria San Pablo CEU',
+                                              header_image: root_url + ActionController::Base.helpers.image_path('logo-fundacion-ceu.gif'),
                                               allow_guest_checkout: 'true',
                                               items: session_cart.cart_items_in_array_of_hashs
     )
     redirect_to EXPRESS_GATEWAY.redirect_url_for(response.token)
+  end
+
+  def index
+    @orders = Order.successful.paginate(page: params[:page], per_page: 10)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
@@ -37,7 +47,7 @@ class OrdersController < ApplicationController
     @order.user_id = id
     @order.ip_address = request.remote_ip
     if @order.save
-      if @order.purchase(id)
+      if @order.purchase(id, params[:visible_cart])
         redirect_to @order
       else
         render :action => 'failure'
@@ -45,6 +55,10 @@ class OrdersController < ApplicationController
     else
       render :action => 'new'
     end
+  end
+
+  def admin
+    @order = Order.find(params[:id])
   end
 
   def show
@@ -56,6 +70,14 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:express_token, :invoice_name, :invoice_nif, :invoice_others)
+  end
+
+  def sort_column
+    %w[orders.id].include?(params[:sort]) ? params[:sort] : "orders.id"
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
   end
 
   def correct_user

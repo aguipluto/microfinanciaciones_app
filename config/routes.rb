@@ -10,9 +10,15 @@ MicrofinanciacionesApp::Application.routes.draw do
       get 'confirm/:confirmation_code', action: 'confirm'
     end
   end
+
   resources :sessions, only: [:new, :create, :destroy]
   resources :payment_notifications, only: [:create]
-  resources :orders
+  resources :orders do
+    member do
+      get 'admin'
+    end
+  end
+
   resources :suggests
   resources :order_transactions
   resources :blog_posts do
@@ -43,7 +49,6 @@ MicrofinanciacionesApp::Application.routes.draw do
   match '/signout', to: 'sessions#destroy', via: 'delete'
   match '/contact', to: 'suggests#new', via: 'get'
   match '/deleteAttachment', to: 'proyectos#destroy_attachment', via: 'delete'
-
 
   get '*path' => redirect('/')
 

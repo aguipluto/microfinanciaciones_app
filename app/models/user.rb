@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :carts, dependent: :nullify
   has_many :purchased_carts, -> { where("purchased_at IS NOT NULL") }, class_name: 'Cart'
   has_many :cart_items
+  has_many :cart_items_purchased, -> { joins(:cart).where("purchased_at IS NOT NULL") }, class_name: 'CartItem'
   has_many :blog_posts, dependent: :nullify
   has_many :deleted_cart_items, -> { where(active: false) }, class_name: 'CartItem'
   has_many :suggests, dependent: :nullify
@@ -57,6 +58,14 @@ class User < ActiveRecord::Base
     unless confirmed
        'warning'
     end
+  end
+
+  def name_second
+    self.name + ' ' + self.family_name
+  end
+
+  def second_com_name
+    self.family_name + ', ' + self.name
   end
 
   def self.search(search)

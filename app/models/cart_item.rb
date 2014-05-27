@@ -6,6 +6,34 @@ class CartItem < ActiveRecord::Base
   validates_numericality_of :aportacion, :greater_than => 0
   validates :proyecto_id, :presence => true
 
+  def visible_name
+    if self.cart.visible_cart?
+      self.user.name + ' ' + self.user.family_name
+    else
+      'U000' + self.user.id.to_s
+    end
+  end
+
+  def justify
+    if !self.cart.order.nil?
+      self.cart.order.justify
+    else
+      'No ha sido completado el pago'
+    end
+  end
+
+  def express_token
+    if !self.cart.order.nil?
+      self.cart.order.express_token
+    else
+      ''
+    end
+  end
+
+  def purchased_at_formated
+    dateAndTime(ci.cart.purchased_at)
+  end
+
   def self.before(at)
     where("cart_items.created_at <= ?", at)
   end

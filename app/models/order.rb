@@ -3,10 +3,20 @@ class Order < ActiveRecord::Base
   belongs_to :user
   has_many :transactions, :class_name => 'OrderTransaction'
 
+  scope :successful, -> { includes(:transactions).where("order_transactions.success = ?", true)}
+
   #validates_presence_of :user Ya que la aportación puede ser anónima
 
   def price_in_cents
     (cart.sub_total*100).round
+  end
+
+  def justify
+    self.invoice_name + ' / ' +  self.invoice_nif
+  end
+
+  def name_second
+    self.first_name + ' ' + self.second_name
   end
 
   def express_token=(token)
@@ -19,10 +29,11 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def purchase(user_id=nil)
+  def purchase(user_id=nil, visible_cart=false)
     response = EXPRESS_GATEWAY.purchase(price_in_cents, express_purchase_options)
     transactions.create!(:action => "purchase", :amount => price_in_cents, :response => response, user_id: user_id)
     cart.update_attribute(:purchased_at, Time.now) if response.success?
+    cart.update_attribute(:visible_cart, visible_cart) if response.success?
     response.success?
   end
 

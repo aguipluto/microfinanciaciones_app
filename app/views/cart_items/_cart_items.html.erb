@@ -16,28 +16,23 @@
         <td><%= link_to ci.proyecto.titulo, ci.proyecto %></td>
         <% if ci.cart.order %>
             <% if ci.user %>
-                <td><%= link_to ci.cart.order.first_name + ', ' + ci.cart.order.second_name, ci.user %></td>
+                <td><%= link_to ci.cart.order.name_second, ci.user %></td>
             <% else %>
-                <td><%= ci.cart.order.first_name + ', ' + ci.cart.order.second_name %></td>
+                <td><%= ci.cart.order.name_second %></td>
             <% end %>
         <% else %>
             <% if ci.user %>
-                <td><%= link_to ci.user.name + ', ' + ci.user.family_name, ci.user %></td>
+                <td><%= link_to ci.user.name_second, ci.user %></td>
             <% else %>
                 <td>Usuario anónimo</td>
             <% end %>
         <% end %>
-        <% if ci.cart.order %>
-            <td><%= ci.cart.order.invoice_name + ' / ' + ci.cart.order.invoice_nif %></td>
-        <% else %>
-            <td>Sin pago</td>
-        <% end %>
+        <td><%= ci.justify %></td>
         <td><%= ci.aportacion.to_i %> &euro;</td>
         <td><%= dateAndTime(ci.cart.purchased_at) %></td>
-        <% if ci.cart.order %>
-            <td><%= ci.cart.order.express_token %>
-        <% end %>
-        <tr>
+        <td><%= ci.express_token %>
+        <td><%= link_to 'Ver', ci, remote: true, class: 'btn btn-default btn-xs' %></td>
+      <tr>
   <% end %>
 </table>
 <%= will_paginate previous_label: t("Anterior"), next_label: t("Siguiente") %>

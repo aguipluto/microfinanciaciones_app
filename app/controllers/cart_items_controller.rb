@@ -1,6 +1,6 @@
 # encoding: utf-8
 class CartItemsController < ApplicationController
-  before_action :admin_user, only: [:indexAdmin]
+  before_action :admin_user, only: [:indexAdmin, :show]
   before_action :signed_in_user, only: [:create]
   helper_method :sort_column, :sort_direction
 
@@ -76,8 +76,25 @@ class CartItemsController < ApplicationController
 # DELETE /carts/1
 # DELETE /carts/1.xml
   def destroy
-    session_cart.remove_proyecto(params[:proyecto_id]) if params[:proyecto_id]
-    redirect_to(cart_items_url)
+    #session_cart.remove_proyecto(params[:proyecto_id]) if params[:proyecto_id]
+    #session_cart.remove_cart_item(params[:id]) if params[:id]
+    #redirect_to(session_cart)
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy!
+    respond_to do |format|
+      format.html do
+        flash[:success] = "Aportación borrada."
+        redirect_to session_cart
+      end
+    end
+  end
+
+  def show
+    @cart_item = CartItem.find(params[:id])
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   private
