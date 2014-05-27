@@ -13,7 +13,7 @@
       </th>
     </tr>
     </thead>
-    <% @user.purchased_cart_items.each do |ci| %>
+    <% @user.cart_items_purchased.each do |ci| %>
         <% if ci.proyecto %>
             <tr>
               <td><%= link_to ci.proyecto.titulo, ci.proyecto %></td>
