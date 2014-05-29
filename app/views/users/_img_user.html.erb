@@ -1,0 +1,3 @@
+<% if @user.image? %>
+    <%= image_tag @user.image_url.to_s, class: "img-thumbnail" %>
+<% end %>

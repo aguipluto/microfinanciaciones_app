@@ -20,3 +20,8 @@
 //= require ckeditor/override
 //= require ckeditor/init
 //= require_tree .
+
+$(function () {
+    var activeTab = $('[href=' + location.hash + ']');
+    activeTab && activeTab.tab('show');
+});

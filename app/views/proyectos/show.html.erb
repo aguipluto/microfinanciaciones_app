@@ -82,6 +82,11 @@
         <li><a href="#images" data-toggle="tab">Imágenes</a></li>
         <li><a href="#blog" data-toggle="tab">Blog</a></li>
         <li><a href="#aportations" data-toggle="tab">Aportaciones</a></li>
+        <% if current_user_admin? %>
+            <li>
+              <a href="#volunteers" data-toggle="tab"><span class="glyphicon glyphicon-wrench" title="opción solo disponible para administradores"></span>
+                Voluntarios</a></li>
+        <% end %>
       </ul>
 
       <div class="tab-content">
@@ -126,27 +131,46 @@
             </div>
           </div>
         </div>
+
         <div class="tab-pane fade" id="aportations">
           <div class="panel panel-default margin-top-sm">
             <div class="panel-heading clearfix">
-              <%= pluralize(@proyecto.cart_items_purchased.count, 'usuario ha', 'usuarios han') %>
-              aportado <%= @proyecto.total_collected %>€
-            </div>
-            <table class="table">
-              <% @proyecto.cart_items_purchased.each do |ci| %>
-                  <tr>
-                    <td class="text-right"><%= ci.aportacion.to_i %>&euro;</td>
-                    <% unless ci.user.nil? %>
-                        <td><span class="glyphicon glyphicon-user"></span> <%= ci.visible_name %></td>
-                        <td title="<%= ci.user.cart_items_purchased.count %> con aportaciones. <%= ci.user.volunteers.count %> como voluntario">Ha
-                          colaborado
-                          con <%= pluralize(ci.user.cart_items_purchased.count + ci.user.volunteers.count, 'proyecto', 'proyectos') %> </td>
-                    <% end %>
-                  </tr>
+              <% if @proyecto.cart_items_purchased.count == 0 %>
+                  Sé el primero en colaborar!
+              <% else %>
+                  <%= pluralize(@proyecto.cart_items_purchased.count, 'usuario ha', 'usuarios han') %>
+                  aportado <%= @proyecto.total_collected %>€
               <% end %>
-            </table>
+            </div>
+            <%= render 'shared/aportations', cart_items: @proyecto.cart_items_purchased %>
           </div>
         </div>
+
+        <% if current_user_admin? %>
+            <div class="tab-pane fade" id="volunteers">
+              <div class="panel panel-default margin-top-sm">
+                <div class="panel-heading clearfix">
+                  <% if @proyecto.volunteers.count == 0 %>
+                      Ningún voluntario inscrito
+                  <% else %>
+                      <%= pluralize(@proyecto.volunteers.count, 'voluntarios inscritos', 'usuarios han') %>
+                      aportado <%= @proyecto.total_collected %>€
+                  <% end %>
+                </div>
+                <table class="table">
+                  <% @proyecto.volunteers.each do |vol| %>
+                      <tr>
+                        <td>
+                          <span title="Inscrito en <%= pluralize(vol.user.volunteers.count, 'proyecto', 'proyectos') %>" class="glyphicon glyphicon-globe"></span>
+                        </td>
+                        <td class="small"><%= link_to vol.user.name_second, vol.user %></td>
+                        <td class="small" title="Inscrito el"><%= (vol.created_at).strftime('%d/%m/%Y') %></td>
+                      </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+        <% end %>
       </div>
     </div>
   </div>

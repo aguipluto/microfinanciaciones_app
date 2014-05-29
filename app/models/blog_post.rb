@@ -20,4 +20,7 @@ class BlogPost < ActiveRecord::Base
     end
   end
 
+  def deleted_user
+    self.update_attribute(:approved, false)
+  end
 end

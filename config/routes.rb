@@ -3,11 +3,20 @@ MicrofinanciacionesApp::Application.routes.draw do
   mount Ckeditor::Engine => '/ckeditor'
   resources :cart_items
   resources :cart
-  resources :proyectos
+  resources :proyectos do
+    collection do
+      get 'pb'
+    end
+    member do
+      get 'modal'
+    end
+  end
   resources :users do
     member do
       put 'adm_confirm'
       get 'confirm/:confirmation_code', action: 'confirm'
+      get 'aportations'
+      post 'delete'
     end
   end
 
@@ -43,6 +52,7 @@ MicrofinanciacionesApp::Application.routes.draw do
   match '/getNumberOfItems', to: 'cart#get_number_of_items', via: 'get'
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
+  match '/legal', to: 'static_pages#legal', via: 'get'
   root to: 'static_pages#home'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'

@@ -1,0 +1,19 @@
+<table class="table">
+  <% @aportations.each do |ci| %>
+      <tr>
+        <td title="Identificador del pago: <%= ci.express_token + ' - ' + ci.id.to_s %>">
+          <small><span class="glyphicon glyphicon-info-sign"></span></small>
+        </td>
+        <td class="text-right text-info"><%= ci.aportacion.to_i %>&euro;</td>
+        <td class="small"> <%= link_to ci.proyecto.titulo, ci.proyecto %></td>
+        <td class="small hidden-xs" title="usuario visible">
+          <span class="glyphicon glyphicon-user"></span><%= ci.visible_name %></td>
+
+        <td class="small"><%= (ci.cart.purchased_at).strftime('%d/%m/%Y') %></td>
+        <td class="hidden-xs"><%= link_to 'Justificante', ci.cart.order, class: 'btn btn-default btn-xs' %> </td>
+      </tr>
+  <% end %>
+</table>
+<div class="text-center">
+  <%= will_paginate @aportations, previous_label: t("Anterior"), next_label: t("Siguiente") %>
+</div>

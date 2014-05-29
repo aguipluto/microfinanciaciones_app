@@ -56,6 +56,10 @@ class Cart < ActiveRecord::Base
     h
   end
 
+  def deleted_user
+    self.update_attribute(:visible_cart, false)
+  end
+
 
   private
   def update_cart(cart_item, aportacion = 0)

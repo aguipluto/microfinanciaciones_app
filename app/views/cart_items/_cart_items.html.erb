@@ -14,18 +14,10 @@
       <tr>
         <td><%= ci.id %></td>
         <td><%= link_to ci.proyecto.titulo, ci.proyecto %></td>
-        <% if ci.cart.order %>
-            <% if ci.user %>
-                <td><%= link_to ci.cart.order.name_second, ci.user %></td>
-            <% else %>
-                <td><%= ci.cart.order.name_second %></td>
-            <% end %>
+        <% if ci.user %>
+            <td><%= link_to ci.user.name_second, ci.user %></td>
         <% else %>
-            <% if ci.user %>
-                <td><%= link_to ci.user.name_second, ci.user %></td>
-            <% else %>
-                <td>Usuario anónimo</td>
-            <% end %>
+            <td>Usuario anónimo</td>
         <% end %>
         <td><%= ci.justify %></td>
         <td><%= ci.aportacion.to_i %> &euro;</td>

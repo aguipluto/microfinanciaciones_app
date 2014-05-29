@@ -33,7 +33,7 @@ class OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.successful.paginate(page: params[:page], per_page: 10)
+    @orders = Order.includes(:transactions, :user, :cart).search(params[:search]).order(sort_column + " " + sort_direction).paginate(page: params[:page], per_page: 10)
     respond_to do |format|
       format.html
       format.js
@@ -73,7 +73,7 @@ class OrdersController < ApplicationController
   end
 
   def sort_column
-    %w[orders.id].include?(params[:sort]) ? params[:sort] : "orders.id"
+    %w[orders.id users.family_name orders.invoice_name carts.purchased_at orders.express_token].include?(params[:sort]) ? params[:sort] : "orders.id"
   end
 
   def sort_direction

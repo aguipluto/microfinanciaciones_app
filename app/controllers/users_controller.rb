@@ -1,7 +1,7 @@
 # encoding: utf-8
 class UsersController < ApplicationController
   before_action :signed_in_user, only: [:edit, :update]
-  before_action :correct_user, only: [:edit, :update, :show]
+  before_action :correct_user, only: [:edit, :update, :show, :aportations, :delete]
   before_action :admin_user, only: [:index, :destroy, :adm_confirm]
 
   def index
@@ -40,6 +40,16 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def aportations
+    @user = User.find(params[:id])
+    @aportations = User.find(params[:id]).cart_items_purchased.paginate(page: params[:page], per_page: 10)
+    @volunteers = current_user.volunteers.paginate(page: params[:page_volunteers], per_page: 10)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def adm_confirm
     @user = User.find(params[:id])
     @user.update_attribute(:confirmed, true)
@@ -48,7 +58,7 @@ class UsersController < ApplicationController
 
   def confirm
     @user = User.find(params[:id])
-    if @user.confirmation_code.==params[:confirmation_code]
+    if @user.confirmation_code.== params[:confirmation_code]
       @user.update_attribute(:confirmed, true)
       flash[:success] = "Email confirmado. Bienvenido a las Microfinanciaciones!"
     else
@@ -69,16 +79,31 @@ class UsersController < ApplicationController
     end
   end
 
-
   def destroy
     @user = User.find(params[:id])
     @user.destroy!
-    respond_to do |format|
-      format.html do
-        flash[:success] = "Usuario borrado."
-        redirect_to users_url
+  end
+
+  def delete
+    @user = User.find(params[:id])
+    @user.update_attribute(:email, 'U0000' + params[:id] + '@microfinanciacionesceu.com')
+    @user.carts.each do |c|
+      c.deleted_user
+    end
+    @user.blog_posts.each do |bp|
+      bp.deleted_user
+    end
+    @user.update_attribute(:deleted, true)
+    if current_user?(@user)
+      sign_out
+    else
+      respond_to do |format|
+        format.html do
+          flash[:success] = "Usuario borrado."
+          redirect_to users_url
+        end
+        format.js
       end
-      format.js
     end
   end
 

@@ -3,10 +3,10 @@
   <tr>
     <th><%= sortable 'orders.id', 'Id' %></th>
     <th><%= sortable 'users.family_name', 'Usuario' %></th>
-    <th><%= "Justificante a" %></th>
-    <th><%= sortable "aportacion", "Aportacion" %></th>
+    <th><%= sortable 'orders.invoice_name', "Justificante a" %></th>
+    <th>Aportacion</th>
     <th><%= sortable "carts.purchased_at", "Fecha Aportación" %></th>
-    <th>Token Paypal</th>
+    <th><%= sortable 'orders.express_token','Token Paypal' %></th>
   </tr>
   </thead>
   <% @orders.each do |order| %>

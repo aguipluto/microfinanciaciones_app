@@ -15,19 +15,6 @@
           <span class="text-muted">hasta el</span> <%= proyecto.fechaFin %>
         </div>
         <div class="col-sm-5"><span class="text-muted">Lugar:</span> <%= proyecto.lugar %></div>
-        <div class="col-xs-12"> <%= render 'shared/progress_bar', proyecto: proyecto %></div>
-        <div class="col-xs-6 text-left">
-            <%= render 'proyectos/cantidad_conseguida', proyecto: proyecto %>
-        </div>
-        <div class="col-xs-6 text-right">
-          Quedan <%= time_ago_in_words(proyecto.fin_aportaciones) %>
-        </div>
-        <div id="modal-volunteers-project-<%= proyecto.id %>" class="col-sm-12 text-center text-info bold margin-top-xs">
-          <%= render 'volunteers/volunteers_project', proyecto: proyecto %>
-        </div>
-        <div class="col-xs-4 col-xs-offset-4 margin-sm">
-          <%= render 'users/modal_voluunter_form', proyecto: proyecto %>
-        </div>
         <div class="small text-muted">.</div>
       </div>
       <div class="modal-footer">
@@ -46,7 +33,7 @@
                 <div id="aportationInfo" class="aportationInfo col-xs-2 large text-primary bold text-left">5€</div>
               </div>
               <div class="form-group">
-                <%= submit_tag 'Colaborar', class: 'btn btn-primary btn-xs btn-block' %>
+                <%= submit_tag 'Colaborar', class: 'btn btn-primary btn-block' %>
                 <button type="button" class="btn btn-default btn-xs btn-block" data-dismiss="modal">Cerrar</button>
               </div>
           <% end %>

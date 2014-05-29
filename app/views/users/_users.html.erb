@@ -11,7 +11,7 @@
     </thead>
     <tbody>
     <% @users.each do |user| %>
-        <tr data-link="<%= user_path(user) %>" id="user_<%= user.id %>" class="<%= user.assign_class %>">
+        <tr data-link="<%= user_path(user) %>" id="user_<%= user.id %>" class="<%= user.assign_class %>" title="<%= user.assign_title %>">
           <td><%= link_to user.name, user %></td>
           <td><%= user.family_name %></td>
           <td><%= user.email %></td>
@@ -26,12 +26,15 @@
           </td>
           <td>
             <div class="pull-right">
-              <% unless user.confirmed %>
+              <% unless user.confirmed? %>
                   <%= link_to 'Confirmar', adm_confirm_user_path(user), id: 'btn_confirm_' + user.id.to_s, method: :put, remote: true, class: 'btn btn-default btn-xs' %>
               <% end %>
               <%= link_to "Editar", user_path(user), class: 'btn btn-default btn-xs' %>
-              <%= link_to "Borrar", user, method: :delete, :remote => true,
-                          data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning btn-xs' %>
+              <% unless user.deleted? %>
+                  <%= link_to "Borrar", delete_user_path(user), method: :post, :remote => true,
+                              data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning btn-xs' %>
+              <% end %>
+              <%= link_to "Aportaciones", aportations_user_path(user), class: 'btn btn-default btn-xs' %>
             </div>
           </td>
         </tr>

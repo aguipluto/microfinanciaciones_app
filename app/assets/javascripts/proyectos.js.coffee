@@ -43,6 +43,11 @@ $(document).on 'click', '.btn-delete-img-p', (event) ->
 $ ->
   MenuIzqClicked()
   MenuIzqShowProjectClicked()
+  $('#select_gen').change ->
+    event.preventDefault()
+    $.get($("#select_gen").attr("action"),
+      { select: $("#select_gen").val(), search: $("#inputBuscar").val() }, null, "script");
+    false
   $('#select_for_search').change ->
     event.preventDefault()
     $.get($("#select_for_search").attr("action"),
@@ -58,7 +63,7 @@ $ ->
     false
   $(document).on 'keyup', '#inputBuscar', (event) ->
     $.get($("#inputBuscar").attr("action"),
-    {aportationType: $("#select_for_search").val(), search: $("#inputBuscar").val()}, null, "script");
+    {aportationType: $("#select_for_search").val(), select: $("#select_gen").val(),  search: $("#inputBuscar").val()}, null, "script");
     false
   $('.close_alert').click ->
     $('.alert').addClass('hidden')

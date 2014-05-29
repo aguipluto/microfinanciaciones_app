@@ -35,17 +35,12 @@
     </h1>
   </article>
 
+  <div class="modal-project-container">
+
+  </div>
 
   <% @button_styles = "btn-xs" %>
-  <% @proyectos.in_groups_of(3).each do |group| %>
-      <div class="row">
-        <% group.each do |p| %>
-            <% if p %>
-                <%= render p %>
-            <% end %>
-        <% end %>
-      </div>
-  <% end %>
+  <%= render 'proyectos/row_projects' %>
 
   <% @proyectos.each do |p| %>
       <%= render '/shared/modal_proyecto', proyecto: p %>

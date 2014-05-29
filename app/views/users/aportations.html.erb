@@ -1,0 +1,49 @@
+<ol class="breadcrumb breadcum-title">Colaboraciones</ol>
+
+<div class="col-sm-3 hidden-xs">
+  <br>
+  <blockquote>
+    <p>
+      Has ayudado a llevar a cabo <strong><%= pluralize(@aportations.count, 'proyecto', 'proyectos') %></strong>
+    </p>
+  </blockquote>
+  <p class="margin-top-sm text-center">
+    Has aportado
+  </p>
+  <p class="margin-sm text-center">
+    <label class="label label-lg label-success"><%= @user.total_achieved %> &euro;</label>
+  </p>
+  <blockquote class="margin-sm">
+    Inscrito como voluntario en <span class="label label-info"><%= @volunteers.count %> proyectos </span>
+  </blockquote>
+  <p>
+
+  <div class=" text-center text-info large">Desde <%= @user.created_at.strftime('%Y') %></div>
+  </p>
+</div>
+
+<div class="col-sm-9 col-xs-12">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#aportations" data-toggle="tab">Aportaciones</a></li>
+        <li><a href="#volunteers" data-toggle="tab">Voluntario</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="aportations">
+          <div id="aportations_content" class="panel panel-default margin-top-sm">
+            <%= render 'users/aportations_table' %>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="volunteers">
+          <div id="volunteers_content" class="panel panel-default margin-top-sm">
+            <%= render 'users/volunteers_table' %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

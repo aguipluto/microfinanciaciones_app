@@ -12,9 +12,11 @@
       <div class="col-sm-12">
         <%= proyecto.descripcion_corta %>
       </div>
-      <div class="col-sm-12">
-        <%= render 'shared/progress_bar', proyecto: proyecto %>
-      </div>
+      <% if (proyecto.aportable? || (!proyecto.aportable? && proyecto.total_collected > 0)) %>
+          <div class="col-sm-12">
+            <%= render 'shared/progress_bar', proyecto: proyecto %>
+          </div>
+      <% end %>
       <div class="col-xs-6 text-left small">
         <% if proyecto.total_collected > 0 %>
             <div class="text-success">
@@ -23,12 +25,20 @@
             </div>
         <% else %>
             <div class="text-info">
-              Sé el primero en colaborar!
+              <% if proyecto.aportable? %>
+                  Sé el primero en colaborar!
+              <% else %>
+                  Proyecto cerrado
+              <% end %>
             </div>
         <% end %>
       </div>
       <div class="col-xs-6 text-right small text-muted">
-        Quedan <%= time_ago_in_words(proyecto.fin_aportaciones) %>
+        <% if proyecto.aportable? %>
+            Quedan <%= time_ago_in_words(proyecto.fin_aportaciones) %>
+        <% else %>
+            <span title="Ya ha finalizado el plazo para colaborar con este proyecto">Cerrado</span>
+        <% end %>
       </div>
       <div id="volunteers-project-<%= proyecto.id %>" class="col-sm-12 text-center text-info bold margin-top-xs">
         <%= render 'volunteers/volunteers_project', proyecto: proyecto %>
@@ -43,9 +53,18 @@
                         data: {confirm: "¿Está seguro?"}, class: 'btn-xs btn-warning' %>
         <% end %>
       </div>
-      <div class="col-xs-12">
-        <%= render 'users/voluunter_form', proyecto: proyecto %>
-      </div>
+      <% if proyecto.aportable? %>
+          <div class="col-xs-12 margin-xxs">
+            <%= render 'users/voluunter_form', proyecto: proyecto %>
+          </div>
+          <div class="col-xs-12">
+            <%= link_to 'Colaborar', modal_proyecto_path(proyecto), remote: true, class: 'btn btn-xs btn-info btn-block' %>
+          </div>
+      <% else %>
+          <div class="col-xs-12 label label-success label-sm text-center margin-top-sm">
+            GRACIAS POR LA AYUDA
+          </div>
+      <% end %>
     </div>
 
   </div>

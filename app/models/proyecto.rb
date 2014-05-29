@@ -6,7 +6,9 @@ class Proyecto < ActiveRecord::Base
 
   has_many :cart_items_purchased, -> { joins(:cart).where("purchased_at IS NOT NULL") }, class_name: 'CartItem'
   default_scope -> { order('fin_aportaciones ASC') }
-  scope :aportables, -> { where("visible = ? AND fin_aportaciones > ?",true, Time.now).order('fin_aportaciones ASC')}
+  scope :aportables, -> (search=nil) { where("visible = ? AND fin_aportaciones > ? AND inicio_aportaciones < ? AND (titulo LIKE ? OR descripcion_larga LIKE ? OR descripcion_corta LIKE ? OR lugar LIKE ?)", true, Time.now, Time.now, "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%").order('fin_aportaciones ASC') }
+  scope :visibles, -> (search=nil) { where("visible = ? AND (titulo LIKE ? OR descripcion_larga LIKE ? OR descripcion_corta LIKE ? OR lugar LIKE ?)", true, "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%").order('fin_aportaciones ASC') }
+  scope :no_aportables, -> (search=nil) { where("visible = ? AND fin_aportaciones < ? AND (titulo LIKE ? OR descripcion_larga LIKE ? OR descripcion_corta LIKE ? OR lugar LIKE ?)", true, Time.now, "%#{search}%", "%#{search}%", "%#{search}%", "%#{search}%").order('fin_aportaciones ASC') }
 
   has_many :attachments, :dependent => :destroy
   accepts_nested_attributes_for :attachments, :allow_destroy => true
@@ -16,18 +18,18 @@ class Proyecto < ActiveRecord::Base
   #accepts_nested_attributes_for :assets, :allow_destroy => true
 
   validates :user_id, presence: true
-  validates :titulo, presence:true, length: {minimum: 6}
-  validates :descripcion_corta, presence:true, length: {minimum: 25, maximum: 255}
-  validates :inicio_aportaciones, presence:true
-  validates :fin_aportaciones, presence:true
+  validates :titulo, presence: true, length: {minimum: 6}
+  validates :descripcion_corta, presence: true, length: {minimum: 25, maximum: 255}
+  validates :inicio_aportaciones, presence: true
+  validates :fin_aportaciones, presence: true
   validates :cantidad_total, presence: true
 
-  def as_json(options = { })
+  def as_json(options = {})
     h = super(options)
-    h[:total_collected]   = total_collected
+    h[:total_collected] = total_collected
     h[:fechaInicio] = fecha_inicio.strftime("%d/%m/%Y")
     h[:fechaFin] = fecha_fin.strftime("%d/%m/%Y")
-    h[:queda]   = time_ago_in_words(fin_aportaciones)
+    h[:queda] = time_ago_in_words(fin_aportaciones)
     h[:attachments] = attachments
     h
   end
@@ -42,7 +44,7 @@ class Proyecto < ActiveRecord::Base
   end
 
   def aportable?
-    self.visible && Time.now < self.fin_aportaciones
+    self.visible && Time.now < self.fin_aportaciones && Time.now > self.inicio_aportaciones
   end
 
   def totalbar
@@ -74,11 +76,11 @@ class Proyecto < ActiveRecord::Base
   end
 
   def fin_aportaciones_in_words
-     time_ago_in_words(fin_aportaciones)
+    time_ago_in_words(fin_aportaciones)
   end
 
   def past?
-     fin_aportaciones < Time.current
+    fin_aportaciones < Time.current
   end
 
   def assign_class
@@ -91,7 +93,7 @@ class Proyecto < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('titulo LIKE ? OR descripcion_corta LIKE ? OR descripcion_larga LIKE ?', "%#{search}%","%#{search}%","%#{search}%")
+      where('titulo LIKE ? OR descripcion_corta LIKE ? OR descripcion_larga LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
     else
       all
     end

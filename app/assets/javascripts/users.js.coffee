@@ -28,10 +28,10 @@ ValidarEnviarFormulario = () ->
 ValidarLongitudMinima = (elemento, longitud) ->
   element = $(elemento)
   if element.val().length < longitud
-    element.parent().addClass("has-error")
+    element.parent().addClass("has-error text-danger")
     false
   else
-    element.parent().removeClass("has-error")
+    element.parent().removeClass("has-error text-danger")
     true
 
 ValidarPoliticaPrivacidad = () ->
@@ -62,6 +62,11 @@ ValidarFormulario = () ->
     ValidarLongitudMinima('#suggest_name', 3)
   $('#suggest_suggestion').blur ->
     ValidarLongitudMinima('#suggest_suggestion', 5)
+#Order
+  $('#order_invoice_name').blur ->
+    ValidarLongitudMinima('#order_invoice_name', 3)
+  $('#order_invoice_nif').blur ->
+    ValidarLongitudMinima('#order_invoice_nif', 9)
 
 
 MenuIzqClicked = () ->

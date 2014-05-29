@@ -1,0 +1,2 @@
+$('#modal-project-content').html('<%= escape_javascript render 'shared/modal_proyecto', proyecto: @proyecto %>');
+$('#modalProyecto-' + <%= @proyecto.id %>).modal('show')

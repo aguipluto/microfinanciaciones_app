@@ -1,0 +1,13 @@
+<table class="table">
+  <% @volunteers.each do |vol| %>
+      <tr>
+        <td><span title="<%= pluralize(vol.proyecto.volunteers.count, 'voluntario inscrito', 'voluntarios inscritos')  %>" class="glyphicon glyphicon-globe"></span></td>
+        <td class="small"><%= link_to vol.proyecto.titulo, vol.proyecto %></td>
+        <td class="small" title="Inscrito el"><%= (vol.created_at).strftime('%d/%m/%Y') %></td>
+        <td><%= render 'users/voluunter_form', proyecto: vol.proyecto %></td>
+      </tr>
+  <% end %>
+</table>
+<div class="text-center">
+  <%= will_paginate @volunteers, param_name: 'page_volunteers'  , previous_label: t("Anterior"), next_label: t("Siguiente") %>
+</div>

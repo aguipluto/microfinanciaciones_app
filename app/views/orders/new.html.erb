@@ -8,7 +8,7 @@
   <ol class="breadcrumb breadcum-title">Confimar Pago</ol>
   <div class="col-sm-5">
     <%= form_for @order do |f| %>
-
+        <%= render 'shared/error_messages', object: f.object %>
         <div class="form-horizontal">
           <%= f.hidden_field :express_token %>
           <div class="form-group">
@@ -25,7 +25,7 @@
               confirmar la compra</em></div>
           </div>
           <div class="form-group">
-            <%= check_box_tag :visible_cart %> Quiero que otros puedan que he donado (aparecerá su nombre como donante,
+            <%= check_box_tag :visible_cart %> Quiero que otros puedan ver que he donado (aparecerá su nombre como donante,
             si no se marca esta opción será anónimo)
           </div>
         </div>

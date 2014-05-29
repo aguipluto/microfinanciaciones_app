@@ -21,6 +21,6 @@ user = User.create!(name: "Teodoro",
                     email: "teo.rojo@ceu.es",
                     password: "teoteo",
                     password_confirmation: "teoteo",
-                    nif: '24106903D',
+                    nif: '52895101T',
                     admin: true,
                     confirmed: true)

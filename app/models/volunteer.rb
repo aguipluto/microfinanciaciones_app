@@ -4,6 +4,7 @@ class Volunteer < ActiveRecord::Base
 
   validates_presence_of :user
   validates_presence_of :proyecto
+  validates_uniqueness_of :user_id, :scope => :proyecto_id
 
   default_scope -> { order('volunteers.created_at DESC') }
 

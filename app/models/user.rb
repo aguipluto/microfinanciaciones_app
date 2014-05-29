@@ -2,18 +2,22 @@
 class User < ActiveRecord::Base
   #obfuscate_id
 
-  has_many :proyectos, dependent: :nullify
-  has_many :carts, dependent: :nullify
+  has_many :proyectos
+  has_many :carts
   has_many :purchased_carts, -> { where("purchased_at IS NOT NULL") }, class_name: 'Cart'
   has_many :cart_items
   has_many :cart_items_purchased, -> { joins(:cart).where("purchased_at IS NOT NULL") }, class_name: 'CartItem'
-  has_many :blog_posts, dependent: :nullify
+  has_many :blog_posts
   has_many :deleted_cart_items, -> { where(active: false) }, class_name: 'CartItem'
-  has_many :suggests, dependent: :nullify
-  has_many :volunteers
+  has_many :suggests
+  has_many :volunteers, dependent: :destroy
+
 
   before_create :create_remember_token
-  before_save { self.email = email.downcase }
+  before_save do
+    self.email = email.downcase
+    self.nif = nif.upcase.gsub(' ', '').gsub('-', '').gsub('/','')
+  end
 
   validates :terms_of_service, :acceptance => true
   validates :name, presence: true, length: {minimum: 3, maximum: 50}
@@ -23,8 +27,11 @@ class User < ActiveRecord::Base
             format: {with: VALID_EMAIL_REGEX},
             uniqueness: {case_sensitive: false}
   has_secure_password
-  validates :password             , length: { minimum: 6 }, :if => :validate_password?
-  validates :password_confirmation, presence: true        , :if => :validate_password?
+  validates :password, length: {minimum: 6}, :if => :validate_password?
+  validates :password_confirmation, presence: true, :if => :validate_password?
+  validates_format_of :nif, :with => /\A[0-9]{8}([-]?)[A-Za-z]\Z/, :on => :update, :message => "tiene que tener un formato como el siguiente: 12345678A o 12345678-A"
+  validate :dni_letter_must_match_number
+  validates :nif, length: {minimun: 9, maximum:10}
 
   def validate_password?
     password.present? || password_confirmation.present?
@@ -44,19 +51,19 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  def purchased_cart_items
-    purchaseds = []
-    purchased_carts.each do |c|
-      c.valid_cart_items.each do |ci|
-        purchaseds.push(ci)
-      end
+  def assign_class
+    if self.deleted?
+      'danger'
+    elsif !self.confirmed?
+    'warning'
     end
-    purchaseds
   end
 
-  def assign_class
-    unless confirmed
-       'warning'
+  def assign_title
+    if self.deleted?
+      'Usuario borrado'
+    else
+      'Usuario' + self.id.to_s
     end
   end
 
@@ -70,10 +77,14 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('name LIKE ? OR family_name LIKE ? OR email LIKE ?', "%#{search}%","%#{search}%","%#{search}%")
+      where('name LIKE ? OR family_name LIKE ? OR email LIKE ?', true, "%#{search}%", "%#{search}%", "%#{search}%")
     else
       all
     end
+  end
+
+  def total_achieved
+    self.cart_items_purchased.map(&:aportacion).sum.to_i
   end
 
   def send_password_token
@@ -96,6 +107,12 @@ class User < ActiveRecord::Base
   end
 
   private
+
+  def dni_letter_must_match_number
+    if "TRWAGMYFPDXBNJZSQVHLCKE"[nif[0..7].to_i % 23].chr != nif[8] && "TRWAGMYFPDXBNJZSQVHLCKE"[nif[0..7].to_i % 23].chr != nif[9]
+      errors.add(:nif, "no parece correcto")
+    end
+  end
 
   def create_remember_token
     self.remember_token = User.encrypt(User.new_remember_token)

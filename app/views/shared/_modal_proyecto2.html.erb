@@ -6,14 +6,10 @@
       <div class="modal-header">
         <div id="modalId" style="visibility: hidden"></div>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h3 class="text-center"><%= link_to proyecto.titulo, proyecto %></h3>
+        <h4 class="text-center"><%= link_to proyecto.titulo, proyecto %></h4>
       </div>
       <div class="modal-body">
-        <div class="col-xs-12 margin-sm">
-          <%= render '/shared/carousel_modal', proyecto: proyecto %>
-        </div>
         <div class="col-xs-12 margin-xs"><%= proyecto.descripcion_larga.html_safe %></div>
-
         <div class="col-sm-7" title="Fecha del proyecto">
           <span class="text-muted">Desde el</span> <%= proyecto.fechaInicio %>
           <span class="text-muted">hasta el</span> <%= proyecto.fechaFin %>
@@ -21,36 +17,37 @@
         <div class="col-sm-5"><span class="text-muted">Lugar:</span> <%= proyecto.lugar %></div>
         <div class="col-xs-12"> <%= render 'shared/progress_bar', proyecto: proyecto %></div>
         <div class="col-xs-6 text-left">
-          <% if proyecto.total_collected > 0 %>
-              <div class="text-success">
-                <%= pluralize(proyecto.total_collected, '€ conseguido', '€ conseguidos') %>
-                de <%= proyecto.cantidad_total.to_i %>€
-              </div>
-          <% else %>
-              <div class="text-info">
-                Sé el primero en colaborar!
-              </div>
-          <% end %>
+          <%= render 'proyectos/cantidad_conseguida', proyecto: proyecto %>
         </div>
         <div class="col-xs-6 text-right">
           Quedan <%= time_ago_in_words(proyecto.fin_aportaciones) %>
         </div>
+        <div id="modal-volunteers-project-<%= proyecto.id %>" class="col-sm-12 text-center text-info bold margin-top-xs">
+          <%= render 'volunteers/volunteers_project', proyecto: proyecto %>
+        </div>
+        <div class="col-xs-4 col-xs-offset-4 margin-sm">
+          <%= render 'users/modal_voluunter_form', proyecto: proyecto %>
+        </div>
+        <div class="small text-muted">.</div>
       </div>
       <div class="modal-footer">
-        <div class="col-sm-12">
-          <%= form_tag('/cartItemCreate', method: 'post', remote: 'true') do %>
+        <div class="col-xs-12">
+          <%= form_tag('/cartItemCreate', method: 'post', class: 'form-horizontal') do %>
               <%= hidden_field_tag :proyecto_id, proyecto.id %>
-              <div class="col-xs-2 text-info text-center">
-                <div class="small">
-                  Colaborar con
+              <div class="form-group">
+                <div class="col-xs-3 text-primary text-right">
+                  <div class="small">
+                    Colaborar con
+                  </div>
                 </div>
+                <div class="col-xs-7" id="divSlider">
+                  <%= range_field_tag :aportacion, 5, min: 5, max: 80, id: 'aportationSlider', class: 'form-control aportationSlider' %>
+                </div>
+                <div id="aportationInfo" class="aportationInfo col-xs-2 large text-primary bold text-left">5€</div>
               </div>
-              <div class="col-xs-10" id="divSlider">
-                <%= range_field_tag :aportacion, 5, min: 5, max: 80, id: 'aportationSlider', class: 'form-control aportationSlider' %>
-              </div>
-              <div id="aportationInfo" class="aportationInfo">5€</div>
-              <div id="divAportar">
-                <%= submit_tag 'Colaborar', class: 'btn btn-primary btn-block' %>
+              <div class="form-group">
+                <%= submit_tag 'Colaborar', class: 'btn btn-primary btn-xs btn-block' %>
+                <button type="button" class="btn btn-default btn-xs btn-block" data-dismiss="modal">Cerrar</button>
               </div>
           <% end %>
         </div>
@@ -60,5 +57,4 @@
   </div>
   <!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 

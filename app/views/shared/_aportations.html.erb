@@ -1,0 +1,14 @@
+<table class="table">
+  <% cart_items.each do |ci| %>
+      <tr>
+        <td class="text-right"><%= ci.aportacion.to_i %>&euro;</td>
+        <% unless ci.user.nil? %>
+            <td><%= ci.id %></td>
+            <td><span class="glyphicon glyphicon-user"></span> <%= ci.visible_name %></td>
+            <td title="<%= ci.user.cart_items_purchased.count %> con aportaciones. <%= ci.user.volunteers.count %> como voluntario">Ha
+              colaborado
+              con <%= pluralize(ci.user.cart_items_purchased.count + ci.user.volunteers.count, 'proyecto', 'proyectos') %> </td>
+        <% end %>
+      </tr>
+  <% end %>
+</table>

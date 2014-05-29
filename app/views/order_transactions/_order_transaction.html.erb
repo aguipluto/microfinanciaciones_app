@@ -1,6 +1,16 @@
-<div class="row">
-  <%= link_to order_transaction.id.to_s + '.....', order_transaction %>
-  <%= order_transaction.amount/100 %> &euro;
-  <%= order_transaction.success %>
-  <%= order_transaction.created_at %>
-</div>
+<ul>
+  <li>Id.:<span class="text-info"><%= @transaction.id %></span></li>
+  <li>Action:<span class="text-info"><%= @transaction.action %></span></li>
+  <li>Amount:<span class="text-info"><%= @transaction.amount %></span></li>
+  <li>Sucess:<span class="text-info"><%= @transaction.success %></span></li>
+  <li>Authorization:<span class="text-info"><%= @transaction.authorization %></span></li>
+  <li>Message:<span class="text-info"><%= @transaction.message %></span></li>
+
+  <li>Params:
+    <% @transaction.params.each do |key, value| %>
+  <li>
+    <%= key %>
+    <span class="text-info"><%= value.to_s %></span></li>
+  <% end %>
+  </li>
+</ul>

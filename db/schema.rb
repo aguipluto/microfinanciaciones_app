@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140527094649) do
+ActiveRecord::Schema.define(version: 20140529130356) do
 
   create_table "attachments", force: true do |t|
     t.datetime "created_at"
@@ -172,6 +172,7 @@ ActiveRecord::Schema.define(version: 20140527094649) do
     t.boolean  "confirmed",            default: false
     t.string   "password_reset_token"
     t.datetime "password_reset_send"
+    t.boolean  "deleted",              default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

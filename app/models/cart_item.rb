@@ -6,6 +6,8 @@ class CartItem < ActiveRecord::Base
   validates_numericality_of :aportacion, :greater_than => 0
   validates :proyecto_id, :presence => true
 
+  default_scope -> { order('cart_items.created_at DESC') }
+
   def visible_name
     if self.cart.visible_cart?
       self.user.name_second
