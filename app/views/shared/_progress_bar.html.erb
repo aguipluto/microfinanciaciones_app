@@ -1,4 +1,7 @@
-<div class="progress progress-home" data-toggle="tooltip" data-placement="top" title="<%= pluralize(proyecto.total_collected, '€ conseguido', '€ conseguidos')%>">
+<% if proyecto.cantidad_total == 0 %>
+    <% proyecto.cantidad_total = 0.1 %>
+<% end %>
+<div class="progress progress-home" data-toggle="tooltip" data-placement="top" title="<%= pluralize(proyecto.total_collected, '€ conseguido', '€ conseguidos') %>">
   <div class="progress-bar progress-bar-success " role="progressbar" aria-valuenow="<%= proyecto.anchobar %>" aria-valuemin="0"
        aria-valuemax="<%= proyecto.totalbar %>" style="width: <%= proyecto.anchobar   %>%">
   </div>

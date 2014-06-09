@@ -35,11 +35,15 @@ class Proyecto < ActiveRecord::Base
   end
 
   def anchobar
-    ancho = (total_collected * 100) / cantidad_total
-    if total_collected >= cantidad_total
-      cantidad_total * 100 / (total_collected)
+    if cantidad_total > 0
+      ancho = (total_collected * 100) / cantidad_total
+      if total_collected >= cantidad_total
+        cantidad_total * 100 / (total_collected)
+      else
+        ancho
+      end
     else
-      ancho
+      total_collected
     end
   end
 

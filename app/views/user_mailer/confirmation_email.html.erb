@@ -5,6 +5,7 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
 </head>
 <body>
+<%= link_to image_tag('logoProyectoTransparenteSmall.png', alt: 'MicroFinanciaciones CEU', class: 'navbar-brand'), root_url %>
 <% link_confirmacion = root_url + '/users/' + @user.id.to_s + '/confirm/' + @user.confirmation_code %>
 Bienvenido a las Microfinanciaciones.
 <br>
