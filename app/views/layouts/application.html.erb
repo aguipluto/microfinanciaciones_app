@@ -7,8 +7,7 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
   <%= render 'layouts/shim' %>
-  <meta property="fb:admins" content="683256220" />
-  <meta property="fb:app_id" content="1500444366835135" />
+  <%= render 'layouts/fb_tags' %>
 </head>
 <body>
 <%= render 'layouts/header' %>
