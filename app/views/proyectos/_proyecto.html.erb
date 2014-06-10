@@ -1,11 +1,18 @@
 # encoding: utf-8
 
-<div id="<%= proyecto.id %>" class="col-sm-4 project-home">
+<div id="<%= proyecto.id %>" class="col-sm-4 col-xs-12 project-home">
   <div class="panel panel-default">
 
     <div class="panel-body">
-      <h3 class="text-center"><%= link_to proyecto.titulo, proyecto %></h3>
-
+      <h3 class="text-center"><%= link_to proyecto.titulo, proyecto %>
+      </h3>
+      <div class="col-sm-12 text-right">
+        <% if signed_in? && current_user.admin? %>
+            <%= link_to "Editar", edit_proyecto_path(proyecto), class: 'btn-xs btn-default' %>
+            <%= link_to "Borrar", proyecto, method: :delete,
+                        data: {confirm: "¿Está seguro?"}, class: 'btn-xs btn-warning' %>
+        <% end %>
+      </div>
       <div class="col-sm-12">
         <%= render '/shared/carousel', proyecto: proyecto %>
       </div>
@@ -40,19 +47,13 @@
             <span title="Ya ha finalizado el plazo para colaborar con este proyecto">Cerrado</span>
         <% end %>
       </div>
-      <div id="volunteers-project-<%= proyecto.id %>" class="col-sm-12 text-center text-info bold margin-top-xs">
+      <div id="volunteers-project-<%= proyecto.id %>" class="col-sm-12 text-center text-info bold margin-top-xs margin-sm">
         <%= render 'volunteers/volunteers_project', proyecto: proyecto %>
       </div>
-      <div class="col-xs-6 text-left">
-        <%= tweet_button(url: proyecto_path(proyecto, only_path: false), text: 'Colabora con esta inciativa!', via: '', count: 'none')  %>
-        
-      </div>
-      <div class="col-xs-6 text-right">
-        <% if signed_in? && current_user.admin? %>
-            <%= link_to "Editar", edit_proyecto_path(proyecto), class: 'btn-xs btn-default' %>
-            <%= link_to "Borrar", proyecto, method: :delete,
-                        data: {confirm: "¿Está seguro?"}, class: 'btn-xs btn-warning' %>
-        <% end %>
+
+      <div class="col-xs-12 col-sm-12 text-left">
+        <div class="col-xs-4"><%= tweet_button(url: proyecto_path(proyecto, only_path: false), text: 'Colabora con esta inciativa!', via: '', count: 'none')  %></div>
+        <div class="col-xs-8"><%= like_button('1500444366835135', send: true, href: proyecto_path(proyecto, only_path: false)) %></div>
       </div>
       <% if proyecto.aportable? %>
           <div class="col-xs-12 margin-xxs">
