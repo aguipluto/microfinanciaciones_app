@@ -43,6 +43,8 @@ $(document).on 'click', '.btn-delete-img-p', (event) ->
 $ ->
   MenuIzqClicked()
   MenuIzqShowProjectClicked()
+  $(".volunteer_status").change ->
+    $(this).parents("form").submit()
   $('#select_gen').change ->
     event.preventDefault()
     $.get($("#select_gen").attr("action"),

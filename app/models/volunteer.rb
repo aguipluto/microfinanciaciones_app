@@ -10,9 +10,22 @@ class Volunteer < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('users.name LIKE ? OR users.family_name LIKE ? OR proyectos.titulo LIKE ?', "%#{search}%","%#{search}%","%#{search}%")
+      where('users.name LIKE ? OR users.family_name LIKE ? OR proyectos.titulo LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")
     else
       all
+    end
+  end
+
+  def assign_label_class
+    if
+    self.status == 'Pendiente'
+      'info'
+    elsif self.status == 'Aceptado'
+      'success'
+    elsif self.status == 'Rechazado'
+      'warning'
+    else
+      'default'
     end
   end
 end

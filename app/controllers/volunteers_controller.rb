@@ -1,5 +1,6 @@
 class VolunteersController < ApplicationController
   before_action :signed_in_user
+  before_action :admin_user, only: [:index, :update]
 
   def create
     @proyecto = Proyecto.find(params[:volunteer][:proyecto_id])
@@ -7,6 +8,16 @@ class VolunteersController < ApplicationController
     respond_to do |format|
       format.html { redirect_to current_user }
       format.js
+    end
+  end
+
+  def update
+    @volunteer = Volunteer.find(params[:id])
+    if @volunteer.update_attributes(volunteers_params)
+      respond_to do |format|
+        format.html { redirect_to volunteers_path }
+        format.js
+      end
     end
   end
 
@@ -28,6 +39,10 @@ class VolunteersController < ApplicationController
   end
 
   private
+  def volunteers_params
+    params.require(:volunteer).permit(:status)
+  end
+
   def sort_column
     %w[users.family_name proyectos.titulo volunteers.created_at users.birthdate users.email].include?(params[:sort]) ? params[:sort] : "volunteers.created_at"
   end
