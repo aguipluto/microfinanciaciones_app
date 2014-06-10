@@ -51,9 +51,9 @@
         <%= render 'volunteers/volunteers_project', proyecto: proyecto %>
       </div>
 
-      <div class="col-xs-12 col-sm-12 text-left">
-        <div class="col-xs-4"><%= tweet_button(url: proyecto_path(proyecto, only_path: false), text: 'Colabora con esta inciativa!', via: '', count: 'none')  %></div>
-        <div class="col-xs-8"><%= like_button('1500444366835135', send: true, href: proyecto_path(proyecto, only_path: false)) %></div>
+      <div class="col-xs-12 col-sm-12">
+        <div class="col-xs-4 text-left"><%= tweet_button(url: proyecto_path(proyecto, only_path: false), text: 'Colabora con esta inciativa!', via: '', count: 'none')  %></div>
+        <div class="col-xs-8 text-right"><%= like_button('1500444366835135', send: true, href: proyecto_path(proyecto, only_path: false)) %></div>
       </div>
       <% if proyecto.aportable? %>
           <div class="col-xs-12 margin-xxs">
