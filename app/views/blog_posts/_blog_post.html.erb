@@ -1,34 +1,42 @@
-<div id="blog_post_<%= blog_post.id %>" class="row">
-  <h2><%= blog_post.title %>
-    <div class="pull-right">
-      <% if current_user_admin? && !blog_post.approved? %>
-          <%= link_to "Publicar", approve_blog_post_path(blog_post),id:'btn_approve_' + blog_post.id.to_s, method: :put, remote: true, class: 'btn btn-success btn-sm' %>
-      <% end %>
-      <% if current_user_bog_editor? || current_user_admin? %>
-          <%= link_to "Editar", edit_blog_post_path(blog_post), class: 'btn btn-default btn-sm' %>
-      <% end %>
-      <% if current_user_admin? %>
-          <%= link_to "Borrar", blog_post, method: :delete,
-                      data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning btn-sm' %>
-      <% end %>
-    </div>
-  </h2>
-  <% unless blog_post.approved? %>
-      <span id="pendiente_aprovacion" class="label label-warning">Pendiente de aprobación</span>
-  <% end %>
-  <%= blog_post.content.html_safe %>
-  <div class="well clearfix">
-    <% unless blog_post.proyecto.nil? %>
-        <div class="pull-left">
-          <small>Proyecto: <%= link_to blog_post.proyecto.titulo, blog_post.proyecto %></small>
-        </div>
+<div class="wrapper">
+  <div id="blog_post_<%= blog_post.id %>" class="row">
+    <h2><%= blog_post.title %>
+      <div class="pull-right">
+        <% if current_user_admin? && !blog_post.approved? %>
+            <%= link_to "Publicar", approve_blog_post_path(blog_post), id: 'btn_approve_' + blog_post.id.to_s, method: :put, remote: true, class: 'btn btn-success btn-sm' %>
+        <% end %>
+        <% if current_user_bog_editor? || current_user_admin? %>
+            <%= link_to "Editar", edit_blog_post_path(blog_post), class: 'btn btn-default btn-sm' %>
+        <% end %>
+        <% if current_user_admin? %>
+            <%= link_to "Borrar", blog_post, method: :delete,
+                        data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning btn-sm' %>
+        <% end %>
+      </div>
+    </h2>
+    <% unless blog_post.approved? %>
+        <span id="pendiente_aprovacion" class="label label-warning">Pendiente de aprobación</span>
     <% end %>
-    <div class="pull-right">
-      <small>Publicado por <%= blog_post.author %> # <%= blog_post.updated_at.strftime("%d/%m/%Y") %></small>
+    <div class="row">
+      <div class="col-xs-12">
+        <%= blog_post.content.html_safe %>
+      </div>
     </div>
-    <br>
-
-    <div class="pull-right">
+    <div class="breadcrumb">
+      <div class="row">
+        <% unless blog_post.proyecto.nil? %>
+            <div class="col-xs-6 text-left">
+              <small>Proyecto: <%= link_to blog_post.proyecto.titulo, blog_post.proyecto %></small>
+            </div>
+        <% end %>
+        <div class="col-xs-6 text-right">
+          <small>Publicado por <%= blog_post.author %> # <%= blog_post.updated_at.strftime("%d/%m/%Y") %></small>
+        </div>
+        <div class="col-xs-12">
+          <div class="col-xs-4 text-left"><%= tweet_button(url: blog_post_path(blog_post, only_path: false), text: 'Nuevo artículo en Microfinanciaciones CEU!', via: '', count: 'none') %></div>
+          <div class="col-xs-8 text-right"><%= like_button('1500444366835135', send: true, href: blog_post_path(blog_post, only_path: false)) %></div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
