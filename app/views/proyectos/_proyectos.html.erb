@@ -3,20 +3,22 @@
     <thead>
     <tr>
       <th><%= sortable "titulo", "Titulo" %></th>
-      <th><%= sortable "cantidad_total", "Total" %></th>
-      <th>Aportaciones</th>
+      <th><span title="objetivo a recaudar"><%= sortable "cantidad_total", "Total" %></span></th>
+      <th><span title="€ recaudados">Aportaciones</span></th>
+      <th><span title="voluntarios inscritos"><%= 'Voluntario en' %></span> </th>
       <th><%= sortable "fin_aportaciones", "Fin Aportaciones" %></th>
       <th><%= sortable "fecha_inicio", "Fecha Inicio" %></th>
       <th><%= sortable "fecha_fin", "Fecha Fin" %></th>
-      <th><%= sortable "visible", "Visible" %></th>
+      <th><span title="indica si el proyecto puede ser visto por los usuarios"><%= sortable "visible", "Visible" %></span></th>
     </tr>
     </thead>
     <tbody>
     <% @proyectos.each do |proyecto| %>
         <tr data-link="<%= proyecto_path(proyecto) %>" class="<%= proyecto.assign_class %>">
           <td><%= link_to proyecto.titulo, proyecto %></td>
-          <td><%= proyecto.cantidad_total.to_i %>&euro;</td>
-          <td><%= proyecto.total_collected.to_i %>&euro;</td>
+          <td class="text-center"><%= proyecto.cantidad_total.to_i %>&euro;</td>
+          <td class="text-center"><%= proyecto.total_collected.to_i %>&euro;</td>
+          <td class="text-center"><%= proyecto.volunteers.count.to_i %></td>
           <td>
             <% if proyecto.past? %>Cerrado hace
             <% else %> Queda

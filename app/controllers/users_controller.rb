@@ -86,7 +86,7 @@ class UsersController < ApplicationController
 
   def delete
     @user = User.find(params[:id])
-    @user.update_attribute(:email, @user.id + '-' + @user.email)
+    @user.update_attribute(:email, @user.id.to_s + '-' + @user.email)
     @user.carts.each do |c|
       c.deleted_user
     end

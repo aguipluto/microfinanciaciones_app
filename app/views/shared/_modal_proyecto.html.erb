@@ -27,10 +27,10 @@
                     Colaborar con
                   </div>
                 </div>
-                <div class="col-xs-7" id="divSlider">
-                  <%= range_field_tag :aportacion, 5, min: 5, max: 80, id: 'aportationSlider', class: 'form-control aportationSlider' %>
+                <div class="col-xs-7" id="divSlider" title="desliza la barra para aportar">
+                  <%= range_field_tag :aportacion, 5, min: 5, max: 100, id: 'aportationSlider', class: 'form-control aportationSlider' %>
                 </div>
-                <div id="aportationInfo" class="aportationInfo col-xs-2 large text-primary bold text-left">5€</div>
+                <div id="aportationInfo" title="cantidad de la donación" class="aportationInfo col-xs-2 large text-primary bold text-left">5€</div>
               </div>
               <div class="form-group">
                 <%= submit_tag 'Colaborar', class: 'btn btn-primary btn-block' %>

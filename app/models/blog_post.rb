@@ -4,6 +4,9 @@ class BlogPost < ActiveRecord::Base
 
   default_scope -> { order('updated_at DESC') }
 
+  validates :title, presence: true, length: {minimum: 3}
+  validates :content, presence: true, length: {minimum: 5}
+
   def assign_class
     if approved
       'success'

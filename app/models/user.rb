@@ -63,7 +63,7 @@ class User < ActiveRecord::Base
     if self.deleted?
       'Usuario borrado'
     else
-      'Usuario' + self.id.to_s
+      'Usuario ' + self.id.to_s
     end
   end
 
@@ -109,8 +109,9 @@ class User < ActiveRecord::Base
   private
 
   def dni_letter_must_match_number
+    self.nif = nif.upcase!
     if "TRWAGMYFPDXBNJZSQVHLCKE"[nif[0..7].to_i % 23].chr != nif[8] && "TRWAGMYFPDXBNJZSQVHLCKE"[nif[0..7].to_i % 23].chr != nif[9]
-      errors.add(:nif, "no parece correcto")
+      errors.add(:nif, "El dni no parece correcto")
     end
   end
 

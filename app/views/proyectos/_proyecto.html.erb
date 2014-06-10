@@ -59,8 +59,8 @@
           <div class="col-xs-12 margin-xxs">
             <%= render 'users/voluunter_form', proyecto: proyecto %>
           </div>
-          <div class="col-xs-12">
-            <%= link_to 'Colaborar', modal_proyecto_path(proyecto), remote: true, class: 'btn btn-xs btn-info btn-block' %>
+          <div class="col-xs-12" title="pulsa para +info y aporta al proyecto">
+            <%= link_to 'Colabora', modal_proyecto_path(proyecto), remote: true, class: 'btn btn-xs btn-info btn-block' %>
           </div>
       <% else %>
           <div class="col-xs-12 label label-success label-sm text-center margin-top-sm">
