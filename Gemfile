@@ -16,7 +16,7 @@ gem 'activemerchant'
 gem 'wkhtmltopdf-binary'
 gem "wicked_pdf"
 gem "wkhtmltopdf-heroku"
-gem 'social-share-button'
+#gem 'social-share-button'
 gem "social-buttons", '~> 0.3'
 gem 'remotipart', '~> 1.2'
 gem 'carrierwave'
