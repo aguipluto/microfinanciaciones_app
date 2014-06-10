@@ -44,7 +44,8 @@
         <%= render 'volunteers/volunteers_project', proyecto: proyecto %>
       </div>
       <div class="col-xs-6 text-left">
-        <%= social_share_button_tag('Colabora tú también con esta iniciativa CEU: ' + proyecto.titulo, :url => proyecto_path(proyecto, only_path: false)) %>
+        <%= tweet_button(url: proyecto_path(proyecto, only_path: false), text: 'Colabora con esta inciativa!', via: '', count: 'none')  %>
+        <%= like_button('1500444366835135', send: true, href: proyecto_path(proyecto, only_path: false)) %>
       </div>
       <div class="col-xs-6 text-right">
         <% if signed_in? && current_user.admin? %>
