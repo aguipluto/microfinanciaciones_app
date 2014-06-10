@@ -69,7 +69,7 @@ class ProyectosController < ApplicationController
     @cartitem = CartItem.new(proyecto_id: @proyecto.id)
 
     respond_to do |format|
-      format.json { render :json => @proyecto }
+      #format.json { render :json => @proyecto }
       format.html
     end
   end
