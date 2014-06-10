@@ -1,5 +1,7 @@
 class Proyecto < ActiveRecord::Base
   include ActionView::Helpers::DateHelper
+  acts_as_taggable
+
   belongs_to :user
   has_many :cart_items
   has_many :blog_posts

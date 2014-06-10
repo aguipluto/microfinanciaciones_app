@@ -1,7 +1,15 @@
 class StaticPagesController < ApplicationController
 
   def home
-    @proyectos = Proyecto.aportables
+    if params[:tag]
+      @proyectos = Proyecto.aportables.tagged_with(params[:tag])
+    else
+      @proyectos = Proyecto.aportables
+    end
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def help

@@ -6,6 +6,7 @@ MicrofinanciacionesApp::Application.routes.draw do
   resources :proyectos do
     collection do
       get 'pb'
+      get 'pb/:tag', to: 'proyectos#pb', as: 'tag'
     end
     member do
       get 'modal'
@@ -54,6 +55,7 @@ MicrofinanciacionesApp::Application.routes.draw do
   match '/about', to: 'static_pages#about', via: 'get'
   match '/legal', to: 'static_pages#legal', via: 'get'
   root to: 'static_pages#home'
+  match 'home/:tag', to: 'static_pages#home', via: 'get', as: 'category'
   match '/signup', to: 'users#new', via: 'get'
   match '/signin', to: 'sessions#new', via: 'get'
   match '/signout', to: 'sessions#destroy', via: 'delete'

@@ -49,6 +49,7 @@ gem 'exception_notification'
 gem 'rmagick'
 gem 'ckeditor'
 gem 'mini_magick'
+gem 'acts-as-taggable-on'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

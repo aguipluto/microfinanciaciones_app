@@ -51,12 +51,18 @@ class ProyectosController < ApplicationController
   end
 
   def pb
+    if(params[:tag])
+      f = Proyecto.tagged_with(params[:tag])
+    else
+      f = Proyecto.all
+    end
+
     if (params[:select].nil? || params[:select] == 'Todos')
-      @proyectos = Proyecto.visibles(params[:search])
+      @proyectos = f.visibles(params[:search])
     elsif params[:select] == 'Activos'
-      @proyectos = Proyecto.aportables(params[:search])
+      @proyectos = f.aportables(params[:search])
     elsif params[:select] == 'Cerrados'
-      @proyectos = Proyecto.no_aportables(params[:search])
+      @proyectos = f.no_aportables(params[:search])
     end
     respond_to do |format|
       format.js
@@ -115,7 +121,7 @@ class ProyectosController < ApplicationController
   def proyecto_params
     params.require(:proyecto).permit(:titulo, :descripcion_corta, :descripcion_larga, :lugar, :fecha_inicio,
                                      :fecha_fin, :cantidad_total, :inicio_aportaciones, :fin_aportaciones, :attachments_array,
-                                     :visible)
+                                     :visible, :tag_list)
   end
 
   def sort_column

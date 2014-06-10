@@ -39,8 +39,9 @@
 
   </div>
 
-  <% @button_styles = "btn-xs" %>
-  <%= render 'proyectos/row_projects' %>
+  <div id="home_row_projects">
+    <%= render 'proyectos/row_projects' %>
+  </div>
 
   <% @proyectos.each do |p| %>
       <%= render '/shared/modal_proyecto', proyecto: p %>

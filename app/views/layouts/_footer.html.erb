@@ -1,10 +1,18 @@
 <hr>
 <footer class="container">
   <div class="col-xs-12">
-    <p>
 
-    <div class="col-sm-4">
+    <div class="col-sm-2">
       <%= link_to 'Información legal', legal_path %>
+    </div>
+    <div class="col-sm-2">
+      Categorías:
+      <div class="tag-cloud">
+        <% tag_cloud Proyecto.tag_counts(limit: 5).order('tags_count DESC'), %w[s m l] do |tag, css_class| %>
+            <%= link_to tag.name, category_path(tag.name), class: css_class, remote: true %>
+            <br/>
+        <% end %>
+      </div>
     </div>
     <div class="col-sm-4 small text-info">
       Microfinanciaciones by Antonio Aguilar
@@ -12,7 +20,6 @@
     <div class="col-sm-4">
       <%= link_to image_tag("logo-fundacion-ceu.gif", alt: "Fundación Universitaria San Pablo CEU", class: "img-responsive"), 'http://www.ceu.es/' %>
     </div>
-    </p>
   </div>
   <script>
       (function (i, s, o, g, r, a, m) {

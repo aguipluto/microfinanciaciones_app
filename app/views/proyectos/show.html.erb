@@ -24,7 +24,7 @@
 
   <div class="panel panel-default">
     <!--TODO poner categoría a proyectos-->
-    <div class="panel-heading clearfix">Categoria</div>
+    <div class="panel-heading clearfix"><%= 'Categoría'.pluralize(@proyecto.tag_list.count) %>: <%= raw @proyecto.tag_list.map { |t| link_to(t, tag_proyectos_path(t)) }.join(', ') %></div>
     <div class="panel-body clearfix">
       <div class="col-sm-3 col-xs-7">
         <span class="label-muted label-lg media-object">
