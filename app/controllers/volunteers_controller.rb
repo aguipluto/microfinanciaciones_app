@@ -1,6 +1,6 @@
 class VolunteersController < ApplicationController
   before_action :signed_in_user
-  before_action :admin_user, only: [:index, :update]
+  before_action :admin_user, only: [:index, :update, :show]
 
   def create
     @proyecto = Proyecto.find(params[:volunteer][:proyecto_id])
@@ -18,6 +18,14 @@ class VolunteersController < ApplicationController
         format.html { redirect_to volunteers_path }
         format.js
       end
+    end
+  end
+
+  def show
+    @volunteer = Volunteer.find(params[:id])
+    respond_to do |format|
+      format.html { redirect_to @volunteer.user }
+      format.js
     end
   end
 

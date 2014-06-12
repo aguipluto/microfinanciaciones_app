@@ -3,7 +3,6 @@
     <thead>
     <tr>
       <th><%= sortable 'users.family_name', "Voluntario" %></th>
-      <th><%= sortable 'users.email', "Email" %></th>
       <th><%= sortable 'users.birthdate', "Edad" %></th>
       <th><%= sortable 'proyectos.titulo', "Proyecto" %></th>
       <th><%= sortable 'volunteers.status', "Estado" %></th>
@@ -14,7 +13,6 @@
     <% @volunteers.each do |volunteer| %>
         <tr>
           <td><%= link_to volunteer.user.family_name + ', ' + volunteer.user.name, volunteer.user %></td>
-          <td><%= volunteer.user.email %></td>
           <td><%= time_ago_in_words(volunteer.user.birthdate) %></td>
           <td><%= link_to volunteer.proyecto.titulo, volunteer.proyecto %></td>
           <td>
@@ -25,7 +23,7 @@
             <% end %>
           </td>
           <td><%= volunteer.created_at.strftime("%d/%m/%Y") %></td>
-          <td><td><%= link_to 'Responder', volunteer, remote: true, class: 'btn btn-default btn-xs' %></td></td>
+          <td><%= link_to 'Responder', volunteer, remote: true, class: 'btn btn-default btn-xs' %></td>
         </tr>
     <% end %>
     </tbody>
