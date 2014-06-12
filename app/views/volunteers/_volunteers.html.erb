@@ -25,6 +25,7 @@
             <% end %>
           </td>
           <td><%= volunteer.created_at.strftime("%d/%m/%Y") %></td>
+          <td><td><%= link_to 'Responder', volunteer, remote: true, class: 'btn btn-default btn-xs' %></td></td>
         </tr>
     <% end %>
     </tbody>
