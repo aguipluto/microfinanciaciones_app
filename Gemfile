@@ -50,6 +50,7 @@ gem 'rmagick'
 gem 'ckeditor'
 gem 'mini_magick'
 gem 'acts-as-taggable-on'
+gem 'omniauth-facebook'
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

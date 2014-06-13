@@ -67,6 +67,8 @@ MicrofinanciacionesApp::Application.routes.draw do
   match '/contact', to: 'suggests#new', via: 'get'
   match '/deleteAttachment', to: 'proyectos#destroy_attachment', via: 'delete'
 
+  get 'auth/:provider/callback', to: 'sessions#createFb'
+
   get '*path' => redirect('/')
 
   # The priority is based upon order of creation: first created -> highest priority.

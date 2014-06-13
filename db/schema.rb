@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140612161454) do
+ActiveRecord::Schema.define(version: 20140613091722) do
 
   create_table "attachments", force: true do |t|
     t.datetime "created_at"
@@ -192,6 +192,11 @@ ActiveRecord::Schema.define(version: 20140612161454) do
     t.string   "password_reset_token"
     t.datetime "password_reset_send"
     t.boolean  "deleted",              default: false
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "fb_name"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
