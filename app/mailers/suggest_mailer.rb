@@ -1,5 +1,5 @@
 class SuggestMailer < ActionMailer::Base
-  default from: "noreply@microfinanciacionesceu.com"
+  default from: "contacte@microfinanciacionesceu.com"
 
   def answer_email(suggest)
     @suggest = suggest

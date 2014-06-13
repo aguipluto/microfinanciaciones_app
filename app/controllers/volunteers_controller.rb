@@ -21,6 +21,19 @@ class VolunteersController < ApplicationController
     end
   end
 
+  def send_answer
+    @volunteer = Volunteer.find(params[:id])
+    if @volunteer.update_attributes(volunteers_params)
+      VolunteerMailer.answer_email(@volunteer).deliver!
+      respond_to do |format|
+        format.html { redirect_to volunteers_path }
+        format.js
+      end
+    else
+      render 'volunteers'
+    end
+  end
+
   def show
     @volunteer = Volunteer.find(params[:id])
     respond_to do |format|
@@ -46,9 +59,10 @@ class VolunteersController < ApplicationController
     end
   end
 
+
   private
   def volunteers_params
-    params.require(:volunteer).permit(:status)
+    params.require(:volunteer).permit(:status, :answer)
   end
 
   def sort_column

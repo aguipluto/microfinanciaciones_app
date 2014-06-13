@@ -37,7 +37,11 @@ MicrofinanciacionesApp::Application.routes.draw do
     end
   end
   resources :password_ressets
-  resources :volunteers
+  resources :volunteers do
+    member do
+      put 'send_answer'
+    end
+  end
 
   resources :orders do
     new do
@@ -54,6 +58,7 @@ MicrofinanciacionesApp::Application.routes.draw do
   match '/help', to: 'static_pages#help', via: 'get'
   match '/about', to: 'static_pages#about', via: 'get'
   match '/legal', to: 'static_pages#legal', via: 'get'
+  match '/cookies_info', to: 'static_pages#cookies_info', via: 'get'
   root to: 'static_pages#home'
   match 'home/:tag', to: 'static_pages#home', via: 'get', as: 'category'
   match '/signup', to: 'users#new', via: 'get'

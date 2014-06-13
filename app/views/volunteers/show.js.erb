@@ -1,2 +1,2 @@
 $('.modal-volunteers-container').html('<%= escape_javascript render 'volunteers/modal_volunteer', volunteer: @volunteer %>');
-$('#modalVolunteer-' + <%= @proyecto.id %>).modal('show')
+$('#modalVolunteer-' + <%= @volunteer.id %>).modal('show')

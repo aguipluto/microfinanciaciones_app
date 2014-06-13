@@ -1,0 +1,4 @@
+$('#modalVolunteer-<%= @volunteer.id %>').modal('hide');
+$('#advise-container').html('<div class="alert alert-success alert-dismissable">Email enviado correctamente' +
+    '<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button></div>');
+$('td#volunteer-<%= @volunteer.id %>').html('<%= escape_javascript render 'volunteers/btn_show_email', volunteer: @volunteer %>');

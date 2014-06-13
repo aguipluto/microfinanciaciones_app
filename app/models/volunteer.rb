@@ -8,6 +8,7 @@ class Volunteer < ActiveRecord::Base
 
   default_scope -> { order('volunteers.created_at DESC') }
 
+
   def self.search(search)
     if search
       where('users.name LIKE ? OR users.family_name LIKE ? OR proyectos.titulo LIKE ?', "%#{search}%", "%#{search}%", "%#{search}%")

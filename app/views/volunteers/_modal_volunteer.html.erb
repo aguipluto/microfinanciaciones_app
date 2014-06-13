@@ -6,13 +6,55 @@
       <div class="modal-header">
         <div id="modalId" style="visibility: hidden"></div>
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="text-center"><%= link_to volunteer.user.name_second, volunteer.user %></h4>
+        <h4 class="text-center">Voluntario: <%= link_to volunteer.user.name_second, volunteer.user, target: '_blank' %></h4>
       </div>
       <div class="modal-body">
-
+        <div id="error_explanation_js_suggest" class="hidden">
+          <div class="alert alert-danger">
+            La respuesta está vacía
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            Proyecto: <strong><%= link_to volunteer.proyecto.titulo, volunteer.proyecto, target: '_blank' %></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            Inscrito el: <strong><%= dateAndTime(volunteer.created_at) %></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            Último estado: <strong><%= volunteer.status %> el <%= dateAndTime(volunteer.updated_at) %></strong>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            Email: <strong><%= volunteer.user.email %></strong>
+          </div>
+        </div>
+        <%= form_for volunteer, url: {action: "send_answer"}, html:{id: "volunteer_form_email"}, method: 'put', remote: true, class: 'form form-horizontal' do |v| %>
+            <% if volunteer.answer.blank? %>
+                <div class="form-group">
+                  Respuesta
+                  <%= v.text_area :answer, rows: 4, class: 'form-control', placeholder: 'Email de respuesta' %>
+                </div>
+                <div class="form-group">
+                  <%= v.submit 'Enviar', class: 'btn btn-primary btn-block ' %>
+                </div>
+            <% else %>
+                <div class="form-group">
+                  Email enviado
+                  <p class="form-control-static">
+                    <strong><%= simple_format volunteer.answer %></strong>
+                  </p>
+                </div>
+            <% end %>
+        <% end %>
       </div>
       <div class="modal-footer">
-
+        <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Cerrar</button>
       </div>
     </div>
     <!-- /.modal-content -->

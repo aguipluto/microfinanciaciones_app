@@ -23,7 +23,13 @@
             <% end %>
           </td>
           <td><%= volunteer.created_at.strftime("%d/%m/%Y") %></td>
-          <td><%= link_to 'Responder', volunteer, remote: true, class: 'btn btn-default btn-xs' %></td>
+          <td id="volunteer-<%= volunteer.id %>">
+            <% if volunteer.answer.blank? %>
+                <%= link_to 'Responder', volunteer, remote: true, class: 'btn btn-default btn-xs' %>
+            <% else %>
+                <%= render 'volunteers/btn_show_email', volunteer: volunteer %>
+            <% end %>
+          </td>
         </tr>
     <% end %>
     </tbody>

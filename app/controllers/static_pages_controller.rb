@@ -23,4 +23,7 @@ class StaticPagesController < ApplicationController
 
   def legal
   end
+
+  def cookies_info
+  end
 end
