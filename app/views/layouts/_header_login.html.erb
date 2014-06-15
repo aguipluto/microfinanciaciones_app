@@ -21,7 +21,7 @@
         </div>
         <div class="form-group">
           <%= f.submit "Iniciar sesión", class: "btn btn-primary btn-block" %>
-          <%= link_to '/auth/facebook', id: 'sign_in', class: 'btn btn-facebook btn-block' do %>
+          <%= link_to '/auth/facebook', id: 'fb_sign_in', class: 'btn btn-facebook btn-block' do %>
               <i class="fa fa-facebook"></i> | Inicie sesión con FACEBOOK
           <% end %>
           <%= link_to "¿Olvidó su contraseña?", new_password_resset_path, class: 'btn btn-link btn-block' %>
