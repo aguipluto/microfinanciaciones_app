@@ -10,7 +10,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Contacte</h4>
+        <h4 class="modal-title" id="myModalLabel"><i class="fa fa-envelope-o"></i> Contacte</h4>
       </div>
       <div class="modal-body">
         <%= form_for(Suggest.new, html: {id: "suggest_form", class: ""}, remote: true) do |f| %>
@@ -49,7 +49,9 @@
               <%= f.text_area :suggestion, class: "form-control", placeholder: "Intente dar los máximos detalles posibles sobre su consulta, sugerencia o proposición.", rows: 5 %>
             </div>
             <div class="form-group">
-              <%= f.submit "Enviar", class: "btn btn-primary btn-block", id: "suggest_submit" %>
+              <%= f.button type:'submit', class: "btn btn-primary btn-block", id: "suggest_submit" do %>
+                  <i class="fa fa-send-o"></i> Enviar
+              <% end %>
               <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Cerrar</button>
             </div>
         <% end %>

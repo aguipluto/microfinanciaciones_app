@@ -75,13 +75,17 @@
                   <span class="glyphicon glyphicon-user"></span> <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= link_to "Perfil de usuario", current_user %></li>
-                  <li><%= link_to "Carrito", session_cart %></li>
+                  <li><%= link_to current_user do %>
+                        <i class="fa fa-user"></i> Perfil de usuario
+                    <% end %></li>
+                  <li><%= link_to session_cart do %>
+                        <i class="fa fa-shopping-cart"></i> Carrito
+                    <% end %></li>
                   <li><%= link_to aportations_user_path(current_user) do %>
-                        Aportaciones
+                        <i class="fa fa-dollar"></i> Aportaciones
                     <% end %></li>
                   <li><%= link_to aportations_user_path(current_user) + '#volunteers' do %>
-                         Voluntario
+                        <i class="fa fa-users"></i> Aportaciones
                     <% end %></li>
                   <li class="divider"></li>
                   <li><%= link_to signout_path, method: 'delete' do %>
@@ -94,14 +98,28 @@
                   <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-wrench"></span><b class="caret"></b></a>
                     <ul class="dropdown-menu">
-                      <li><%= link_to "Aportaciones", cartitem_indexadmin_path %></li>
-                      <li><%= link_to "Blog", blog_posts_path %></li>
-                      <li><%= link_to "Buzón" + suggestsNotShown, '/suggests', id: "unread_suggests" %></li>
-                      <li><%= link_to 'Pagos', orders_path %></li>
-                      <li><%= link_to "Proyectos", proyectos_path %></li>
-                      <li><%= link_to "Usuarios", users_path %></li>
-                      <li><%= link_to "Voluntarios", volunteers_path %></li>
-                    </ul>
+                      <li><%= link_to cartitem_indexadmin_path do %>
+                            <i class="fa fa-dollar"></i> Aportaciones
+                        <% end %></li>
+                      <li><%= link_to blog_posts_path do %>
+                            <i class="fa fa-book"></i> Blog
+                        <% end %></li>
+                      <li><%= link_to '/suggests', id: "unread_suggests" do %>
+                            <i class="fa fa-inbox"></i> Buzón <%= suggestsNotShown %>
+                        <% end %></li>
+                      <li><%= link_to orders_path do %>
+                            <i class="fa fa-credit-card"></i> Pagos
+                        <% end %></li>
+                      <li><%= link_to proyectos_path do %>
+                            <i class="fa fa-spinner"></i> Proyectos
+                        <% end %></li>
+                      <li><%= link_to users_path do %>
+                            <i class="fa fa-users"></i> Usuarios
+                        <% end %></li>
+                      <li><%= link_to volunteers_path do %>
+                            <i class="fa fa-ellipsis-h"></i> Voluntarios</li>
+                        <% end %>
+                        </ul>
                   </li>
               <% end %>
           <% elsif current_page?(signin_path) %>

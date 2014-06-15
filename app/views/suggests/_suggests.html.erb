@@ -6,7 +6,7 @@
       <th><%= sortable "email", "Email" %></th>
       <th><%= sortable "title", "Asunto" %></th>
       <th><%= sortable "created_at", "Fecha" %></th>
-      <th><%= "Respondido" %></th>
+      <th class="text-center"><%= sortable 'answer', "Respondido" %></th>
     </tr>
     </thead>
     <tbody>
@@ -22,9 +22,9 @@
           <td><%= suggest.email %></td>
           <td><%= suggest.title %></td>
           <td><%= dateAndTime suggest.created_at %></td>
-          <td id="tick-suggest-answered-<%= suggest.id %>" style="text-align: center; color: green">
+          <td id="tick-suggest-answered-<%= suggest.id %>" class="text-center">
             <% if suggest.answered? %>
-                <span class="glyphicon glyphicon-ok"></span>
+                <span class="label label-success">Respondido</span>
             <% end %>
           </td>
         </tr>

@@ -56,6 +56,7 @@ class Order < ActiveRecord::Base
   private
 
   def dni_letter_must_match_number
+    self.invoice_nif = self.invoice_nif.upcase
     if "TRWAGMYFPDXBNJZSQVHLCKE"[invoice_nif[0..7].to_i % 23].chr != invoice_nif[8] && "TRWAGMYFPDXBNJZSQVHLCKE"[invoice_nif[0..7].to_i % 23].chr != invoice_nif[9]
       errors.add(:invoice_nif, "no parece correcto")
     end

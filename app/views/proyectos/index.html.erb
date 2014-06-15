@@ -6,12 +6,16 @@
   </div>
   <div class="col-md-8" id="divBtnNuevoProyecto">
     <%= form_tag proyectos_path, method: "get", class: "form-inline formBusqueda" do %>
-        <%= hidden_field_tag :direction, params[:direction]  %>
-        <%= hidden_field_tag :sort, params[:sort]  %>
+        <%= hidden_field_tag :direction, params[:direction] %>
+        <%= hidden_field_tag :sort, params[:sort] %>
         <p>
-          <%= text_field_tag :search, params[:search], class:'form-control', placeholder:'Buscar', id:'inputBuscar' %>
-          <%= submit_tag "Buscar", class:'btn btn-default', name:nil %>
-          <%= link_to "Nuevo", new_proyecto_path, class: 'btn btn-primary', id: 'btnNuevoProyecto' %>
+          <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: 'Buscar', id: 'inputBuscar' %>
+          <%= button_tag type: 'submit', class: 'btn btn-default', name: nil do %>
+              <i class="fa fa-search"></i> Buscar
+          <% end %>
+          <%= link_to new_proyecto_path, class: 'btn btn-primary', id: 'btnNuevoProyecto' do %>
+              <i class="fa fa-plus"></i> Nuevo
+          <% end %>
         </p>
     <% end %>
   </div>

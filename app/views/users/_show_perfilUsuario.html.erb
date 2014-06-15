@@ -15,7 +15,7 @@
 
         <p class="form-control-static"><%= @user.email %></p>
       </div>
-      <% if @user.nif %>
+      <% if !@user.nif.blank? %>
           <div class="form-group">
             <label class="control-label">NIF/DNI</label>
 

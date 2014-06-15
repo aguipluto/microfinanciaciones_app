@@ -5,12 +5,14 @@
     <h2>Buzón</h2>
   </div>
   <div class="col-md-8" id="divBtnNuevoUsuario">
-    <%= form_tag users_path, method: "get", class: "form-inline formBusqueda" do %>
+    <%= form_tag suggests_path, method: "get", class: "form-inline formBusqueda" do %>
         <%= hidden_field_tag :direction, params[:direction]  %>
         <%= hidden_field_tag :sort, params[:sort]  %>
         <p>
           <%= text_field_tag :search, params[:search], class:'form-control', placeholder:'Buscar', id:'inputBuscar' %>
-          <%= submit_tag "Buscar", class:'btn btn-default', name:nil %>
+          <%= button_tag type:'submit', class: 'btn btn-default', name: nil do %>
+              <i class="fa fa-search"></i> Buscar
+          <% end %>
         </p>
     <% end %>
   </div>

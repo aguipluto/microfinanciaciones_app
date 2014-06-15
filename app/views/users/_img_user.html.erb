@@ -1,3 +1,5 @@
 <% if @user.image? %>
     <%= image_tag @user.image_url.to_s, class: "img-thumbnail" %>
+<% elsif @user.provider = 'facebook' %>
+    <%= image_tag(@user.fb_image_normal, class: 'img-thumbnail') %>
 <% end %>
