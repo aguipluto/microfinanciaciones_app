@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   before_create :create_remember_token
   before_save do
     self.email = email.downcase
-    self.nif = nif.to_s.upcase.gsub(' ', '').gsub('-', '').gsub('/','')
+    self.nif = nif.to_s.upcase.gsub(' ', '').gsub('-', '').gsub('/', '')
   end
 
   validates :terms_of_service, :acceptance => true
@@ -24,8 +24,8 @@ class User < ActiveRecord::Base
   validates :family_name, presence: true, length: {minimun: 3, maximum: 50}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true,
-           format: {with: VALID_EMAIL_REGEX},
-          uniqueness: {case_sensitive: false}
+            format: {with: VALID_EMAIL_REGEX},
+            uniqueness: {case_sensitive: false}
   has_secure_password
   validates :password, length: {minimum: 6}, :if => :validate_password?
   validates :password_confirmation, presence: true, :if => :validate_password?
@@ -43,15 +43,18 @@ class User < ActiveRecord::Base
     where('(provider = ? AND uid = ?) OR email = ?', auth.provider, auth.uid, auth.info.email).first_or_initialize.tap do |user|
       user.provider = auth.provider
       #Si es un nuevo usuario
+      logger.debug "Person attributes hash: #{auth}"
       if user.email.blank?
         user.email = auth.info.email
         p = SecureRandom.urlsafe_base64[0..7]
         user.password = p
         user.password_confirmation = p
-        user.birthdate = Date.strptime(auth.extra.raw_info.birthday,'%m/%d/%Y')
         user.confirmed = true
         user.name = auth.info.first_name
         user.family_name = auth.info.last_name
+        unless auth.extra.raw_info.birthday.blank?
+          user.birthdate = Date.strptime(auth.birthday, '%m/%d/%Y')
+        end
       end
       user.uid = auth.uid
       user.fb_name = auth.info.name
@@ -130,6 +133,14 @@ class User < ActiveRecord::Base
 
   def not_volunteer!(proyecto)
     self.volunteers.find_by(proyecto_id: proyecto.id).destroy
+  end
+
+  def birthday
+    if !birthdate.blank?
+      birthdate.strftime("%d/%m/%Y")
+    else
+      ''
+    end
   end
 
   private

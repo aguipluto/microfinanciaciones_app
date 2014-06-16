@@ -1,29 +1,44 @@
 <% provide(:title, 'Editar Perfil') %>
 
 
-<div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
-    <h2>Pefil de Usuario</h2>
+<ol class="breadcrumb breadcum-title">Perfil de usuario</ol>
+
+
+<div class="col-sm-9 col-xs-12">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#profile" data-toggle="tab">Perfil</a></li>
+        <li><a href="#edit_profile" data-toggle="tab">Editar Perfil</a></li>
+        <li><a href="#password" data-toggle="tab">Cambiar contraseña</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="profile">
+          <div id="profile_content" class="panel panel-default margin-top-sm">
+            <div class="panel-body">
+              <%= render 'show_perfilUsuario' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="edit_profile">
+          <div id="edit_profile_content" class="panel panel-default margin-top-sm">
+            <div class="panel-body">
+              <%= render 'show_editarPerfilUsuario' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="password">
+          <div id="password_content" class="panel panel-default margin-top-sm">
+            <div class="panel-body">
+              <%= render 'show_changePassword' %>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
-</div>
-
-<div class="row">
-  <ul class="col-sm-3 nav nav-pills nav-stacked">
-    <li id="menuIzqPerfil" class="active"><a href="#">Perfil</a></li>
-    <li id="menuIzqEditar"><a href="#">Editar Perfil</a></li>
-    <li id="menuIzqCambiar"><a href="#">Cambiar contraseña</a></li>
-    <!--<li id="menuIzqPagos"><a href="#">Aportaciones Realizadas</a></li>-->
-    <!--<li id="menuIzqVoluntario"><a href="#">Voluntario en</a></li>-->
-  </ul>
-
-  <%= render 'show_perfilUsuario' %>
-
-  <%= render 'show_editarPerfilUsuario' %>
-
-  <%= render 'show_changePassword' %>
-
-  <!--< render 'show_aportaciones' >-->
-
-  <!--< render 'show_voluntario' >-->
-
 </div>

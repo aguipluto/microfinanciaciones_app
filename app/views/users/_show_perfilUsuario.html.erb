@@ -1,4 +1,4 @@
-<div id="perfilDeUsuario" class="col-sm-7">
+<div id="perfilDeUsuario">
   <%= form_for(@user, html: {class: "col-sm-9 form"}) do |f| %>
       <div class="form-group">
         <label class="control-label">Nombre</label>
@@ -22,11 +22,13 @@
             <p class="form-control-static"><%= @user.nif %></p>
           </div>
       <% end %>
-      <div class="form-group">
-        <label class="control-label">Fecha de nacimiento</label>
+      <% unless @user.birthday.blank? %>
+          <div class="form-group">
+            <label class="control-label">Fecha de nacimiento</label>
 
-        <p class="form-control-static"><%= @user.birthdate.strftime("%d/%m/%Y") %></p>
-      </div>
+            <p class="form-control-static"><%= @user.birthdate.strftime("%d/%m/%Y") %></p>
+          </div>
+      <% end %>
   <% end %>
   <div class="col-sm-3">
     <%= render '/users/img_user' %>

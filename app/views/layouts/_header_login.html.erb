@@ -24,6 +24,9 @@
           <%= link_to '/auth/facebook', id: 'fb_sign_in', class: 'btn btn-facebook btn-block' do %>
               <i class="fa fa-facebook"></i> | Inicie sesión con FACEBOOK
           <% end %>
+          <%= link_to "/auth/google_oauth2", id: "sign_in", class:'btn btn-google-plus btn-block' do %>
+              <i class="fa fa-google"></i> | Inicie sesión con Google
+          <% end %>
           <%= link_to "¿Olvidó su contraseña?", new_password_resset_path, class: 'btn btn-link btn-block' %>
         </div>
     <% end %>

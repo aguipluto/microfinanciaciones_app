@@ -13,7 +13,11 @@
     <% @volunteers.each do |volunteer| %>
         <tr>
           <td><%= link_to volunteer.user.family_name + ', ' + volunteer.user.name, volunteer.user %></td>
-          <td><%= time_ago_in_words(volunteer.user.birthdate) %></td>
+          <td>
+            <% unless volunteer.user.birthdate.blank? %>
+                <%= time_ago_in_words(volunteer.user.birthdate) %>
+            <% end %>
+          </td>
           <td><%= link_to volunteer.proyecto.titulo, volunteer.proyecto %></td>
           <td>
             <%= form_for volunteer, remote: true, class: 'form-inline' do |v| %>

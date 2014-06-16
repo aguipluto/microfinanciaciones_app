@@ -52,6 +52,7 @@ gem 'mini_magick'
 gem 'acts-as-taggable-on'
 gem 'omniauth-facebook'
 gem "font-awesome-rails"
+gem "omniauth-google-oauth2"
 
 group :doc do
   gem 'sdoc', '0.3.20', require: false

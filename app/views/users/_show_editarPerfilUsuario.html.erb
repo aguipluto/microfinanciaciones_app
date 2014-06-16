@@ -1,4 +1,4 @@
-<div id="editarPerfilDeUsuario" class="col-sm-7 well hidden">
+<div id="editarPerfilDeUsuario">
   <%= form_for(@user, remote: false, html: {id: "formulario-editar", multipart: true, class: "col-sm-9 form"}) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
       <div class="form-group">
