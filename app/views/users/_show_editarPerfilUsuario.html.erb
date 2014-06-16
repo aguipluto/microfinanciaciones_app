@@ -30,12 +30,12 @@
       </div>
       <% if current_user.admin? %>
           <div class="form-inline">
-            <div class="checkbox">
+            <div>
               <label>
                 <%= f.check_box :admin %> Administrador</a>
               </label>
             </div>
-            <div class="checkbox">
+            <div>
               <label>
                 <%= f.check_box :blog_editor %> Editor del Blog</a>
               </label>
@@ -45,10 +45,13 @@
       <br>
 
       <div class="form-group">
-        <%= f.submit "Guardar cambios", class: "btn btn-primary" %>
+        <%= f.submit "Guardar cambios", class: "btn btn-primary btn-block" %>
+        <br/>
+        <%= link_to "Borrar perfil", delete_user_path(@user), method: :post,
+                    data: {confirm: "¿Está seguro?"}, class: 'btn btn-warning btn-xs btn-block' %>
       </div>
   <% end %>
-  <div class="col-sm-3">
+  <div class="col-sm-3 text-center">
     <%= render '/users/img_user' %>
   </div>
   <div class="col-sm-3">

@@ -1,6 +1,6 @@
 # encoding: utf-8
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update]
+  before_action :signed_in_user, only: [:edit, :update, :show]
   before_action :correct_user, only: [:edit, :update, :show, :aportations, :delete]
   before_action :admin_user, only: [:index, :destroy, :adm_confirm]
 
@@ -87,6 +87,7 @@ class UsersController < ApplicationController
   def delete
     @user = User.find(params[:id])
     @user.update_attribute(:email, @user.id.to_s + '-' + @user.email)
+    @user.update_attribute(:uid, nil)
     @user.carts.each do |c|
       c.deleted_user
     end
@@ -96,6 +97,7 @@ class UsersController < ApplicationController
     @user.update_attribute(:deleted, true)
     if current_user?(@user)
       sign_out
+      redirect_to root_url
     else
       respond_to do |format|
         format.html do

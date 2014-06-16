@@ -9,6 +9,7 @@
 
   <div class="panel-body">
     <div class="tag-cloud">
+      Categorías:
       <% tag_cloud Proyecto.tag_counts, %w[s m l] do |tag, css_class| %>
           <%= link_to tag.name, tag_proyectos_path(tag.name), class: css_class %>
       <% end %>

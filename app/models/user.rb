@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
         user.name = auth.info.first_name
         user.family_name = auth.info.last_name
         unless auth.extra.raw_info.birthday.blank?
-          user.birthdate = Date.strptime(auth.birthday, '%m/%d/%Y')
+          user.birthdate = Date.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y')
         end
       end
       user.uid = auth.uid

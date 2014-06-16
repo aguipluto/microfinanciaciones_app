@@ -34,12 +34,22 @@
       <div class="tab-content">
         <div class="tab-pane fade in active" id="aportations">
           <div id="aportations_content" class="panel panel-default margin-top-sm">
+            <% if @aportations.count == 0 %>
+                <div class="panel-heading clearfix">
+                  Todavía no has hecho ninguna aportación
+                </div>
+            <% end %>
             <%= render 'users/aportations_table' %>
           </div>
         </div>
 
         <div class="tab-pane fade" id="volunteers">
           <div id="volunteers_content" class="panel panel-default margin-top-sm">
+            <% if @volunteers.count == 0 %>
+                <div class="panel-heading clearfix">
+                  No inscrito como voluntario en ningún proyecto
+                </div>
+            <% end %>
             <%= render 'users/volunteers_table' %>
           </div>
         </div>
