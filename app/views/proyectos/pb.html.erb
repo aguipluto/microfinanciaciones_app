@@ -5,8 +5,8 @@
       Proyectos categoría: <strong><%= params[:tag].to_s %></strong>
   <% end %>
 </ol>
-<div class="panel panel-default">
 
+<div class="panel panel-default margin-lg">
   <div class="panel-body">
     <div class="tag-cloud">
       Categorías:
@@ -27,12 +27,17 @@
           <% end %>
         </div>
     <% end %>
-
-
   </div>
 </div>
-<div id="rows_projects">
-  <%= render 'proyectos/row_projects' %>
-</div>
+
+<% content_for :down_yield do %>
+    <div class="container-fluid down_yield">
+      <div class="container">
+        <div id="rows_projects" class="margin-top-sm">
+          <%= render 'proyectos/row_projects' %>
+        </div>
+      </div>
+    </div>
+<% end %>
 
 <div class="modal-project-container"></div>

@@ -9907,39 +9907,60 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 /* line 110, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+.margin-lg {
+  margin-bottom: 40px !important;
+}
+
+/* line 114, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 .margin-sm {
   margin-bottom: 20px;
 }
 
-/* line 114, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 118, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 .margin-xxs {
   margin-bottom: 3px;
 }
 
-/* line 118, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 122, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 .margin-xs {
   margin-bottom: 10px;
 }
 
-/* line 122, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 126, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 .margin-top-xs {
   margin-top: 10px;
 }
 
-/* line 126, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 130, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 .margin-top-sm {
   margin-top: 20px;
 }
 
-/* line 130, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 134, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+.panel-inverse {
+  border-color: #707579;
+}
+/* line 136, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+.panel-inverse .panel-heading {
+  color: #fff;
+  background-color: #7c8086;
+  border-color: #707579;
+}
+
+/* line 143, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+.no-margin {
+  margin: 0 !important;
+}
+
+/* line 147, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 .anchor {
   display: block;
   position: relative;
-  top: -35px;
+  top: -60px;
   visibility: hidden;
 }
 
-/* line 137, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 154, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 select.date-select {
   width: auto;
   border: 1px solid #cccccc;
@@ -9947,94 +9968,112 @@ select.date-select {
   display: inline-block;
 }
 
-/* line 144, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 161, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 div.date.row {
   margin-left: 0px;
   margin-right: 0px;
 }
 
-/* line 149, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 166, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 .divMensajeValidacion {
   display: none;
 }
 
-/* line 153, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 170, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 #error_explanation_js {
   display: none;
 }
 
-/* line 157, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 174, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 select.select-for-search {
   width: 150px;
 }
 
-/* line 162, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 179, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 .carousel-inner > .item > img {
   margin: 0 auto;
 }
 
-/* line 166, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 183, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 tr[data-link] {
   cursor: pointer;
 }
 
-/* line 176, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+/* line 193, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
 .progress-bar-extracollected {
   background-color: #9ad717;
+}
+
+/* line 197, /home/antonio/microfinanciaciones/app/assets/stylesheets/custom.css.scss */
+footer {
+  margin-bottom: 20px;
 }
 /* line 7, /home/antonio/microfinanciaciones/app/assets/stylesheets/order.css.scss */
 .pagos tfoot tr {
   background-color: #dff0d8;
 }
-/* line 5, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 6, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+.tag_cloud .s {
+  font-size: 0.8em;
+}
+/* line 7, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+.tag_cloud .m {
+  font-size: 1.2em;
+}
+/* line 8, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+.tag_cloud .l {
+  font-size: 1.8em;
+}
+
+/* line 11, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .banner {
   position: relative;
   overflow: auto;
   margin: 0 auto;
 }
 
-/* line 11, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 17, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .banner li {
   list-style: none;
 }
 
-/* line 15, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 21, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .banner ul li {
   float: left;
 }
 
-/* line 19, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 25, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .zeropading {
   padding: 0px;
 }
 
-/* line 23, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 29, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 div.extracollected {
   border: 1px solid #5cb85c;
 }
 
-/* line 27, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 33, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .project-home {
   padding-left: 5px;
   padding-right: 5px;
 }
-/* line 30, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 36, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .project-home h3 {
   margin-top: 5px;
 }
-/* line 33, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 39, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .project-home .recaudado {
   color: #5cb85c;
   font-size: 12px;
 }
-/* line 38, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 44, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .project-home .panel:hover {
   border-width: 2px;
   cursor: pointer;
   border-color: #428bca;
 }
 
-/* line 46, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 52, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .progress-home {
   margin-top: 10px;
   margin-bottom: 0px;
@@ -10044,7 +10083,7 @@ div.extracollected {
   margin-right: auto;
 }
 
-/* line 55, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 61, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .badge-cantidad {
   display: inline-block;
   min-width: 10px;
@@ -10061,7 +10100,7 @@ div.extracollected {
   border: 1px solid #ddd;
 }
 
-/* line 72, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 78, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .proyectoHome {
   border: 1px solid #00aeef;
   border-radius: 7px;
@@ -10072,72 +10111,72 @@ div.extracollected {
   max-width: 400px;
   overflow: hidden;
 }
-/* line 82, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 88, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .proyectoHome:hover {
   background-color: #eeeeee;
   border-width: 2px;
   cursor: pointer;
 }
-/* line 87, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 93, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .proyectoHome #tituloProyecto {
   text-align: center;
 }
-/* line 90, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 96, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .proyectoHome .descripcionCorta {
   margin-top: 20px;
   margin-bottom: 10px;
 }
-/* line 94, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 100, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .proyectoHome .finAportaciones {
   clear: both;
   font-size: 0.8em;
 }
-/* line 98, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 104, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .proyectoHome .social-buttons {
   margin-top: 15px;
 }
 
-/* line 103, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 109, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .cantidadForm {
   width: 270px;
 }
 
 /**********************************************************************************************/
-/* line 108, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 114, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modal-title {
   text-align: center;
   color: #0084b4;
 }
 
-/* line 114, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 120, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modal-project .modal-header {
   padding-top: 10px;
   padding-bottom: 5px;
 }
-/* line 118, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 124, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modal-project .modal-body {
   padding-bottom: 5px;
 }
 
-/* line 123, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 129, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto {
   font-family: 'Ubuntu', sans-serif;
 }
-/* line 125, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 131, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto .modal-dialog {
   max-width: 800px;
 }
-/* line 128, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 134, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto .modal-header {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-/* line 132, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 138, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto .modal-body {
   padding-top: 10px;
   padding-bottom: 2px;
 }
-/* line 136, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 142, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto .modal-footer {
   border-top: 2px;
   font-family: 'Ubuntu', sans-serif;
@@ -10146,45 +10185,45 @@ div.extracollected {
   color: #428bca;
   vertical-align: bottom;
 }
-/* line 144, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 150, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto .modal-footer #colaborarCon {
   float: left;
   margin-right: 5px;
   font-size: 0.95em;
   width: 52%;
 }
-/* line 150, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 156, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto .modal-footer #aportationInfo {
   width: 5%;
   float: left;
   margin-right: 20px;
 }
-/* line 156, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 162, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto .modal-footer #divSlider {
   width: 20%;
   float: left;
   margin-right: 5px;
 }
-/* line 162, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 168, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto .modal-footer #divAportar {
   float: left;
   margin-right: 5px;
 }
-/* line 167, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 173, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto .progress {
   margin-top: 10px;
   margin: 5px;
 }
-/* line 172, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 178, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto .img-container {
   padding-bottom: 10px;
 }
-/* line 174, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 180, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .modalProyecto .img-container .modal-img {
   max-width: 90%;
 }
 
-/* line 181, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 187, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 #modalRecaudado {
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
@@ -10194,7 +10233,7 @@ div.extracollected {
   float: left;
 }
 
-/* line 190, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 196, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 #modalQueda {
   text-align: right;
   width: 50%;
@@ -10202,34 +10241,34 @@ div.extracollected {
 }
 
 /**********************************************************************************************/
-/* line 197, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 203, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .formBusqueda {
   margin-top: 20px;
 }
-/* line 199, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 205, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .formBusqueda input[type="text"] {
   width: 175px;
 }
 
 /*********************************************************************************************/
-/* line 205, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 211, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .btn-delete-img-p {
   position: absolute;
   left: 215px;
   top: 10px;
 }
 
-/* line 211, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 217, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .edit-project-img {
   padding-bottom: 5px;
 }
 
-/* line 215, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 221, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .add-images {
   float: left;
 }
 
-/* line 219, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 225, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .blue-letter {
   ont-family: 'Ubuntu', sans-serif;
   font-weight: bold;
@@ -10239,7 +10278,7 @@ div.extracollected {
 
 /********************************************/
 /*Nuevos*/
-/* line 229, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
+/* line 235, /home/antonio/microfinanciaciones/app/assets/stylesheets/proyectos.css.scss */
 .center-percentage {
   color: #4d5157;
   position: absolute;
@@ -11226,41 +11265,49 @@ fieldset[disabled] .btn-youtube.active {
 }
 
 /* line 26, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
+.down_yield {
+  background-color: #F3F3F9;
+  background-image: url(background.jpg);
+  padding-bottom: 20px;
+  margin: -20px;
+}
+
+/* line 33, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
 .jumbotron-white {
   background-color: white;
 }
-/* line 28, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
+/* line 35, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
 .jumbotron-white h1 {
   color: #7c8086;
 }
 
-/* line 34, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
+/* line 41, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
 .breadcum-title {
   margin-top: 20px;
 }
 
-/* line 38, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
+/* line 45, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
 .label-muted {
   color: #999;
 }
 
-/* line 42, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
+/* line 49, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
 .label-lg {
   font-size: 170%;
 }
 
-/* line 46, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
+/* line 53, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
 .label-sm {
   font-size: 90%;
 }
 
-/* line 50, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
+/* line 57, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
 .label-emphasis {
   background-color: #eee;
   color: #999;
 }
 
-/* line 55, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
+/* line 62, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
 #zenbox_tab {
   cursor: pointer;
   position: fixed;
@@ -11273,13 +11320,13 @@ fieldset[disabled] .btn-youtube.active {
   left: -35px;
 }
 
-/* line 67, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
+/* line 74, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
 .ZenboxTabLeft {
   left: 0;
   background-position: right 0;
 }
 
-/* line 72, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
+/* line 79, /home/antonio/microfinanciaciones/app/assets/stylesheets/static_pages.css.scss */
 .btn-cuadrado {
   border-radius: 0px;
 }
