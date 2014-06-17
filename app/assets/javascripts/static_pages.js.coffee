@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 SliderAportacionChange = () ->
-  $('.aportationSlider').change () ->
+  $(document).on 'change', '.aportationSlider',  (event) ->
     cantidad = $(this).val()
     console.log(cantidad)
     $('.aportationInfo').html(cantidad + '&euro;')

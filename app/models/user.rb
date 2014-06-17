@@ -106,7 +106,7 @@ class User < ActiveRecord::Base
 
   def self.search(search)
     if search
-      where('name LIKE ? OR family_name LIKE ? OR email LIKE ?', true, "%#{search}%", "%#{search}%", "%#{search}%")
+      where('name LIKE ? OR family_name LIKE ? OR email LIKE ? OR nif LIKE ?', true, "%#{search}%", "%#{search}%", "%#{search}%")
     else
       all
     end
