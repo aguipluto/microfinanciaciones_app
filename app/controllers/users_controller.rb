@@ -42,8 +42,8 @@ class UsersController < ApplicationController
 
   def aportations
     @user = User.find(params[:id])
-    @aportations = User.find(params[:id]).cart_items_purchased.paginate(page: params[:page], per_page: 10)
-    @volunteers = current_user.volunteers.paginate(page: params[:page_volunteers], per_page: 10)
+    @aportations = @user.find(params[:id]).cart_items_purchased.paginate(page: params[:page], per_page: 10)
+    @volunteers = @user.volunteers.paginate(page: params[:page_volunteers], per_page: 10)
     respond_to do |format|
       format.html
       format.js
