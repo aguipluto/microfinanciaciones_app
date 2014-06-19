@@ -16,6 +16,7 @@ class SessionsController < ApplicationController
     elsif user
       UserMailer.confirmation_email(user).deliver!
       flash[:danger] = 'Email pendiente de confirmación. Por favor, revise su bandeja de entrada.'
+      redirect_to root_url
     else
       flash[:danger] = 'Usuario y/o contraseña no correctos'
       redirect_to root_url
