@@ -5,7 +5,6 @@
       <th><%= sortable "name", "Nombre" %></th>
       <th><%= sortable "family_name", "Apellidos" %></th>
       <th><%= sortable "email", "Email" %></th>
-      <th><%= sortable "birthdate", "Fecha de Nacimiento" %></th>
       <th><span title="cuánto ha aportado"><%= 'Aportaciones' %></span></th>
       <th><span title="en cuántos proyectos es voluntario"><%= 'Voluntario en' %></span> </th>
       <th><%= sortable "admin", "Permisos" %></th>
@@ -17,7 +16,6 @@
           <td><%= link_to user.name, user %></td>
           <td><%= user.family_name %></td>
           <td><%= user.email %></td>
-          <td><%= user.birthday %></td>
           <td class="text-center">
             <%= user.total_achieved %>&euro;
           </td>
