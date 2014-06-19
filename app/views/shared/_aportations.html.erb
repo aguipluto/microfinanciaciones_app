@@ -7,6 +7,8 @@
             <td title="<%= ci.user.cart_items_purchased.count %> con aportaciones. <%= ci.user.volunteers.count %> como voluntario">Ha
               colaborado
               con <%= pluralize(ci.user.cart_items_purchased.count + ci.user.volunteers.count, 'proyecto', 'proyectos') %> </td>
+        <% else %>
+            <td><span class="glyphicon glyphicon-user"></span> Usuario anónimo </td>
         <% end %>
       </tr>
   <% end %>
