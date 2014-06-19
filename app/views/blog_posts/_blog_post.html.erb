@@ -24,11 +24,11 @@
     </div>
     <div class="breadcrumb">
       <div class="row">
-        <% unless blog_post.proyecto.nil? %>
-            <div class="col-xs-6 text-left">
+        <div class="col-xs-6 text-left">
+          <% unless blog_post.proyecto.nil? %>
               <small>Proyecto: <%= link_to blog_post.proyecto.titulo, blog_post.proyecto %></small>
-            </div>
-        <% end %>
+          <% end %>
+        </div>
         <div class="col-xs-6 text-right">
           <small>Publicado por <%= blog_post.author %> # <%= blog_post.updated_at.strftime("%d/%m/%Y") %></small>
         </div>
