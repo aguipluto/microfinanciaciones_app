@@ -3,7 +3,6 @@
     <thead>
     <tr>
       <th><%= sortable "title", "Título" %></th>
-      <th><%= "Contenido" %></th>
       <th><%= "Proyecto" %></th>
       <th><%= sortable "updated_at", "Última modificación" %></th>
       <th><%= sortable "author", "Autor" %></th>
@@ -13,7 +12,6 @@
     <% @blog_posts.each do |blogpost| %>
         <tr data-link="<%= blog_post_path(blogpost) %>" id="blog_post_<%= blogpost.id %>" class="<%= blogpost.assign_class %>">
           <td><%= link_to blogpost.title, blogpost %></td>
-          <td><%= strip_tags(blogpost.content[0, 45]) %></td>
           <% unless blogpost.proyecto.nil? %>
               <td><%= link_to blogpost.proyecto.titulo, blogpost.proyecto %></td>
           <% else %>
